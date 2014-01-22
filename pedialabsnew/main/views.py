@@ -11,7 +11,6 @@ def index(request):
     return dict()
 
 
-@login_required
 def page(request, path):
     # do auth on the request if you need the user to be logged in
     # or only want some particular users to be able to get here
