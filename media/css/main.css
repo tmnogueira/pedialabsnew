@@ -104,7 +104,7 @@ li.logged-in-greeting a span div {
 
 .content {
   background-color: #fff;
-  padding: 10px 50px;
+  padding: 10px 10px 50px 10px;
   box-shadow: 0 8px 8px -8px #333;
   border-bottom: 1px solid #9c9c9c;
 }
