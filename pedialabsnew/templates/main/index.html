@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>It works</h1>
-<p>Congratulations! Now start coding.</p>
-{% if not request.user.is_anonymous %}
-<p>This project includes Pagetree by default.</p>
+<h1>Welcome to PediaLabs</h1>
+<p>PediaLabs is a series of web based lab modules designed to improve the graduate nursing and medical student’s understanding of lab tests throughout childhood and adolescence. Using a case study approach, this curriculum will allow the student to improve clinical skills in ordering and evaluating lab tests as well as develop differential diagnosis skills.</p>
 
+<p>You can log in to go through the lab exercises or visit the Overview site to read the background of the Labs.</p>
+
+{% if request.user.is_staff %}
 <p>The first thing you'll want to do is go to
-	the <a href="/pages/labs/edit/">Edit Labs page</a> or  <a href="/pages/overview/edit/">Edit Overview page</a> for the root node and add
-	some modules, child sections and content.</p>
-
-<p> If you don't want to use
-	Pagetree, you should remove it from your requirements.txt and
-	INSTALLED_APPS and clear the views out of your main/views.py</p>
+	the <a href="/pages/labs/edit/">Edit Labs page</a> or  <a href="/pages/public/edit/">Edit Overview page</a>.</p>
 
 
 {% endif %}

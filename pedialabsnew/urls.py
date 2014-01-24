@@ -46,10 +46,10 @@ urlpatterns = patterns(
     (r'^pages/labs/(?P<path>.*)$', PageView.as_view(
         hierarchy_name="labs",
         hierarchy_base="/pages/labs/")),
-    (r'^pages/overview/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
+    (r'^pages/public/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
      {}, 'edit-page'),
-    (r'^pages/overview/(?P<path>.*)$', PageView.as_view(
-        hierarchy_name="overview",
-        hierarchy_base="/pages/overview/")),
+    (r'^pages/public/(?P<path>.*)$', PageView.as_view(
+        hierarchy_name="public",
+        hierarchy_base="/pages/public/")),
 
 )
