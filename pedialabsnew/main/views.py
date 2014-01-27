@@ -10,6 +10,8 @@ from pagetree.generic.views import InstructorView
 
 @render_to('main/index.html')
 def index(request):
+    # import pdb
+    # pdb.set_trace()
     return dict()
 
 

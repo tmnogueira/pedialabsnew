@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
-import pedialabsnew.main.views
 from django.views.generic import TemplateView
 from pagetree.generic.views import PageView
+import pedialabsnew.main.views
 import os.path
 admin.autodiscover()
 
@@ -39,17 +39,19 @@ urlpatterns = patterns(
      {'next_page': '/'}),
     (r'^pagetree/', include('pagetree.urls')),
     (r'^quizblock/', include('quizblock.urls')),
+    #Overview:
+    (r'^pages/public/(?P<path>.*)$', PageView.as_view(
+        hierarchy_name="public",
+        hierarchy_base="/pages/public/")),
+    (r'^pages/public/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
+     {}, 'edit-page'),
+    #Labs:
+    (r'^pages/labs/(?P<path>.*)$', PageView.as_view(
+        hierarchy_name="labs",
+        hierarchy_base="/pages/labs/")),
     (r'^pages/labs/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPage.as_view(),
      {}, 'edit-page'),
     (r'^pages/labs/instructor/(?P<path>.*)$',
      pedialabsnew.main.views.InstructorPage.as_view()),
-    (r'^pages/labs/(?P<path>.*)$', PageView.as_view(
-        hierarchy_name="labs",
-        hierarchy_base="/pages/labs/")),
-    (r'^pages/public/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
-     {}, 'edit-page'),
-    (r'^pages/public/(?P<path>.*)$', PageView.as_view(
-        hierarchy_name="public",
-        hierarchy_base="/pages/public/")),
 
 )
