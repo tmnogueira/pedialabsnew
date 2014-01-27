@@ -42,9 +42,7 @@ urlpatterns = patterns(
     #Overview. The order of these routes are important:
     (r'^pages/public/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
      {}, 'edit-page'),
-    (r'^pages/public/(?P<path>.*)$', PageView.as_view(
-        hierarchy_name="public",
-        hierarchy_base="/pages/public/")),
+    (r'^pages/public/(?P<path>.*)$', pedialabsnew.main.views.ViewPageOverview.as_view()),
     #Labs. The order of these routes are important:
     (r'^pages/labs/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPage.as_view(),
      {}, 'edit-page'),

@@ -46,6 +46,11 @@ class InstructorPage(LoggedInMixinStaff, InstructorView):
     hierarchy_base = "/pages/labs/"
 
 
+class ViewPageOverview(PageView):
+    hierarchy_name = "public"
+    hierarchy_base = "/pages/public/"
+
+
 class EditPageOverview(LoggedInMixinSuperuser, EditView):
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
