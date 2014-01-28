@@ -32,11 +32,13 @@ class LoggedInMixinSuperuser(object):
 
 
 class ViewPage(LoggedInMixin, PageView):
+    template_name = "pagetree/labs.html"
     hierarchy_name = "labs"
     hierarchy_base = "/pages/labs/"
 
 
 class EditPage(LoggedInMixinSuperuser, EditView):
+    template_name = "pagetree/edit_labs.html"
     hierarchy_name = "labs"
     hierarchy_base = "/pages/labs/"
 
@@ -47,11 +49,13 @@ class InstructorPage(LoggedInMixinStaff, InstructorView):
 
 
 class ViewPageOverview(PageView):
+    template_name = "pagetree/overview.html"
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
 
 
 class EditPageOverview(LoggedInMixinSuperuser, EditView):
+    template_name = "pagetree/edit_overview.html"
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
 

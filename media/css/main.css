@@ -15,7 +15,7 @@ body > .container {
   min-height: 100%;
 }
 
-/* NAV BAR */
+/* NAV BAR NEAR TOP PAGE BANNER */
 
 .navbar-pl {
   background-color: #c33;
@@ -104,9 +104,10 @@ li.logged-in-greeting a span div {
 
 .content {
   background-color: #fff;
-  padding: 10px 10px 50px 10px;
+  padding: 10px 15px 50px 15px;
   box-shadow: 0 8px 8px -8px #333;
   border-bottom: 1px solid #9c9c9c;
+  min-height: 600px;
 }
 
 .navbar-brand {
@@ -175,6 +176,22 @@ footer img {
   width: 150px;
 }
 
+#edit-page-nav {
+  border: 0;
+}
+
+#edit-page-nav .mode {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  float: right;
+}
+
+#edit-page-nav li.active a {
+  cursor: text;
+}
 
 
 

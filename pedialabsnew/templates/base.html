@@ -178,17 +178,21 @@
           <ul class="nav navbar-nav">
           {% block moduletabs %}{% endblock %}
           </ul>
+          {% comment %}
+          <!-- not used in PediaLabs -->
           <ul class="nav navbar-nav navbar-right">
           {% block navrightextra %}{% endblock %}
           </ul>
+          {% endcomment %}
         </nav>
       </div>
     </div><!--/ #primarynav -->
+    {% block pagemode %}{% endblock %}
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
       {% block sidenav %}{% endblock %}
       </div>
-      <div class="col-md-10">
+      <div class="col-md-9">
       {% block pagetitle %}{% endblock %}
       {% block content %}{% endblock %}
       {% block content-nav %}{% endblock %}

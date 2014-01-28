@@ -41,7 +41,7 @@ urlpatterns = patterns(
     (r'^quizblock/', include('quizblock.urls')),
     #Overview. The order of these routes are important:
     (r'^pages/public/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPageOverview.as_view(),
-     {}, 'edit-page'),
+     {}, 'edit-overview'),
     (r'^pages/public/(?P<path>.*)$', pedialabsnew.main.views.ViewPageOverview.as_view()),
     #Labs. The order of these routes are important:
     (r'^pages/labs/edit/(?P<path>.*)$', pedialabsnew.main.views.EditPage.as_view(),
