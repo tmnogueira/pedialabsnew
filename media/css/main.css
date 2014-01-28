@@ -365,3 +365,41 @@ footer img {
 }
 
 
+/* ***** Lab Tests ***** */
+
+.labtests
+{
+	border: 0;
+	border-top: 3px solid #999;
+	border-bottom: 3px solid #999;
+}
+
+.labtests th
+{
+	margin: 0;
+	padding: 5px 15px;
+	border: 0;
+	border-bottom: 1px dotted #999;
+}
+
+.labtests td
+{
+	margin: 0;
+	padding: 5px 15px;
+	border: 0;
+	border-bottom: 1px dotted #999;
+}
+
+.labtests .grey
+{
+	background-color: #efefef;
+}
+
+.actionplan
+{
+	margin: 0;
+	padding: 0 0 1em 0;
+	border: 0;
+	list-style: none;
+}
+
