@@ -2,7 +2,6 @@ from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
-from pagetree.helpers import get_hierarchy
 from pagetree.generic.views import PageView, EditView, InstructorView
 
 
@@ -58,5 +57,3 @@ class EditPageOverview(LoggedInMixinSuperuser, EditView):
     template_name = "pagetree/edit_overview.html"
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
-
-

@@ -68,17 +68,16 @@ class PagetreeViewTestsLoggedIn(TestCase):
         self.staff.set_password("test")
         self.staff.is_staff = True
         self.staff.save()
-        
 
     def test_page(self):
         self.c.login(username="testuser", password="test")
         r = self.c.get("/pages/labs/section-1/")
         self.assertEqual(r.status_code, 200)
-        
+
         self.c.login(username="testsuperuser", password="test")
         r = self.c.get("/pages/labs/section-1/")
         self.assertEqual(r.status_code, 200)
-        
+
         self.c.login(username="teststaff", password="test")
         r = self.c.get("/pages/labs/section-1/")
         self.assertEqual(r.status_code, 200)
