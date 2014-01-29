@@ -198,7 +198,8 @@ class TestResponse(models.Model):
     abnormality = models.CharField(max_length=256, default="none")
 
     def __unicode__(self):
-        return repr(self)
+        return "TestResponse (%s, %s)" % (
+            unicode(self.test), unicode(self.user))
 
     def correct_level(self):
         return self.result_level == self.test.result_level
@@ -214,7 +215,7 @@ class ActionPlanResponse(models.Model):
     assessment = models.TextField(default="", blank=True)
 
     def __unicode__(self):
-        return repr(self)
+        return "ActionPlanResponse for %s" % unicode(self.user)
 
     def correct_action_plan(self):
-        return self.action_plan == self.lab.correct_action_plan
+        return self.action_plan == self.lab.correct_actionplan
