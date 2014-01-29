@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load markup %}
+{% load getresponse %}
+
+{% block content %}
+<h1>Administration > <a href="/instructor/">Reports</a> > {{module.label}}</h1>
+<h2>Student: {{student.first_name}} {{student.last_name}}</h2>
+
+labs: {% for lab in labs %}
+<a href="?lab={{lab.id}}">{{lab.label}}</a>
+{% endfor %}
+
+{% if lab_section %}
+<h3>{{lab_section.label}}</h3>
+
+{{lab_block.description|markdown}}
+
+{% if taken %}
+<table cellpadding="0" cellspacing="0" class="labtests">
+  <tr>
+    <th>TEST</th>
+    <th colspan="3" class="grey">RESULT</th>
+    <th>RANGE</th>
+    <th class="grey">UNIT</th>
+    <th colspan="2">ABNORMALITY</th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="grey"></th>
+    <th class="grey yours">Student's Response:</th>
+    <th class="grey expert">Expert's Response:</th>
+    <th></th>
+    <th class="grey"></th>
+    <th class="yours">Student's Response:</th>
+    <th class="expert">Expert's Response:</th>
+  </tr>
+
+{% for test in lab_block.test_set.all %}
+{% getstudenttestresponse test student as tr %}
+  <tr>
+    <td>
+      {{test.name}}
+    </td>
+    <td class="grey">
+      {{test.result}}
+    </td>
+    <td class="grey yours">
+      {% if not tr.correct_level %}
+      <span class="incorrect">
+      {% endif %}
+
+      {{tr.result_level}}
+      {% if not tr.correct_level %}
+      </span>
+      {% endif %}
+
+    </td>
+    <td class="grey expert">
+      {{test.result_level}}
+    </td>
+    <td>
+      <nobr>{{test.normal_range}}</nobr>
+    </td>
+    <td class="grey">
+      {{test.unit}}
+    </td>
+    <td class="yours">
+      {% if not tr.correct_abnormality %}
+      <span class="incorrect">
+      {% endif %}
+      {{tr.abnormality}} 
+      {% if not tr.correct_abnormality %}
+      </span>
+      {% endif %}
+    </td>
+    <td class="expert">
+      {% ifnotequal test.abnormality 'none' %}{{test.abnormality}}{% endifnotequal %}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+
+<h3>Action Plan:</h3>
+{% getstudentactionplanresponse lab_block student as apr %}
+<p class="yours">
+  {% if not apr.correct_action_plan %}
+  <span class="incorrect">
+    {% endif %}
+{{apr.action_plan}}
+{% if not apr.correct_action_plan %}
+  </span>
+    {% endif %}
+</p>
+<p class="expert">Expert's answer: {{lab_block.correct_actionplan}}</p>
+
+
+{% if lab_block.assessment %}
+<h3>What is your assessment of this child?</h3>
+<p class="yours">{{apr.assessment}}</p>
+<p class="expert">Expert assessment</p>
+{% endif %}
+
+{% else %}
+<p>Student has not submitted a response for this lab yet</p>
+{% endif %}
+
+{% else %}
+<p>Please select a lab to view.</p>
+{% endif %}
+
+{% endblock %}

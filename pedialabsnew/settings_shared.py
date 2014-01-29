@@ -137,6 +137,7 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'pageblocks.ImageBlock',
               'pageblocks.ImagePullQuoteBlock',
               'quizblock.Quiz',
+              'pedialabsnew.exercises.Lab',
               ]
 
 

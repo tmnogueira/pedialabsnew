@@ -134,3 +134,7 @@ class PagetreeViewTestsLoggedInStaff(TestCase):
     def test_instructor_page(self):
         r = self.c.get("/pages/labs/instructor/section-1/")
         self.assertEqual(r.status_code, 200)
+
+    def test_instructor_index(self):
+        r = self.c.get("/instructor/")
+        self.assertEqual(r.status_code, 200)

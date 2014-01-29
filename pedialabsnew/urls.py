@@ -40,6 +40,10 @@ urlpatterns = patterns(
     (r'^pagetree/', include('pagetree.urls')),
     (r'^quizblock/', include('quizblock.urls')),
     (r'^exercises/', include(pedialabsnew.exercises.urls)),
+    (r'^instructor/$', 'pedialabsnew.main.views.instructor_index'),
+    (r'^instructor/(?P<uni>\w+)/lab/(?P<module_id>\d+)/$',
+     'pedialabsnew.main.views.instructor_lab_report'),
+
     #Overview. The order of these routes are important:
     (r'^pages/public/edit/(?P<path>.*)$',
      pedialabsnew.main.views.EditPageOverview.as_view(),
