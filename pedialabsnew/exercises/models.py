@@ -29,6 +29,8 @@ class Lab(models.Model):
 
     template_file = "exercises/labblock.html"
     display_name = "Lab"
+    exportable = False
+    importable = False
 
     def submit(self, user, data):
         """ a big open question here is whether we should
