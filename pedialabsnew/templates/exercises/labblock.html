@@ -1,0 +1,194 @@
+{% load markup %}
+{% load accessible %}
+{% load getresponse %}
+{% if block.label %}<h3>{{block.label}}</h3>{% endif %}
+
+{% ifsubmitted block %}
+
+{{block.description|markdown}}
+
+<table cellpadding="0" cellspacing="0" class="labtests">
+  <tr>
+    <th>TEST</th>
+    <th colspan="3" class="grey">RESULT</th>
+    <th>RANGE</th>
+    <th class="grey">UNIT</th>
+    <th colspan="2">ABNORMALITY</th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="grey"></th>
+    <th class="grey yours">Your Response:</th>
+    <th class="grey expert">Expert's Response:</th>
+    <th></th>
+    <th class="grey"></th>
+    <th class="yours">Your Response:</th>
+    <th class="expert">Expert's Response:</th>
+  </tr>
+
+{% for test in block.test_set.all %}
+{% gettestresponse test as tr %}
+  <tr>
+    <td>
+      {{test.name}}
+    </td>
+    <td class="grey">
+      {{test.result}}
+    </td>
+    <td class="grey yours">
+      {{tr.result_level}}
+    </td>
+    <td class="grey expert">
+      {{test.result_level}}
+    </td>
+    <td>
+      {{test.normal_range}}
+    </td>
+    <td class="grey">
+      {{test.unit}}
+    </td>
+    <td class="yours">
+      {{tr.abnormality}}
+    </td>
+    <td class="expert">
+      {% ifnotequal test.abnormality 'none' %}{{test.abnormality}}{% endifnotequal %}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+
+{% if block.assessment %}
+<h3>What is your assessment of this child?</h3>
+<p class="yours">{{apr.assessment}}</p>
+<p class="expert">Expert assessment</p>
+{% endif %}
+
+
+<h3>Action Plan:</h3>
+{% getactionplanresponse block as apr %}
+{% if block.sickvisit %}
+<p class="yours">{{apr.action_plan}}</p>
+<p class="expert">Expert's answer: {{block.correct_actionplan}}</p>
+{% else %}
+<p class="yours">{{apr.action_plan}}</p>
+<p class="expert">Expert's answer: {{block.correct_actionplan}}</p>
+{% endif %}
+
+
+
+{% else %}
+
+
+<script type="text/javascript" src="/site_media/js/mochikit/MochiKit/MochiKit.js"></script>
+<script type="text/javascript" language="javascript">
+
+function showAbnormalitySelect(name,value) {
+    var selectid = name.replace("-result-","-abnormality-select-");
+    if (value == "normal") {
+        removeElementClass(selectid,"hs-show");
+        addElementClass(selectid,"hs-hide");
+        // reset the abnormality select as well
+        var sid = name.replace("-result-","-abnormality-");
+        for (var i=0; i < $(sid).options.length;i++){ 
+            if ($(sid).options[i].value == "none") {
+	       $(sid).options[i].selected = true;
+	    } else {
+               $(sid).options[i].selected = false; 
+            }
+        }
+    } else {
+        removeElementClass(selectid,"hs-hide");
+        addElementClass(selectid,"hs-show");
+    }
+}
+
+</script>
+
+{{block.description|markdown}}
+
+<table cellpadding="0" cellspacing="0" class="labtests">
+  <tr>
+    <th>TEST</th>
+    <th colspan="2" class="grey">RESULT</th>
+    <th>RANGE</th>
+    <th class="grey">UNIT</th>
+    <th>ABNORMALITY</th>
+  </tr>
+
+{% for test in block.test_set.all %}
+  <tr>
+    <td>
+      {{test.name}}
+    </td>
+    <td class="grey">
+      {{test.result}}
+    </td>
+    <td class="grey">
+      <select name="pageblock-{{block.pageblock.id}}-result-{{test.id}}"
+	      onchange="showAbnormalitySelect(this.name,this.value)"
+	      >
+	<option value="low">Low</option>
+	<option value="normal" selected="selected">Normal</option>
+	<option value="high">High</option>
+      </select>
+    </td>
+    <td>
+      {{test.normal_range}}
+    </td>
+    <td class="grey">
+      {{test.unit}}
+    </td>
+    <td>
+
+      <div class="abnormality-select hs-hide" id="pageblock-{{block.pageblock.id}}-abnormality-select-{{test.id}}">
+      <select name="pageblock-{{block.pageblock.id}}-abnormality-{{test.id}}"
+	      id="pageblock-{{block.pageblock.id}}-abnormality-{{test.id}}">
+      {% for abnormality in block.all_abnormalities %}
+      <option 
+	 {% ifequal abnormality "none" %}selected="selected"{%endifequal%}
+	 value="{{ abnormality }}">{{abnormality}}</option>
+      {% endfor %}
+      </select>
+      </div>
+    </td>
+  </tr>
+{% endfor %}
+</table>
+{% if block.assessment %}
+<h3>What is your assessment of this child?</h3>
+<textarea name="pageblock-{{block.pageblock.id}}-assessment">
+</textarea>
+{% endif %}
+
+
+<h3>Action Plan:</h3>
+<ul class="actionplan">
+
+{% if block.sickvisit %}
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Prescribe treatment" />Prescribe treatment</label></li>
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Refer for further tests" />Refer for further tests</label></li>
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Reassure and send home" />Reassure and send home</label></li>
+{% else %}
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Situation urgent. Call or admit patient immediately" />Situation urgent. Call or admit patient immediately</label></li>
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Situation needs follow-up. Call patient within a week" />Situation needs follow-up. Call patient within a week</label></li>
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Flag for review at following visit" />Flag for review at following visit</label></li>
+  <li><label><input type="radio"
+	     name="pageblock-{{block.pageblock.id}}-action-plan" 
+	     value="Call patient's mother to say the results were normal" />Call patient's mother to say the results were normal</label></li>
+{% endif %}
+</ul>
+{% endifsubmitted %}
+
