@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block js %}
+{% endblock %}
+{% block content %}
+
+<h2><a href="{% url 'edit-lab' test.lab.id %}">Lab {{ test.lab.pageblock.label }}</a> Test {{test.ordinality}}: {{ test.name }}</h2>
+
+<form action="." method="post">
+<table>
+{{test.edit_form.as_table}}
+</table>
+<input type="submit" value="save" />
+</form>
+
+{% endblock %}

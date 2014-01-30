@@ -49,6 +49,7 @@ JENKINS_TASKS = (
 )
 PROJECT_APPS = [
     'pedialabsnew.main',
+    'pedialabsnew.exercises',
 ]
 
 ALLOWED_HOSTS = ['localhost', '.ccnmtl.columbia.edu']
@@ -127,6 +128,7 @@ INSTALLED_APPS = [
     'pageblocks',
     'quizblock',
     'pedialabsnew.main',
+    'pedialabsnew.exercises',
 ]
 
 PAGEBLOCKS = ['pageblocks.TextBlock',
@@ -135,11 +137,13 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'pageblocks.ImageBlock',
               'pageblocks.ImagePullQuoteBlock',
               'quizblock.Quiz',
+              'exercises.Lab',
               ]
 
 
 LETTUCE_APPS = (
     'pedialabsnew.main',
+    'pedialabsnew.exercises',
 )
 
 INTERNAL_IPS = ('127.0.0.1', )
