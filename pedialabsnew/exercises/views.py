@@ -26,15 +26,6 @@ def get_module(section):
     return section.get_ancestors()[1]
 
 
-def needs_submit(section):
-    """ if any blocks on the page need to be submitted """
-    for p in section.pageblock_set.all():
-        if hasattr(p.block(), 'needs_submit'):
-            if p.block().needs_submit():
-                return True
-    return False
-
-
 @permission_required('exercises.can_edit')
 @render_to('exercises/edit_lab.html')
 def edit_lab(request, id):
