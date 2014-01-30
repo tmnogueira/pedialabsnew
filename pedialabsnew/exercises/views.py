@@ -14,11 +14,6 @@ def get_hierarchy():
         name="main", defaults=dict(base_url="/"))[0]
 
 
-def get_section_from_path(path):
-    h = get_hierarchy()
-    return h.get_section_from_path(path)
-
-
 @permission_required('exercises.can_edit')
 @render_to('exercises/edit_lab.html')
 def edit_lab(request, id):
