@@ -3,15 +3,10 @@ from .models import Lab, Test
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
-from pagetree.models import Hierarchy
+from pagetree.helpers import get_hierarchy
 import csv
 from cStringIO import StringIO
 from django.core.urlresolvers import reverse
-
-
-def get_hierarchy():
-    return Hierarchy.objects.get_or_create(
-        name="main", defaults=dict(base_url="/"))[0]
 
 
 @permission_required('exercises.can_edit')
