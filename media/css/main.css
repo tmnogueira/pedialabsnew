@@ -367,6 +367,92 @@ footer img {
 
 /* OVERVIEW SECTION MENU OVERRIDE FOR SMALL DEVICES */
 
+.navbar-sectionmenu {
+  background-color: #fff;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-header-sectionmenu {
+  float: none;
+}
+
+
+.navbar-toggle-sectionmenu {
+  float: none;
+  width: 100%;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #c00;
+  background-color: #faba42;
+  border: 1px solid #f90 !important;
+}
+
+.navbar-toggle-sectionmenu:focus,
+.navbar-toggle-sectionmenu:hover {
+  outline: none;
+  background-color: #fbe7a2 !important;
+}
+
+.navbar-sectionmenu .navbar-collapse {
+  max-height: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-toggle-sectionmenu {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-toggle-sectionmenu {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-sectionmenu .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .navbar-sectionmenu .navbar-collapse.collapse {
+    display: none !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-sectionmenu .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .navbar-sectionmenu .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-sectionmenu .navbar-collapse.in {
+    overflow-y: visible;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-nav.navbar-left:first-child {
+    margin-left: -15px;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: -15px;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-text:last-child {
+    margin-right: 0;
+  }
+}
 
 
 /* ***** Lab Tests ***** */
