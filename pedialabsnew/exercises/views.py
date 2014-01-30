@@ -1,6 +1,5 @@
 from annoying.decorators import render_to
 from .models import Lab, Test
-from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from pagetree.helpers import get_hierarchy
@@ -9,7 +8,6 @@ from cStringIO import StringIO
 from django.core.urlresolvers import reverse
 
 
-@permission_required('exercises.can_edit')
 @render_to('exercises/edit_lab.html')
 def edit_lab(request, id):
     lab = get_object_or_404(Lab, id=id)
@@ -19,7 +17,6 @@ def edit_lab(request, id):
                 root=h.get_root())
 
 
-@permission_required('exercises.can_edit')
 def delete_test(request, id):
     test = get_object_or_404(Test, id=id)
     if request.method == "POST":
@@ -33,7 +30,6 @@ def delete_test(request, id):
 """)
 
 
-@permission_required('exercises.can_edit')
 def reorder_tests(request, id):
     if request.method != "POST":
         return HttpResponse("only use POST for this")
@@ -45,7 +41,6 @@ def reorder_tests(request, id):
     return HttpResponse("ok")
 
 
-@permission_required('exercises.can_edit')
 def add_test_to_lab(request, id):
     lab = get_object_or_404(Lab, id=id)
     form = lab.add_test_form(request.POST)
@@ -58,7 +53,6 @@ def add_test_to_lab(request, id):
                                         args=[lab.id]))
 
 
-@permission_required('exercises.can_edit')
 def add_csv_to_lab(request, id):
     lab = get_object_or_404(Lab, id=id)
     if 'csv' in request.FILES:
@@ -86,7 +80,6 @@ def add_csv_to_lab(request, id):
     return HttpResponseRedirect(reverse("edit-lab", args=[lab.id]))
 
 
-@permission_required('exercises.can_edit')
 @render_to('exercises/edit_test.html')
 def edit_test(request, id):
     test = get_object_or_404(Test, id=id)
