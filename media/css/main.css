@@ -181,11 +181,17 @@ li.logged-in-greeting a span div {
 
 
 .top-pagetitle {
-  margin-top: 0;
-  padding-top: 0;
   padding-bottom: 18px;
   color: #c00;
   font-size: 32px;
+}
+
+
+@media (min-width: 992px) {
+  .top-pagetitle {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
 
 footer {
@@ -400,6 +406,12 @@ footer img {
 
 
 /* OVERVIEW SECTION MENU OVERRIDE FOR SMALL DEVICES */
+
+.overview-sectionmenu {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
 
 .navbar-sectionmenu {
   background-color: #fff;
