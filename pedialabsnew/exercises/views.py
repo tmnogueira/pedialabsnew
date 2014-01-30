@@ -19,13 +19,6 @@ def get_section_from_path(path):
     return h.get_section_from_path(path)
 
 
-def get_module(section):
-    """ get the top level module that the section is in"""
-    if section.is_root:
-        return None
-    return section.get_ancestors()[1]
-
-
 @permission_required('exercises.can_edit')
 @render_to('exercises/edit_lab.html')
 def edit_lab(request, id):
