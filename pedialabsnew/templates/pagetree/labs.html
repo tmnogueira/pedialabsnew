@@ -1,6 +1,7 @@
 {% extends 'pagetree/page.html' %}
 {% load render %}
-{% block title %}{{section.label}}{% endblock %}
+{% block title %}Labs &mdash; {{section.label}}{% endblock %}
+{% block pagetitle %}<h1 class="top-pagetitle">{{section.label}}</h1>{% endblock %}
 
 {% block pagemode %}
 {% if request.user.is_superuser %}
