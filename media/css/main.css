@@ -501,6 +501,59 @@ footer img {
 }
 
 
+
+/* TABLE IN CONTENT */
+
+table
+{
+	margin: 0 0 1em 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	font-size: 100%;
+}
+
+table tbody
+{
+	border: 0;
+}
+
+th
+{
+	border: 1px solid #999;
+	border-collapse: collapse;
+	padding: 5px;
+	background-color: #efefef;
+}
+
+td
+{
+	border: 1px solid #999;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table td.noborder
+{
+	border-bottom: 0;
+}
+
+table th.tabletitle
+{
+	margin: 0;
+	padding: 5px 3px;
+	font-size: 1.1em;
+	color: #000;
+	border-bottom: 1px solid #999;
+	border-right: 1px solid #999;
+	background-color: #caddf0;
+}
+
+td.figurenotes {
+  font-size: 11px;
+  line-height: 150%;
+}
+
 /* ***** Lab Tests ***** */
 
 .labtests
@@ -538,4 +591,3 @@ footer img {
 	border: 0;
 	list-style: none;
 }
-
