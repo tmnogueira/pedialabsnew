@@ -38,6 +38,7 @@ class ViewPage(LoggedInMixin, PageView):
     template_name = "pagetree/labs.html"
     hierarchy_name = "labs"
     hierarchy_base = "/pages/labs/"
+    gated = True
 
 
 class EditPage(LoggedInMixinSuperuser, EditView):

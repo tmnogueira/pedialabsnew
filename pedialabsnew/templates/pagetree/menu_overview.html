@@ -9,7 +9,18 @@
   
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="sectionmenu">
-    <ul>
+
+ 
+
+
+
+    <ul class="sectionmenu-ul">
+    {% ifequal section.id module.id %}
+      <li><b>{{module.label}}</b></li>
+    {% else %}
+      <li><a href="{{module.get_absolute_url}}">{{module.label}}</a></li>
+    {% endifequal %}
+
     {% for s in module.get_descendants %}
     {% ifequal s.id module.id %}
     {% else %}
