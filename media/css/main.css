@@ -676,3 +676,27 @@ td.figurenotes {
 {
 	font-weight: bold;
 }
+
+.answer-toggle-btn
+{
+	font-weight: bold;
+	color: #c60;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.answer-toggle-btn:hover
+{
+	color: #c00 !important;
+	text-decoration: none;
+}
+
+.answer-toggle-btn:active
+{
+	color: #c00;
+	text-decoration: none;
+}
+
+div.toggleable-box {
+    display: none;
+}
