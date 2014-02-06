@@ -698,5 +698,6 @@ td.figurenotes {
 }
 
 div.toggleable-box {
-    display: none;
+  margin-top: 14px;
+  display: none;
 }
