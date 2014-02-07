@@ -16,3 +16,10 @@
     </div><!-- #edit-page-nav -->
 {% endif %}
 {% endblock %}
+
+{% block sidenav %}
+        <!-- ###### Secondary Navigation ###### -->
+        {% if module.get_children %}
+        {% include "pagetree/menu_labs.html" %}
+        {% endif %}
+{% endblock %}
