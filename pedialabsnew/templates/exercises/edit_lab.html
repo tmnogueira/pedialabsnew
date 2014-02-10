@@ -43,7 +43,7 @@ var saveOrder = function() {
 {% endblock %}
 
 {% block content %}
-<h2><a href="/edit{{section.get_absolute_url}}">{{section.label}}</a>: {{lab.pageblock.label}}</h2>
+<h2><a href="{{section.get_edit_url}}">{{section.label}}</a>: {{lab.pageblock.label}}</h2>
 <p>{{lab.description}}</p>
 <ul id="tests" class="dragparent">
 {% for test in lab.test_set.all %}
