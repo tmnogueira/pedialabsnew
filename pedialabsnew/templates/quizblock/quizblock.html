@@ -2,10 +2,6 @@
 {% load getresponse %}
 {{ block.description|markdown }}
 
-{% if request.user.is_anonymous %}
-  <p class="warning">You must be logged in to view this content</p>
-{% else %}
-
 {% for question in block.question_set.all %}
   {% include 'quizblock/question.html' %}
 {% endfor %}
@@ -15,4 +11,3 @@
 {% endif %}	
 
 
-{% endif %}
