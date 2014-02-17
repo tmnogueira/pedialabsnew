@@ -645,6 +645,8 @@ td.figurenotes {
 	margin: 10px;
 	padding: 0;
 	border: 0;
+	margin-top: 0;
+	padding-top: 10px;
 }
 
 .casequestion
@@ -701,3 +703,27 @@ div.toggleable-box {
   margin-top: 14px;
   display: none;
 }
+
+.overview-quiz .cases
+{
+	border-top: none;
+	margin-top: 0;
+}
+
+.overview-quiz .casetitle
+{
+	display: none;
+}
+
+.overview-quiz h3
+{
+	background-color: #f2e6d8;
+	margin: 0;
+	padding: 5px 10px;
+	font-weight: bold;
+	border: 1px solid #999;
+	border-bottom: none;
+  font-size: 14px;
+  line-height: 140%;
+}
+
