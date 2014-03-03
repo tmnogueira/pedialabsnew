@@ -13,17 +13,31 @@
 {% block second-column %}col-md-12{% endblock %}
 
 {% block content %}
-<h1>Welcome to PediaLabs</h1>
+<h1 class="top-pagetitle">Welcome to PediaLabs</h1>
+
 <p>PediaLabs is a series of web based lab modules designed to improve the graduate nursing and medical student’s understanding of lab tests throughout childhood and adolescence. Using a case study approach, this curriculum will allow the student to improve clinical skills in ordering and evaluating lab tests as well as develop differential diagnosis skills.</p>
 
-<p>You can log in to go through the lab exercises or visit the <a href="/pages/public/overview/">Overview</a> site to read the background of the Labs.</p>
+{% if request.user.is_anonymous %}
+<p>You can <a href="#" data-toggle="modal" data-target="#myModal">log in</a> to go through the lab exercises or visit the <a href="/pages/public/overview/">Overview</a> site to read the background of the Labs.</p>
+{% endif %}
 
-<p><a href="/pages/labs/cbc/">CBC lab</a></p>
+<h3>PediaLabs modules:</h3>
+<ul class="index-toc">
+  <li><a href="/pages/public/overview/">Overview</a></li>
+  {% if request.user.is_anonymous %}
+  <li><span class="disabled">Complete Blood Count</span> (<a href="#" data-toggle="modal" data-target="#myModal">Login</a> required)</li>
+  {% else %}
+  <li><a href="/pages/labs/cbc/">Complete Blood Count</a></li>
+  {% endif %}
+</ul>
 
 {% if request.user.is_staff %}
-<p>The first thing you'll want to do is go to
-	the <a href="/pages/labs/edit/">Edit Labs page</a> or  <a href="/pages/public/edit/">Edit Overview page</a>.</p>
-
-
+<h3>Admin:</h3>
+<ul class="index-toc admin-toc">
+  <li><a href="/pages/public/edit/">Edit Overview pages</a></li>
+  <li><a href="/pages/labs/edit/">Edit Labs page</a></li>
+</ul>
 {% endif %}
+
+
 {% endblock %}
