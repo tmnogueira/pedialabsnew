@@ -61,6 +61,6 @@ urlpatterns = patterns(
     (r'^pages/survey/edit/(?P<path>.*)$',
      pedialabsnew.main.views.EditSurveyPage.as_view(),
      {}, 'edit-survey'),
-    (r'^pages/survey/(?P<path>.*)$', pedialabsnew.main.views.ViewSurveyPage.as_view()),
-
+    (r'^pages/survey/(?P<path>.*)$',
+     pedialabsnew.main.views.ViewSurveyPage.as_view()),
 )
