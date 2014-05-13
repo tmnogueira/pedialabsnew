@@ -64,6 +64,18 @@ class EditPageOverview(LoggedInMixinSuperuser, EditView):
     hierarchy_base = "/pages/public/"
 
 
+class ViewSurveyPage(LoggedInMixin, PageView):
+    template_name = "pagetree/survey.html"
+    hierarchy_name = "survey"
+    hierarchy_base = "/pages/survey/"
+
+
+class EditSurveyPage(LoggedInMixinSuperuser, EditView):
+    template_name = "pagetree/edit_survey.html"
+    hierarchy_name = "survey"
+    hierarchy_base = "/pages/survey/"
+
+
 @render_to('main/instructor_index.html')
 def instructor_index(request):
     h = get_hierarchy()

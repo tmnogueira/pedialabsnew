@@ -209,11 +209,19 @@ li.logged-in-greeting a span div {
 }
 
 .top-pagetitle {
-  margin: 20px 0;
+  margin: 28px 0 20px 0;
   color: #c00;
   font-size: 32px;
 }
 
+.parent-module
+{
+	font: normal 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-transform: uppercase;
+	margin: 8px 0 -24px 0;
+	padding: 0;
+	color: #c00;
+}
 
 footer {
   margin: 0 auto 0 auto;
@@ -430,12 +438,57 @@ footer img {
 
 .overview-sectionmenu {
   border: 0;
-  margin: 0;
+  margin: 30px 0 0 0;
   padding: 0;
+}
+
+.overview-sectionmenu div.menu-item {
+  border: 0;
+  margin: 0;
+  padding: 1px 0px 7px 15px;
+  font-size: 13px;
+  line-height: 15px;
+  border: 0;
+}
+
+.overview-sectionmenu div.menu-3 {
+  margin-left: 15px;
+}
+
+.overview-sectionmenu div.menu-4 {
+  margin-left: 30px;
+}
+
+.overview-sectionmenu div.menu-5 {
+  margin-left: 45px;
+}
+
+.overview-sectionmenu .menu-active {
+  font-weight: bold;
+  color: #c00;
+  background: transparent url('/media/img/bg-menu-caret.png') 0px 2px no-repeat;
+}
+
+.menu-unlocked {
+  font-weight: normal;
+}
+
+.menu-locked {
+  font-weight: normal;
+  color: #999;
 }
 
 .sectionmenu-ul {
   margin: 0;
+  padding: 0;
+}
+
+.sectionmenu-ul li {
+  list-style: none;
+}
+
+.sectionmenu-ul ul {
+  margin: 0 0 0 0;
   padding: 0;
 }
 
@@ -444,6 +497,14 @@ footer img {
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.menu-4 {
+  padding: 0 0 0 15px;
+}
+
+.menu-5 {
+  padding: 0 0 0 30px;
 }
 
 .navbar-header-sectionmenu {
@@ -458,6 +519,7 @@ footer img {
   color: #c00;
   background-color: #fbe7a2;
   border: 1px solid #f90 !important;
+  margin-bottom: 0px;
 }
 
 .navbar-toggle-sectionmenu:focus,
@@ -489,11 +551,24 @@ footer img {
   }
 }
 
+
+
 @media (min-width: 768px) {
+  .overview-sectionmenu {
+    margin: 10px 0 20px 0;
+  }
   .navbar-sectionmenu .navbar-collapse {
     width: auto;
-    border-top: 0;
+    border: 1px solid #ccc;
+    border-top: none;
     box-shadow: none;
+    margin-top: -1px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
   .navbar-sectionmenu .navbar-collapse.collapse {
     display: none !important;
@@ -501,12 +576,58 @@ footer img {
     padding-bottom: 0;
     overflow: visible !important;
   }
+  .sectionmenu-ul {
+    margin-top: 10px;
+  }
+  .overview-sectionmenu div.menu-item {
+    padding: 0px;
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid #ccc;
+  }
+  .overview-sectionmenu div.menu-3,
+  .overview-sectionmenu div.menu-4,
+  .overview-sectionmenu div.menu-5
+  {
+    margin-left: 0;
+  }
+  .overview-sectionmenu div.menu-item a,
+  .overview-sectionmenu div.menu-item span {
+    display: block;
+    padding: 10px 0px 10px 15px;
+  }
+  .overview-sectionmenu div.menu-2 a,
+  .overview-sectionmenu div.menu-2 span 
+  {
+    margin-left: 10px;
+  }
+  .overview-sectionmenu div.menu-3 a,
+  .overview-sectionmenu div.menu-3 span 
+  {
+    margin-left: 30px;
+  }
+  .overview-sectionmenu div.menu-4 a,
+  .overview-sectionmenu div.menu-4 span 
+  {
+    margin-left: 50px;
+  }
+  .overview-sectionmenu div.menu-5 a,
+  .overview-sectionmenu div.menu-5 span 
+  {
+    margin-left: 70px;
+  }
+  .overview-sectionmenu .menu-active {
+     background: #fff4d3 url('/media/img/bg-menu-caret.png') 10px center no-repeat;
+  }
 }
 
 @media (min-width: 992px) {
+  .overview-sectionmenu {
+    margin: 30px 0 0 0;
+  }
   .navbar-sectionmenu .navbar-collapse {
     width: auto;
-    border-top: 0;
+    border: 0;
     box-shadow: none;
   }
   .navbar-sectionmenu .navbar-collapse.collapse {
@@ -526,6 +647,38 @@ footer img {
   }
   .navbar-sectionmenu .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
+  }
+  .sectionmenu-ul {
+    margin-top: 0px;
+  }
+  .overview-sectionmenu div.menu-item {
+    padding: 1px 0px 7px 15px;
+    font-size: 13px;
+    line-height: 15px;
+    border-bottom: 0;
+  }
+  .overview-sectionmenu div.menu-2 {
+    margin-left: 0px;
+  }
+  .overview-sectionmenu div.menu-3 {
+    margin-left: 15px;
+  }
+  
+  .overview-sectionmenu div.menu-4 {
+    margin-left: 30px;
+  }
+  
+  .overview-sectionmenu div.menu-5 {
+    margin-left: 45px;
+  }
+  .overview-sectionmenu div.menu-item a,
+  .overview-sectionmenu div.menu-item span {
+    display: inline;
+    padding: 0;
+    margin: 0 !important;
+  }
+  .overview-sectionmenu .menu-active {
+    background: transparent url('/media/img/bg-menu-caret.png') 0px 2px no-repeat;
   }
 }
 
@@ -743,3 +896,7 @@ div.toggleable-box {
   line-height: 140%;
 }
 
+
+ul.pager {
+  margin-top: 50px;
+}

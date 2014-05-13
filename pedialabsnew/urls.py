@@ -57,5 +57,10 @@ urlpatterns = patterns(
     (r'^pages/labs/instructor/(?P<path>.*)$',
      pedialabsnew.main.views.InstructorPage.as_view()),
     (r'^pages/labs/(?P<path>.*)$', pedialabsnew.main.views.ViewPage.as_view()),
+    #Survey. The order of these routes are important:
+    (r'^pages/survey/edit/(?P<path>.*)$',
+     pedialabsnew.main.views.EditSurveyPage.as_view(),
+     {}, 'edit-survey'),
+    (r'^pages/survey/(?P<path>.*)$', pedialabsnew.main.views.ViewSurveyPage.as_view()),
 
 )

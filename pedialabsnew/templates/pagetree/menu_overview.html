@@ -14,52 +14,46 @@
 
 
 
-    <ul class="sectionmenu-ul">
+    <div class="sectionmenu-ul">
     {% ifequal section.id module.id %}
-      <li><b>{{module.label}}</b></li>
+      <div class="menu-item menu-{{module.depth}} menu-active"><span>{{module.label}}</span></div>
     {% else %}
-      <li><a href="{{module.get_absolute_url}}">{{module.label}}</a></li>
+      
+        {% ifequal menu_base "/edit" %}
+        <div class="menu-item menu-{{module.depth}}"><a href="{{module.get_edit_url}}">
+        {% else %}
+        <div class="menu-item menu-{{module.depth}}"><a href="{{module.get_absolute_url}}">
+        {% endifequal %}
+        {{module.label}}</a></div>
     {% endifequal %}
-
+    
     {% for s in module.get_descendants %}
-    {% ifequal s.id module.id %}
-    {% else %}
-    <li class="menu-{{s.depth}}">
-      {% ifnotequal s.id section.id %}
-    {% ifequal menu_base "/edit" %}
-      <a href="{{s.get_edit_url}}">
-    {% else %}
-    {% ifequal menu_base "/instructor" %}
-      <a href="{{s.get_instructor_url}}">
-    {% else %}
-      <a href="{{menu_base}}{{s.get_absolute_url}}">
-    {% endifequal %}
-    {% endifequal %}
+      {% ifequal s.id module.id %}
       {% else %}
-         <b>
-      {% endifnotequal %}
-      {{s.label}}
-      {% ifnotequal s.id section.id %}
-        </a>
-      {% else %}
-        </b>
-      {% endifnotequal %}
-      {% if s.get_children %}
-         <ul id="section-ul-{{s.id}}">
-         {% else %}
-         {% if s.is_last_child %}
-         {% for lc in s.closing_children %}
-              </ul>
-         {% endfor %}
-    {% endif %}
-    {% endif %}
-    {% if s.get_children %}
-    {% else %}
-        </li>
-    {% endif%}
-    {% endifequal %}
+        {% ifnotequal s.id section.id %}
+          <div class="menu-item menu-{{s.depth}}">
+          {% ifequal menu_base "/edit" %}
+            <a href="{{s.get_edit_url}}">
+          {% else %}
+            {% ifequal menu_base "/instructor" %}
+              <a href="{{s.get_instructor_url}}">
+            {% else %}
+              <a href="{{menu_base}}{{s.get_absolute_url}}">
+            {% endifequal %}
+          {% endifequal %}
+        {% else %}
+          <div class="menu-item menu-{{s.depth}} menu-active"><span>
+        {% endifnotequal %}
+        {{s.label}}
+        {% ifnotequal s.id section.id %}
+          </a>
+        {% else %}
+          </span>
+        {% endifnotequal %}
+        </div>
+      {% endifequal %}
     {% endfor %}
-    </ul>
+    </div>
   </div><!-- /.navbar-collapse -->
 </div>
 </div>

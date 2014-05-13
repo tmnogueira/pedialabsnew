@@ -37,3 +37,9 @@
 </ul>
 
 {% endblock %}
+
+{% block sidenav %}
+{% with "/edit" as menu_base %}
+{% include "pagetree/menu_overview.html" %}
+{% endwith %}
+{% endblock %}
