@@ -900,3 +900,11 @@ div.toggleable-box {
 ul.pager {
   margin-top: 50px;
 }
+
+.flashanimation {
+  border: 1px solid #ccc;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
