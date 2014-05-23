@@ -61,7 +61,7 @@ class AccessibleNode(template.Node):
             u = r.user
             unlocked, url = s.gate_check(u)
             if unlocked:
-                return self.nodelist_true.render(context)                
+                return self.nodelist_true.render(context)
 
         return self.nodelist_false.render(context)
 

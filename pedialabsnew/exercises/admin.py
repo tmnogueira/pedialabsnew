@@ -6,6 +6,7 @@ admin.site.register(Lab)
 admin.site.register(TestResponse)
 admin.site.register(ActionPlanResponse)
 
+
 class TestAdmin(admin.ModelAdmin):
     class Meta:
         model = Test
