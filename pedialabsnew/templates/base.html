@@ -62,7 +62,7 @@
           {{ request.user.username }}
         {% endif %}
         </span></a>
-        <a href="/logout/"><span class="tooltip-bottom" rel="tooltip" title="Log out">(Log out)</span></a>
+        <a href="/accounts/logout/?next=/"><span class="tooltip-bottom" rel="tooltip" title="Log out">(Log out)</span></a>
         </li>
         {% endif %}
         {% endblock %}
@@ -75,18 +75,17 @@
 {% endblock %}
 
 
+{% if request.user.is_anonymous %}
 <!-- Login Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Log In</h4>
+        <h4 class="modal-title" id="myModalLabel">Please log in with...</h4>
       </div><!-- /.modal-header -->
       <div class="modal-body">
-        <p>Select an account.</p>
         {% block loginbox %}
-          {% if request.user.is_anonymous %}
   
             {% if WIND_BASE %}
             <form method="get" action="{{ WIND_BASE }}login">
@@ -98,14 +97,7 @@
             {% endif %}<!-- WIND -->
             
             <p style="text-align: center;">or</p>
-            
-            {% if login_form.errors %}
-            <p class="errornote">
-            <span><b>Oops!</b> Invalid username or password.</span>
-            Please try again. Note that both username and password are case-sensitive.
-            </p>
-            {% endif %}<!-- login_form errors -->
-            
+                        
             <form id="login-local" name="login_local" method="post" action="/accounts/login/" class="form-horizontal" role="form">
               {% csrf_token %}
               <div class="login-local-form" {% if not login_form.errors %}style="display: none"{% endif %}>
@@ -146,12 +138,12 @@
             <p class="smalltxt"><a href="/registration/register/" title="Create your new project account">Need a new account?</a></p>
             {% endcomment %}
             
-          {% endif %}<!-- request.user.is_anonymous -->
         {% endblock %}<!-- loginbox -->
       </div><!-- /.modal-body -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+{% endif %}<!-- request.user.is_anonymous -->
 
 
 <div class="banner-pl">

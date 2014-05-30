@@ -276,26 +276,15 @@ footer img {
   display: block;
 }
 
-.loginbox-container {
-  float: right;
-  height: 265px;
-  margin-top: 10px;
-}
-
-.loginbox-container.columbia {
-  height: 300px;
-}
 .loginbox
 {
   display: block;
-  width: 300px;
-  margin: 0 30px 0 20px;
+  width: 500px;
+  margin: 0 30px 0 0;
   padding: 0;
-  border: 1px solid #999;
-  background-color: #fff;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  font-size: 12px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #ccc;
 }
 .loginbox h2
 {
@@ -313,6 +302,10 @@ footer img {
   margin: 0;
   padding: 10px 10px 0 10px;
   border: 0;
+  min-height: 10px !important;
+  box-shadow: none;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
 }
 
 .loginbox .seperator
