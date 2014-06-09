@@ -16,14 +16,13 @@ def index(request):
         hierarchy = Hierarchy.objects.get(name='labs')
         usersurvey = hierarchy.get_section_from_path('survey')
         if usersurvey.submitted(request.user):
-          ctx['survey_complete'] = True
-        visits = UserPageVisit.objects.filter(user=request.user,
-                                   section__hierarchy=hierarchy).order_by('-last_visit')
+            ctx['survey_complete'] = True
+        visits = UserPageVisit.objects.filter(user=request.user, section__hierarchy=hierarchy).order_by('-last_visit')
         ctx['visits_len'] = len(visits)
         if len(visits) > 0: 
-          ctx['last_location'] = visits[0].section
+            ctx['last_location'] = visits[0].section
         else:
-          ctx['last_location'] = hierarchy.get_root()
+            ctx['last_location'] = hierarchy.get_root()
     return ctx
 
 
