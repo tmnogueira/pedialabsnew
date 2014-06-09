@@ -5,15 +5,26 @@ from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from pagetree.generic.views import PageView, EditView, InstructorView
 from pagetree.helpers import get_hierarchy
-from pagetree.models import Section
+from pagetree.models import Section, Hierarchy, UserPageVisit
 from pedialabsnew.exercises.models import ActionPlanResponse
 
 
 @render_to('main/index.html')
 def index(request):
-    # import pdb
-    # pdb.set_trace()
-    return dict()
+    ctx = {'survey_complete': False}
+    if not request.user.is_anonymous():
+        hierarchy = Hierarchy.objects.get(name='labs')
+        usersurvey = hierarchy.get_section_from_path('survey')
+        if usersurvey.submitted(request.user):
+          ctx['survey_complete'] = True
+        visits = UserPageVisit.objects.filter(user=request.user,
+                                   section__hierarchy=hierarchy).order_by('-last_visit')
+        ctx['visits_len'] = len(visits)
+        if len(visits) > 0: 
+          ctx['last_location'] = visits[0].section
+        else:
+          ctx['last_location'] = hierarchy.get_root()
+    return ctx
 
 
 class LoggedInMixin(object):

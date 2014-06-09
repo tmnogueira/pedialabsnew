@@ -415,6 +415,9 @@ footer img {
       background: url('/media/img/bg-sdw-970.png');
       padding: 0 6px;
   }
+  .module-overview .sidenav {
+    border-right: 1px dotted #ddd;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -458,7 +461,8 @@ footer img {
 
 .overview-sectionmenu .menu-active {
   font-weight: bold;
-  color: #c00;
+  color: #c60;
+  /* color: #c00; */
   background: transparent url('/media/img/bg-menu-caret.png') 0px 2px no-repeat;
 }
 
@@ -733,9 +737,11 @@ td.figurenotes {
 
 .labtests
 {
-	border: 0;
+	border: 1px solid #999;
 	border-top: 3px solid #999;
 	border-bottom: 3px solid #999;
+	border-collapse: collapse;
+	font-size: 12px;
 }
 
 .labtests th
@@ -757,6 +763,16 @@ td.figurenotes {
 .labtests .grey
 {
 	background-color: #efefef;
+}
+
+.labtests .yours
+{
+	color: #090;
+}
+
+.labtests .expert
+{
+	color: #06c;
 }
 
 .actionplan
@@ -900,4 +916,121 @@ ul.pager {
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+/* USER-SURVEY */
+
+.survey-incomplete .survey-instructions {
+  display: block;
+}
+
+.survey-incomplete .survey-acknowledged {
+  display: none;
+}
+
+.survey-complete .survey-instructions {
+  display: none;
+}
+
+.survey-complete .survey-acknowledged {
+  display: block;
+}
+
+.survey-complete .invitation {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.user-survey .cases {
+  margin-top: 20px;
+  border: none;
+}
+
+.user-survey .casetitle {
+  display: none;
+}
+
+.user-survey .casequestiontext {
+  font-size: 18px;
+}
+
+.user-survey .caseanswers ol,
+.user-survey .caseanswers ul {
+  list-style: none;
+}
+
+.user-survey input[type='submit'] {
+  margin-top: 20px;
+  margin-left: 15px !important;
+}
+
+.pedialabs-toc {
+  border: none;
+  margin-left: 10px;
+}
+
+.pedialabs-toc a {
+  color: #c60;
+  width: 75px;
+}
+
+.pedialabs-toc a:hover
+{
+	color: #c00 !important;
+	text-decoration: none;
+}
+
+.pedialabs-toc a:active
+{
+	color: #c00;
+	text-decoration: none;
+}
+
+.pedialabs-toc a:visited
+{
+	color: #c60;
+	text-decoration: none;
+}
+
+.pedialabs-toc td {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+.pedialabs-toc .btn-warning {
+  background-color: #ffd97e;
+}
+
+#getFlash {
+  background: #e1f0ef url("/media/img/icon-warning.png") no-repeat 5px 5px;
+  padding: 10px;
+  padding-left: 90px;
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left-color: #ccc;
+  border-right-color: #ccc;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  display: none;
+  margin: 20px 0;
+}
+
+#getFlash h3 {
+  margin: 5px 0 0 0;
+  padding: 0;
+  font-size: 26px;
+  color: #c00;
+}
+
+#getFlash h4 {
+  margin: 5px 0 10px 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+#getFlash p {
+  margin-bottom: 0;
 }

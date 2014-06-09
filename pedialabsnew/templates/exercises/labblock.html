@@ -128,8 +128,9 @@ function showAbnormalitySelect(name,value) {
       <select name="pageblock-{{block.pageblock.id}}-result-{{test.id}}"
 	      onchange="showAbnormalitySelect(this.name,this.value)"
 	      >
+	<option value="no response" selected="selected">Please select:</option>
 	<option value="low">Low</option>
-	<option value="normal" selected="selected">Normal</option>
+	<option value="normal">Normal</option>
 	<option value="high">High</option>
       </select>
     </td>

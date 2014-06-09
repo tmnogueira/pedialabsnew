@@ -18,25 +18,96 @@
 <p>PediaLabs is a series of web based lab modules designed to improve the graduate nursing and medical student’s understanding of lab tests throughout childhood and adolescence. Using a case study approach, this curriculum will allow the student to improve clinical skills in ordering and evaluating lab tests as well as develop differential diagnosis skills.</p>
 
 {% if request.user.is_anonymous %}
-<p>You can <a href="#" data-toggle="modal" data-target="#myModal">log in</a> to go through the lab exercises or visit the <a href="/pages/public/overview/">Overview</a> site to read the background of the Labs.</p>
+  <p>Please <a href="#" data-toggle="modal" data-target="#myModal">log in</a> to go through the lab exercises or read the <a href="/pages/public/overview/">Overview</a> section for the background of the labs.</p>
+  <p><b>If this is your first time using this site, you will be requested to fill out some information about yourself before you can access the lab exercises.</b></p>
+{% else %}
+  {% if survey_complete %}
+  {% else %}
+    <p><b>Since this is your first time using this site, please fill out some information about yourself before you can access the lab exercises.</b></p>
+  {% endif %}
 {% endif %}
 
 <h3>PediaLabs modules:</h3>
-<ul class="index-toc">
-  <li><a href="/pages/public/overview/">Overview</a></li>
+
+<table class="pedialabs-toc">
+  <tr>
+    <td>
+      <a href="/pages/public/overview/" class="btn btn-sm btn-warning">Read</a>
+    </td>
+    <td>
+      Overview
+    </td>
+  </tr>
+  <tr>
   {% if request.user.is_anonymous %}
-  <li><span class="disabled">Complete Blood Count</span> (<a href="#" data-toggle="modal" data-target="#myModal">Login</a> required)</li>
+    <td>
+        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-warning">Login</a>       
+    </td>
   {% else %}
-  <li><a href="/pages/labs/cbc/">Complete Blood Count</a></li>
+   {% if survey_complete %}
+    <td>
+      {% if visits_len == 1 %}
+        <a href="/pages/labs/cbc/" class="btn btn-sm btn-warning">Begin</a>
+      {% else %}
+        <a href="{{last_location.get_absolute_url}}" class="btn btn-sm btn-warning">Continue</a>
+      {% endif %}
+    </td>
+    {% else %}
+    <td>
+        <a href="/pages/labs/survey/" class="btn btn-sm btn-warning">Begin</a>
+    </td>
+    {% endif %}
   {% endif %}
-</ul>
+
+  {% if request.user.is_anonymous %}
+    <td>
+      Please log in to access the lab exercises      
+    </td>
+  {% else %}
+    {% if survey_complete %}
+    <td>
+        Complete Blood Count (CBC)
+    </td>
+    {% else %}
+    <td>
+        Please fill out user survey
+    </td>
+    {% endif %}
+  {% endif %}
+
+  </tr>
+</table>
+
+<br />
 
 {% if request.user.is_staff %}
 <h3>Admin:</h3>
-<ul class="index-toc admin-toc">
-  <li><a href="/pages/public/edit/">Edit Overview pages</a></li>
-  <li><a href="/pages/labs/edit/">Edit Labs page</a></li>
-</ul>
+<table class="pedialabs-toc">
+  <tr>
+    <td>
+      <a href="/pages/public/edit/" class="btn btn-sm btn-warning">Edit</a>
+    </td>
+    <td>
+      Overview
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/pages/labs/edit/cbc/" class="btn btn-sm btn-warning">Edit</a>
+    </td>
+    <td>
+      Complete Blood Count
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/pages/labs/edit/survey/" class="btn btn-sm btn-warning">Edit</a>
+    </td>
+    <td>
+      User Survey
+    </td>
+  </tr>
+</table>
 {% endif %}
 
 

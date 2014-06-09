@@ -1,49 +1,66 @@
 {% extends 'pagetree/page.html' %}
 {% load render %}
 {% load accessible %}
-{% block title %}Labs &mdash; {{section.label}}{% endblock %}
 {% block pagetitle %}<h1 class="top-pagetitle">{{section.label}}</h1>{% endblock %}
 
+
+{% block bodyclass %}{% ifequal module.slug 'survey' %}user-survey survey-{% if is_submitted %}complete{% else %}incomplete{% endif %}{% endifequal %}{% endblock %}
+
+
+{% block first-column %}{% ifequal module.slug 'survey' %}hide{% else %}{{ block.super }}{% endifequal %}{% endblock %}
+
+
 {% block pagemode %}
-{% if request.user.is_superuser %}
-    <div id="edit-page-nav" class="clearfix">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"><a href="{{section.get_absolute_url}}">View</a></li>
-        <li><a href="{{section.get_edit_url}}">Edit</a></li>
-      </ul>
-      <div class="mode">
-        page mode:
-      </div>
-    </div><!-- #edit-page-nav -->
-{% endif %}
+  {% comment %}
+    This is the view/edit/instructor buttons for superusers and faculty
+  {% endcomment %}
+  {% if request.user.is_superuser %}
+  <div id="edit-page-nav" class="clearfix">
+    <ul class="nav nav-pills pull-right">
+      <li class="active"><a href="{{section.get_absolute_url}}">View</a></li>
+      <li><a href="{{section.get_edit_url}}">Edit</a></li>
+    </ul>
+    <div class="mode">
+      page mode:
+    </div>
+  </div><!-- #edit-page-nav -->
+  {% endif %}
 {% endblock %}
+
 
 {% block sidenav %}
-        <!-- ###### Secondary Navigation ###### -->
-        {% if module.get_children %}
-        {% include "pagetree/menu_labs.html" %}
-        {% endif %}
+  <!-- ###### Secondary (Section) Navigation ###### -->
+  {% if module.get_children %}
+    {% include "pagetree/menu_labs.html" %}
+  {% endif %}
 {% endblock %}
 
 
-{% block content-nav %}
-<ul class="pager">
-{% if section.get_previous %}
-  <li class="previous">
-		<a href="{{section.get_previous.get_absolute_url}}">&larr; {{section.get_previous.label}}</a>
-  </li>
-{% endif %}
-
-{% if section.get_next %}
-  {% with section.get_next as next_section %}
-    <li class="next">
-    {% ifaccessible next_section %}
-    <a href="{{section.get_next.get_absolute_url}}">{{section.get_next.label}} &rarr;</a>
-    {% else %}
-    {{section.get_next.label}}
-    {% endifaccessible %}
+{% block content-nav %}  
+  
+  {% ifequal module.slug 'survey' %}
+    {% if is_submitted %}
+    <p class="invitation">Let's begin with the lab exercises for <a href="{{section.get_next.get_absolute_url}}">{{section.get_next.label}} (CBC)</a>.</p>
+    {% endif %}
+  {% else %}
+  <ul class="pager">
+    {% if section.get_previous %}
+    <li class="previous">
+      <a href="{{section.get_previous.get_absolute_url}}">&larr; {{section.get_previous.label}}</a>
     </li>
-  {% endwith %}
-{% endif %}
-</ul>
+    {% endif %}
+    
+    {% if section.get_next %}
+      {% with section.get_next as next_section %}
+      <li class="next">
+        {% ifaccessible next_section %}
+          <a href="{{section.get_next.get_absolute_url}}">{{section.get_next.label}} &rarr;</a>
+        {% else %}
+          <span><img src="{{STATIC_URL}}img/lock.png">&nbsp;&nbsp;{{section.get_next.label}} &rarr;</span>
+        {% endifaccessible %}
+      </li>
+      {% endwith %}
+    {% endif %}
+  </ul>
+  {% endifequal %}
 {% endblock %}
