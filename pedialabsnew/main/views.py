@@ -3,10 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
+from django.views.generic.base import View
+from django.http.response import HttpResponseRedirect
 from pagetree.generic.views import PageView, EditView, InstructorView
 from pagetree.helpers import get_hierarchy
 from pagetree.models import Section, Hierarchy, UserPageVisit
-from pedialabsnew.exercises.models import ActionPlanResponse
+from pedialabsnew.exercises.models import ActionPlanResponse, TestResponse
+from quizblock.models import Submission
 
 
 @render_to('main/index.html')
@@ -75,6 +78,22 @@ class EditPageOverview(LoggedInMixinSuperuser, EditView):
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
 
+
+class ClearStateView(LoggedInMixinSuperuser, View):
+    def get(self, request):
+        UserPageVisit.objects.filter(user=request.user).delete()
+    
+        # clear quiz
+        submissions = Submission.objects.filter(user=request.user)
+        submissions.delete()
+        
+        # clear exercises
+        responses = ActionPlanResponse.objects.filter(user=request.user)
+        responses.delete()
+        responses = TestResponse.objects.filter(user=request.user)
+        responses.delete()
+
+        return HttpResponseRedirect("/")
 
 @render_to('main/instructor_index.html')
 def instructor_index(request):
