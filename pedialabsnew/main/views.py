@@ -82,11 +82,11 @@ class EditPageOverview(LoggedInMixinSuperuser, EditView):
 class ClearStateView(LoggedInMixinSuperuser, View):
     def get(self, request):
         UserPageVisit.objects.filter(user=request.user).delete()
-    
+
         # clear quiz
         submissions = Submission.objects.filter(user=request.user)
         submissions.delete()
-        
+
         # clear exercises
         responses = ActionPlanResponse.objects.filter(user=request.user)
         responses.delete()
@@ -94,6 +94,7 @@ class ClearStateView(LoggedInMixinSuperuser, View):
         responses.delete()
 
         return HttpResponseRedirect("/")
+
 
 @render_to('main/instructor_index.html')
 def instructor_index(request):
