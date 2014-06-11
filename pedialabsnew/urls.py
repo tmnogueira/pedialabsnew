@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
 from pedialabsnew.main.views import EditPageOverview, ViewPageOverview, \
-    EditPage, InstructorPage, ViewPage
+    EditPage, InstructorPage, ViewPage, ClearStateView
 import pedialabsnew.exercises.urls
 import os.path
 admin.autodiscover()
@@ -20,6 +20,7 @@ urlpatterns = patterns(
     (r'^registration/', include('registration.backends.default.urls')),
     (r'^$', 'pedialabsnew.main.views.index'),
     (r'^admin/', include(admin.site.urls)),
+    (r'^_clear/$', ClearStateView.as_view()),
     url(r'^_impersonate/', include('impersonate.urls')),
     (r'^stats/$', TemplateView.as_view(template_name="stats.html")),
     (r'smoketest/', include('smoketest.urls')),
