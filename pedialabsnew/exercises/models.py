@@ -149,18 +149,30 @@ class Lab(models.Model):
             test.save()
 
     def all_abnormalities(self):
-        return ["none", "Anemia", "Eosinopenia", "Eosinophilia",
-                "Erythrocytosis", "Erythropenia", "Leukocytosis",
-                "Leukopenia", "Lymphocytosis", "Lymphopenia",
-                "Monocytosis", "Monopenia", "Neutrocytosis",
-                "Neutropenia", "Neutropenic", "Neutrophillia",
-                "Polycythemia", "Thrombocytopenia", "Thrombocytosis"]
+        return ["unselected", "No abnormality", "Anemia",
+                "Atypical Lymphocytosis", "Bandemia", "Elevated",
+                "Eosinopenia", "Eosinophilia", "Erythrocytosis",
+                "Erythropenia", "High Atypical Lymphocytosis", "Increased INR",
+                "Leukocytosis", "Leukopenia", "Lymphocytosis", "Lymphopenia",
+                "Macrocytosis", "Microcytosis", "Moderate Neutropenia",
+                "Monocytopenia", "Monocytosis", "Monopenia", "Neutrocytosis",
+                "Neutropenia", "Neutropenic", "Neutrophillia", "Polycythemia",
+                "Prolonged PT", "Reticulocytosis", "Severe Neutropenia",
+                "Thrombocytopenia", "Thrombocytosis"]
 
     def unlocked(self, user):
         # meaning that the user can proceed *past* this one,
         # not that they can access this one. careful.
         return ActionPlanResponse.objects.filter(
             lab=self, user=user).count() > 0
+
+
+TEST_CHOICES = (
+    ('unselected', 'Please select:'),
+    ('low', 'Low'),
+    ('normal', 'Normal'),
+    ('high', 'High'),
+)
 
 
 class Test(models.Model):
@@ -170,10 +182,7 @@ class Test(models.Model):
     result = models.CharField(max_length=256)
     normal_range = models.CharField(max_length=256, blank=True)
     unit = models.CharField(max_length=256)
-    result_level = models.CharField(max_length=256,
-                                    choices=[("high", "High"),
-                                             ("normal", "Normal"),
-                                             ("low", "Low")],
+    result_level = models.CharField(max_length=256, choices=TEST_CHOICES,
                                     default="normal")
     abnormality = models.CharField(max_length=256, default="none")
 
@@ -191,10 +200,7 @@ class Test(models.Model):
 class TestResponse(models.Model):
     test = models.ForeignKey(Test)
     user = models.ForeignKey(User)
-    result_level = models.CharField(max_length=256,
-                                    choices=[("high", "High"),
-                                             ("normal", "Normal"),
-                                             ("low", "Low")])
+    result_level = models.CharField(max_length=256, choices=TEST_CHOICES)
     abnormality = models.CharField(max_length=256, default="none")
 
     def __unicode__(self):

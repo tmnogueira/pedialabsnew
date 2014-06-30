@@ -4,10 +4,10 @@
 {% block pagetitle %}<h1 class="top-pagetitle">{{section.label}}</h1>{% endblock %}
 
 
-{% block bodyclass %}{% ifequal module.slug 'survey' %}user-survey survey-{% if is_submitted %}complete{% else %}incomplete{% endif %}{% endifequal %}{% endblock %}
+{% block bodyclass %}{% ifequal module.slug 'survey' %}user-survey survey-{% if is_submitted %}complete{% else %}incomplete{% endif %}{% else %}module-labs{% endifequal %}{% endblock %}
 
 
-{% block first-column %}{% ifequal module.slug 'survey' %}hide{% else %}{{ block.super }}{% endifequal %}{% endblock %}
+{% block first-column %}{% ifequal module.slug 'survey' %}hide{% else %}{{ block.super }} col-md-labs{% endifequal %}{% endblock %}
 
 
 {% block pagemode %}

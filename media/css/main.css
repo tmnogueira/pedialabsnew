@@ -418,6 +418,9 @@ footer img {
   .module-overview .sidenav {
     border-right: 1px dotted #ddd;
   }
+  .module-labs .col-md-labs {
+    width: 20%;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -426,6 +429,9 @@ footer img {
   .container-banner  { 
       background: url('/media/img/bg-sdw-1170.png');
       padding: 0 6px;
+  }
+  .module-labs .col-md-labs {
+    width: 25%;
   }
 }
 
@@ -749,7 +755,14 @@ td.figurenotes {
 	margin: 0;
 	padding: 5px 15px;
 	border: 0;
-	border-bottom: 1px dotted #999;
+	border-bottom: 1px solid #999;
+  border-collapse: collapse;
+  background-color: transparent;
+}
+
+.labtests th.submitstate
+{
+	border: 0;
 }
 
 .labtests td
@@ -757,7 +770,13 @@ td.figurenotes {
 	margin: 0;
 	padding: 5px 15px;
 	border: 0;
-	border-bottom: 1px dotted #999;
+	border-bottom: 1px dotted #ccc;
+  border-collapse: collapse;
+}
+
+.labtests .centered
+{
+	text-align: center;
 }
 
 .labtests .grey
@@ -765,12 +784,12 @@ td.figurenotes {
 	background-color: #efefef;
 }
 
-.labtests .yours
+.yours
 {
 	color: #090;
 }
 
-.labtests .expert
+.expert
 {
 	color: #06c;
 }
@@ -781,6 +800,15 @@ td.figurenotes {
 	padding: 0 0 1em 0;
 	border: 0;
 	list-style: none;
+}
+
+.actionplan li {
+  line-height: 200%;
+}
+
+.actionplan input[type='radio'] {
+  padding-right: 5px;
+  margin-right: 5px;
 }
 
 .pullquote {
