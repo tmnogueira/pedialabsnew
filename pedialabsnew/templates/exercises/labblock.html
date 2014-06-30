@@ -64,7 +64,7 @@
 
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
-<p class="yours"><b>Your answer:</b> {{apr.assessment}}</p>
+<p class="yours"><b>Your response:</b> {{apr.assessment}}</p>
 <p class="expert"><b>Expert assessment:</b></p>
 {% endif %}
 
@@ -72,11 +72,22 @@
 <h3>Action Plan:</h3>
 {% getactionplanresponse block as apr %}
 {% if block.sickvisit %}
-<p class="yours"><b>Your answer:</b> {{apr.action_plan}}</p>
-<p class="expert"><b>Expert's answer:</b> {{block.correct_actionplan}}</p>
+  <p class="yours">
+  {% if apr.action_plan %}
+    <b>Your response:</b> {{apr.action_plan}}
+  {% else %}
+     You’ve not indicated your action plan.
+{% endif %}
+</p>
+<p class="expert"><b>Expert's response:</b> {{block.correct_actionplan}}</p>
 {% else %}
-<p class="yours"><b>Your answer:</b> {{apr.action_plan}}</p>
-<p class="expert"><b>Expert's answer:</b> {{block.correct_actionplan}}</p>
+  <p class="yours">
+  {% if apr.action_plan %}
+    <b>Your response:</b> {{apr.action_plan}}
+  {% else %}
+     <b>You’ve not indicated your action plan.</b>
+{% endif %}
+<p class="expert"><b>Expert's response:</b> {{block.correct_actionplan}}</p>
 {% endif %}
 
 
