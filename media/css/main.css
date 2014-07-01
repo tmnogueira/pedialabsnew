@@ -502,14 +502,6 @@ footer img {
   padding: 0;
 }
 
-.menu-4 {
-  padding: 0 0 0 15px;
-}
-
-.menu-5 {
-  padding: 0 0 0 30px;
-}
-
 .navbar-header-sectionmenu {
   float: none;
 }
@@ -1062,3 +1054,29 @@ ul.pager {
 #getFlash p {
   margin-bottom: 0;
 }
+
+/* LABS MENU */
+
+.labs-sectionmenu div.menu-item {
+  border: 0;
+  margin: 0;
+  padding: 1px 0px 7px 15px;
+  font-size: 13px;
+  line-height: 15px;
+  border: 0;
+}
+
+.labs-sectionmenu .menu-active a {
+  font-weight: bold;
+  color: #c60;
+}
+
+.labs-sectionmenu .menu-unlocked a {
+  font-weight: normal;
+}
+
+.labs-sectionmenu .menu-locked {
+  font-weight: normal;
+  color: #999;
+}
+
