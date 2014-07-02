@@ -39,7 +39,7 @@ class PagetreeViewTestsLoggedOut(TestCase):
         self.assertEqual(r.status_code, 302)
 
     def test_instructor_page(self):
-        r = self.c.get("/pages/labs/instructor/section-1/")
+        r = self.c.get("/instructor/")
         self.assertEqual(r.status_code, 302)
 
 
@@ -69,7 +69,13 @@ class PagetreeViewTestsLoggedInUser(TestCase):
         self.assertEqual(r.status_code, 302)
 
     def test_instructor_page(self):
-        r = self.c.get("/pages/labs/instructor/section-1/")
+        r = self.c.get("/instructor/")
+        self.assertEqual(r.status_code, 302)
+
+    def test_instructor_labreport(self):
+        section = self.root.get_descendants()[0]
+        url = '/instructor/%s/lab/%s/' % (self.u.username, section.id)
+        r = self.c.get(url)
         self.assertEqual(r.status_code, 302)
 
 
@@ -101,7 +107,13 @@ class PagetreeViewTestsLoggedInSuperUser(TestCase):
         self.assertEqual(r.status_code, 200)
 
     def test_instructor_page(self):
-        r = self.c.get("/pages/labs/instructor/section-1/")
+        r = self.c.get("/instructor/")
+        self.assertEqual(r.status_code, 200)
+
+    def test_instructor_labreport(self):
+        section = self.root.get_descendants()[0]
+        url = '/instructor/%s/lab/%s/' % (self.superuser.username, section.id)
+        r = self.c.get(url)
         self.assertEqual(r.status_code, 200)
 
 
@@ -132,9 +144,11 @@ class PagetreeViewTestsLoggedInStaff(TestCase):
         self.assertEqual(r.status_code, 302)
 
     def test_instructor_page(self):
-        r = self.c.get("/pages/labs/instructor/section-1/")
+        r = self.c.get("/instructor/")
         self.assertEqual(r.status_code, 200)
 
-    def test_instructor_index(self):
-        r = self.c.get("/instructor/")
+    def test_instructor_labreport(self):
+        section = self.root.get_descendants()[0]
+        url = '/instructor/%s/lab/%s/' % (self.staff.username, section.id)
+        r = self.c.get(url)
         self.assertEqual(r.status_code, 200)

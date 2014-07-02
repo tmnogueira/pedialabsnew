@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 from django.http.response import HttpResponseRedirect
-from pagetree.generic.views import PageView, EditView, InstructorView
+from pagetree.generic.views import PageView, EditView
 from pagetree.helpers import get_hierarchy
 from pagetree.models import Section, Hierarchy, UserPageVisit
 from pedialabsnew.exercises.models import ActionPlanResponse, TestResponse
@@ -62,11 +62,6 @@ class EditPage(LoggedInMixinSuperuser, EditView):
     hierarchy_base = "/pages/labs/"
 
 
-class InstructorPage(LoggedInMixinStaff, InstructorView):
-    hierarchy_name = "labs"
-    hierarchy_base = "/pages/labs/"
-
-
 class ViewPageOverview(PageView):
     template_name = "pagetree/overview.html"
     hierarchy_name = "public"
@@ -96,34 +91,49 @@ class ClearStateView(LoggedInMixinSuperuser, View):
         return HttpResponseRedirect("/")
 
 
-@render_to('main/instructor_index.html')
-def instructor_index(request):
-    h = get_hierarchy()
-    root = h.get_root()
-    all_modules = root.get_children()
-    return dict(students=User.objects.all(),
-                all_modules=all_modules)
+class InstructorPage(LoggedInMixinStaff, TemplateView):
+    template_name = "main/instructor_index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(InstructorPage, self).get_context_data(**kwargs)
+        h = get_hierarchy('labs')
+        root = h.get_root()
+        all_modules = root.get_children()
+        context['students'] = User.objects.all()
+        context['all_modules'] = all_modules
+
+        return context
 
 
-def has_lab(section):
-    for p in section.pageblock_set.all():
-        if p.block().display_name == "Lab":
-            return True
-    return False
+class InstructorLabReport(LoggedInMixinStaff, TemplateView):
+    template_name = "main/instructor_lab_report.html"
 
+    def has_lab(self, section):
+        for p in section.pageblock_set.all():
+            if p.block().display_name == "Lab Exercise":
+                return True
+        return False
 
-@render_to('main/instructor_lab_report.html')
-def instructor_lab_report(request, uni, module_id):
-    student = User.objects.get(username=uni)
-    module = Section.objects.get(id=module_id)
-    labs = [s for s in module.get_descendents() if has_lab(s)]
-    lab_section = None
-    lab_block = None
-    if 'lab' in request.GET:
-        lab_section = Section.objects.get(id=request.GET['lab'])
-        lab_block = [p.block() for p in lab_section.pageblock_set.all()
-                     if p.block().display_name == "Lab"][0]
-    r = ActionPlanResponse.objects.filter(lab=lab_block, user=student)
-    return dict(student=student, module=module, labs=labs,
-                lab_block=lab_block, lab_section=lab_section,
-                taken=r.count() > 0)
+    def get_context_data(self, **kwargs):
+        context = super(InstructorLabReport, self).get_context_data(**kwargs)
+        uni = self.kwargs['uni']
+        module_id = self.kwargs['module_id']
+        student = User.objects.get(username=uni)
+        module = Section.objects.get(id=module_id)
+        labs = [s for s in module.get_descendants() if self.has_lab(s)]
+        lab_section = None
+        lab_block = None
+        if 'lab' in self.request.GET:
+            lab_section = Section.objects.get(id=self.request.GET['lab'])
+            lab_block = [p.block() for p in lab_section.pageblock_set.all()
+                         if p.block().display_name == "Lab Exercise"][0]
+        r = ActionPlanResponse.objects.filter(lab=lab_block, user=student)
+
+        context['student'] = student
+        context['module'] = module
+        context['labs'] = labs
+        context['lab_block'] = lab_block
+        context['lab_section'] = lab_section
+        context['taken'] = r.count() > 0
+
+        return context

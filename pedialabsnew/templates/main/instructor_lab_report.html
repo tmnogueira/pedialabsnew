@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% load markup %}
-{% load getresponse %}
+{% load getlabresponse %}
 
 {% block content %}
 <h1>Administration > <a href="/instructor/">Reports</a> > {{module.label}}</h1>
 <h2>Student: {{student.first_name}} {{student.last_name}}</h2>
 
-labs: {% for lab in labs %}
+<p>instructor_lab.html</p>
+
+
+Here are labs: {% for lab in labs %}
 <a href="?lab={{lab.id}}">{{lab.label}}</a>
 {% endfor %}
 

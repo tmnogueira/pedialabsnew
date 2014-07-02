@@ -18,6 +18,7 @@
       {% else %}
         <div class="menu-item menu-{{section.depth}}"><a href="{{module.get_absolute_url}}">{{module.id}} {{module.label}}</a></div>
       {% endifequal %}
+
       {% for s in module.get_descendants %}
         {% ifnotequal s.id section.id %}
           {% ifaccessible s %}
@@ -39,6 +40,7 @@
           </div>
         {% endifnotequal %}
       {% endfor %}
+
       </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.navbar-sectionmenu -->

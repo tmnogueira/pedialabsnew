@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
 from pedialabsnew.main.views import EditPageOverview, ViewPageOverview, \
-    EditPage, InstructorPage, ViewPage, ClearStateView
+    EditPage, ViewPage, ClearStateView, InstructorPage, InstructorLabReport
 import pedialabsnew.exercises.urls
 import os.path
 admin.autodiscover()
@@ -29,21 +29,15 @@ urlpatterns = patterns(
     (r'^pagetree/', include('pagetree.urls')),
     (r'^quizblock/', include('quizblock.urls')),
     (r'^exercises/', include(pedialabsnew.exercises.urls)),
-    (r'^instructor/$', 'pedialabsnew.main.views.instructor_index'),
+    (r'^instructor/$', InstructorPage.as_view()),
     (r'^instructor/(?P<uni>\w+)/lab/(?P<module_id>\d+)/$',
-     'pedialabsnew.main.views.instructor_lab_report'),
+     InstructorLabReport.as_view()),
 
     #Overview. The order of these routes are important:
     (r'^pages/public/edit/(?P<path>.*)$',
-     EditPageOverview.as_view(),
-     {}, 'edit-overview'),
-    (r'^pages/public/(?P<path>.*)$',
-     ViewPageOverview.as_view()),
+     EditPageOverview.as_view(), {}, 'edit-overview'),
+    (r'^pages/public/(?P<path>.*)$', ViewPageOverview.as_view()),
     #Labs. The order of these routes are important:
-    (r'^pages/labs/edit/(?P<path>.*)$',
-     EditPage.as_view(),
-     {}, 'edit-page'),
-    (r'^pages/labs/instructor/(?P<path>.*)$',
-     InstructorPage.as_view()),
+    (r'^pages/labs/edit/(?P<path>.*)$', EditPage.as_view(), {}, 'edit-page'),
     (r'^pages/labs/(?P<path>.*)$', ViewPage.as_view()),
 )

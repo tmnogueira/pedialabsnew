@@ -28,7 +28,7 @@ class Lab(models.Model):
     pageblocks = generic.GenericRelation(PageBlock)
 
     template_file = "exercises/labblock.html"
-    display_name = "Exercise"
+    display_name = "Lab Exercise"
     exportable = False
     importable = False
 

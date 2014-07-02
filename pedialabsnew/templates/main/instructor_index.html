@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Administration > Lab Reports</h1>
 
-
+<p>instructor_index.html</p>
 <table>
 <tr>
   <th>Last Name</th>
@@ -18,8 +18,10 @@
   <td>{{student.username}}</td>
   <td>
 {% for module in all_modules %}
-{% if not forloop.first %}|{% endif %}
-<a href="{{student.username}}/lab/{{module.id}}/">{{module.label}}</a>
+  {% ifequal module.slug 'survey'%}
+  {% else %}
+  <a href="{{student.username}}/lab/{{module.id}}/">{{module.label}}</a>
+  {% endifequal %}
 {% endfor %}
 </td>
 </tr>

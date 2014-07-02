@@ -1066,7 +1066,7 @@ ul.pager {
   border: 0;
 }
 
-.labs-sectionmenu .menu-active a {
+.labs-sectionmenu .menu-active {
   font-weight: bold;
   color: #c60;
 }
