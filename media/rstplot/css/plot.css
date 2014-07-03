@@ -68,3 +68,21 @@
 #plot-container .plot-box>table td:first-child {
     width: 20px;
 }
+
+#plot-container .plot-split-box {
+    display: flex;
+}
+#plot-container .plot-split-box .plot-left,
+#plot-container .plot-split-box .plot-right {
+    overflow: hidden;
+}
+#plot-container .plot-split-box .plot-left {
+    width: 0;
+}
+#plot-container .plot-split-box .plot-right {
+    width: 100%;
+}
+
+#plot-container #plot-right-canvas {
+    position: relative;
+}

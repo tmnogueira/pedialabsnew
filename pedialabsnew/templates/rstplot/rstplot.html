@@ -6,11 +6,13 @@
     <div class="plot">
         <div id="plot-slider"></div>
 
-        <div style="position: relative;">
-            <canvas id="plot-canvas" height="125" width="550"
-                style="z-index: 0;"></canvas>
-            <canvas id="easel-canvas" height="125" width="550"
-                style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+        <div class="plot-split-box" style="position: relative;">
+            <div class="plot-left">
+                <canvas class="plot-canvas" id="plot-left-canvas" height="125" width="550"></canvas>
+            </div>
+            <div class="plot-right">
+                <canvas class="plot-canvas" id="plot-right-canvas" height="125" width="550"></canvas>
+            </div>
         </div>
     </div>
 

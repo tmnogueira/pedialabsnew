@@ -1,8 +1,7 @@
 var plot = (function() {
-    var easelShape, easelStage;
+    var palegreenColor = 'rgba(70,254,185,1)';
     var purpleColor = 'rgba(152,58,178,1)';
     var redColor = 'rgba(171,38,52,1)';
-    var overlayColor = 'rgba(178,31,43,0.5)';
 
 
     var filterCanvas = function(can, ctx, filter) {
@@ -26,12 +25,12 @@ var plot = (function() {
                 var imageObj = new Image();
 
                 imageObj.onload = function() {
-                    ctx.drawImage(imageObj, -140, -40);
                     if (v == 'tn') {
-                        ctx.fillStyle = overlayColor;
+                        ctx.fillStyle = palegreenColor;
                         ctx.rect(0, 0, can.width, can.height);
                         ctx.fill();
                     }
+                    ctx.drawImage(imageObj, -140, -40);
                 };
                 imageObj.src = '/media/rstplot/img/rst-green.png';
             } else {
@@ -39,7 +38,7 @@ var plot = (function() {
                 ctx.rect(0, 0, can.width, can.height);
                 ctx.fill();
                 if (v == 'fn') {
-                    ctx.fillStyle = overlayColor;
+                    ctx.fillStyle = redColor;
                     ctx.rect(0, 0, can.width, can.height);
                     ctx.fill();
                 }
@@ -126,18 +125,20 @@ var plot = (function() {
      * Draw the plot's background images.
      * Returns a promise.
      */
-    var drawPlotBg = function(can, ctx) {
-        easelStage = new createjs.Stage(
-            document.getElementById('easel-canvas'));
-        easelShape = new createjs.Shape();
-        easelShape.graphics.beginFill(overlayColor)
-            .drawRect(-can.width, 0, can.width, can.height - 19, 10);
-        easelStage.addChild(easelShape);
-        easelStage.update();
-
-        return drawImage(ctx, '/media/rstplot/img/purple-path.png', 200, 0)
+    var drawPlotBg = function(can, ctx, color) {
+        if (typeof color == 'undefined') {
+            color = 'purple';
+        }
+        return drawImage(ctx, '/media/rstplot/img/'+color+'-path.png', 200, 0)
             .then(function() {
-                drawImage(ctx, '/media/rstplot/img/rst-green.png', 0, 0);
+                if (color == 'red') {
+                    return drawImage(ctx,
+                        '/media/rstplot/img/palegreen-path.png', 0, 0);
+                }
+            })
+            .then(function () {
+                return drawImage(ctx,
+                    '/media/rstplot/img/rst-green.png', 0, 0);
             });
     };
 
@@ -149,9 +150,16 @@ var plot = (function() {
         $container.find('#plot-specificity').html(specificity);
     };
 
-    var moveEaselShape = function(x) {
-        easelShape.x = x;
-        easelStage.update();
+    var refreshCanvas = function(can, ctx, color) {
+        if (typeof color == 'undefined') {
+            color = 'purple';
+        }
+        can.width = can.width;
+        var ctx = can.getContext('2d');
+        drawPlotBg(can, ctx, color).then(function() {
+            drawPlot(can, ctx);
+            drawPlotText(can, ctx);
+        });
     };
 
     return {
@@ -216,13 +224,19 @@ var plot = (function() {
 
             drawLegend($container);
 
-            var can = $container.find('#plot-canvas')[0];
-            var ctx = can.getContext('2d');
-            drawPlotBg(can, ctx)
-                .then(function() {
-                    drawPlot(can, ctx);
-                    drawPlotText(can, ctx);
-                });
+            var can1 = $container.find('#plot-left-canvas')[0];
+            var ctx1 = can1.getContext('2d');
+            drawPlotBg(can1, ctx1, 'red').then(function() {
+                drawPlot(can1, ctx1);
+                drawPlotText(can1, ctx1);
+            });
+
+            var can2 = $container.find('#plot-right-canvas')[0];
+            var ctx2 = can2.getContext('2d');
+            drawPlotBg(can2, ctx2, 'purple').then(function() {
+                drawPlot(can2, ctx2);
+                drawPlotText(can2, ctx2);
+            });
 
             var $slider = $container.find('#plot-slider');
             $slider.slider({
@@ -230,9 +244,10 @@ var plot = (function() {
                     var val = ui.value * .21;
                     updateCalcValues($container, val);
 
-                    var width = $container.find('#easel-canvas').width();
-                    var xPos = width * (ui.value / 100);
-                    moveEaselShape(xPos);
+                    $rstplotJquery('.plot-left').width(ui.value + '%');
+                    $rstplotJquery('.plot-right').width((100-ui.value) + '%');
+                    $rstplotJquery('#plot-right-canvas').css('left',
+                        (-ui.value * 5.5) + 'px');
                 },
                 step: 0.01
             });

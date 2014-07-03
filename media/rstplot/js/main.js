@@ -1,3 +1,3 @@
-$(document).ready(function() {
+$rstplotJquery(document).ready(function() {
     plot.initPlot('#plot-container');
 });
