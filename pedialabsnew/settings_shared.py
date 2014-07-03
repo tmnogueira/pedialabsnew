@@ -128,6 +128,7 @@ INSTALLED_APPS = [
     'quizblock',
     'pedialabsnew.main',
     'pedialabsnew.exercises',
+    'pedialabsnew.rstplot',
 ]
 
 PAGEBLOCKS = ['pageblocks.TextBlock',
@@ -137,6 +138,7 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
               'pageblocks.ImagePullQuoteBlock',
               'quizblock.Quiz',
               'exercises.Lab',
+              'rstplot.RstPlotBlock',
               ]
 
 
@@ -193,7 +195,7 @@ WIND_AFFIL_HANDLERS = ['djangowind.auth.AffilGroupMapper',
 WIND_STAFF_MAPPER_GROUPS = ['tlc.cunix.local:columbia.edu']
 WIND_SUPERUSER_MAPPER_GROUPS = [
     'anp8', 'jb2410', 'zm4', 'egr2107', 'cld2156',
-    'sld2131', 'amm8', 'mar227', 'jed2161', 'lrw2128']
+    'sld2131', 'amm8', 'mar227', 'jed2161', 'lrw2128', 'njn2118']
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True

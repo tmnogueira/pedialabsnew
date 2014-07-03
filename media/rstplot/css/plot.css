@@ -1,0 +1,70 @@
+#plot-container {
+    font-size: 12px;
+    width: 550px;
+    margin: 0 auto;
+}
+
+#plot-container p {
+    margin-bottom: 0;
+}
+
+#plot-container table,
+#plot-container td {
+    border: none;
+}
+
+#plot-container .plot {
+    padding-top: 40px;
+}
+
+#plot-container #plot-slider {
+    top: 10px;
+    position: relative;
+    width: 550px;
+}
+#plot-container #plot-slider .ui-slider-handle {
+    background-color: black;
+    cursor: pointer;
+    margin: 0;
+    height: 110px;
+    width: 2px;
+}
+
+#plot-container .ui-slider-handle .plot-hint,
+#plot-container .ui-slider-handle .plot-cutpoint-tri {
+    position: relative;
+}
+#plot-container .ui-slider-handle .plot-hint {
+    left: -50px;
+    top: -35px;
+    width: 100px;
+    text-align: center;
+}
+#plot-container .ui-slider-handle .plot-cutpoint-tri {
+    left: -4px;
+    top: -34px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-top: 5px solid black;
+}
+
+#plot-container .plot-box-container {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 400px;
+}
+#plot-container .plot-box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    text-transform: uppercase;
+}
+#plot-container .plot-box>div, .plot-box>table {
+    min-width: 250px;
+}
+#plot-container .plot-box>table td:first-child {
+    width: 20px;
+}
