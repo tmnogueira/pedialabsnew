@@ -244,9 +244,9 @@ var plot = (function() {
                     var val = ui.value * .21;
                     updateCalcValues($container, val);
 
-                    $rstplotJquery('.plot-left').width(ui.value + '%');
-                    $rstplotJquery('.plot-right').width((100-ui.value) + '%');
-                    $rstplotJquery('#plot-right-canvas').css('left',
+                    $container.find('.plot-left').width(ui.value + '%');
+                    $container.find('.plot-right').width((100-ui.value) + '%');
+                    $container.find('#plot-right-canvas').css('left',
                         (-ui.value * 5.5) + 'px');
                 },
                 step: 0.01
