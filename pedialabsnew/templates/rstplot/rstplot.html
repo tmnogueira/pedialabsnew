@@ -1,0 +1,45 @@
+<div id="plot-container">
+    <p>
+    Slide the bar to see how changing the cutpoint alters the sensitivity and the specificity.
+    </p>
+
+    <div class="plot">
+        <div id="plot-slider"></div>
+
+        <div class="plot-split-box" style="position: relative;">
+            <div class="plot-left">
+                <canvas class="plot-canvas" id="plot-left-canvas" height="125" width="550"></canvas>
+            </div>
+            <div class="plot-right">
+                <canvas class="plot-canvas" id="plot-right-canvas" height="125" width="550"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="plot-box-container">
+        <div class="plot-box">
+            <table>
+                <tr>
+                    <td><canvas id="plot-legend-fp" height="20" width="20"></canvas></td>
+                    <td>= False Positives</td>
+                </tr>
+                <tr>
+                    <td><canvas id="plot-legend-tp" height="20" width="20"></canvas></td>
+                    <td>= True Positives</td>
+                </tr>
+                <tr>
+                    <td><canvas id="plot-legend-tn" height="20" width="20"></canvas></td>
+                    <td>= True Negatives</td>
+                </tr>
+                <tr>
+                    <td><canvas id="plot-legend-fn" height="20" width="20"></canvas></td>
+                    <td>= False Negatives</td>
+                </tr>
+            </table>
+            <div>
+                <div>Sensitivity = <span id="plot-sensitivity">0</span></div>
+                <div>Specificity = <span id="plot-specificity">0</span></div>
+            </div>
+        </div><!-- end .plot-box -->
+    </div><!-- end .plot-box-container -->
+</div><!-- end .plot-container -->
