@@ -4,14 +4,6 @@ var plot = (function() {
     var redColor = 'rgba(171,38,52,1)';
 
 
-    var filterCanvas = function(can, ctx, filter) {
-        if (can.width > 0 && can.height > 0) {
-            var imageData = ctx.getImageData(0, 0, can.width, can.height);
-            filter(imageData);
-            ctx.putImageData(imageData, 0, 0);
-        }
-    };
-
     /*
      * Draw the legend canvases
      */
@@ -148,18 +140,6 @@ var plot = (function() {
 
         $container.find('#plot-sensitivity').html(sensitivity);
         $container.find('#plot-specificity').html(specificity);
-    };
-
-    var refreshCanvas = function(can, ctx, color) {
-        if (typeof color == 'undefined') {
-            color = 'purple';
-        }
-        can.width = can.width;
-        var ctx = can.getContext('2d');
-        drawPlotBg(can, ctx, color).then(function() {
-            drawPlot(can, ctx);
-            drawPlotText(can, ctx);
-        });
     };
 
     return {
