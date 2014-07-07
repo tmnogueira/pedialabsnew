@@ -1,0 +1,13 @@
+{% load markup %}
+{% load getresponse %}
+{{ block.description|markdown }}
+
+{% for question in block.question_set.all %}
+  {% include 'quizblock/question.html' %}
+{% endfor %}
+
+{% if block.rhetorical %}
+  <script src="{{STATIC_URL}}js/quizshow.js" type="text/javascript" language="javascript"></script>
+{% endif %}	
+
+
