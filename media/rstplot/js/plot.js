@@ -9,7 +9,7 @@ var plot = (function() {
      */
     var drawLegend = function($container, can, ctx) {
         var items = ['fp', 'tp', 'tn', 'fn'];
-        $.each(items, function(k, v) {
+        $rstplotJquery.each(items, function(k, v) {
             var can = $container.find('#plot-legend-' + v)[0];
             var ctx = can.getContext('2d');
 
