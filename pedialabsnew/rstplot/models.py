@@ -3,6 +3,7 @@ from django.contrib.contenttypes import generic
 from django.db import models
 from pagetree.models import PageBlock
 
+
 class RstPlotBlock(models.Model):
     display_name = "Rapid Strep Test Plot"
     pageblocks = generic.GenericRelation(PageBlock)
