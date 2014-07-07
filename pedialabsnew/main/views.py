@@ -16,7 +16,11 @@ from quizblock.models import Submission
 def index(request):
     ctx = {'survey_complete': False}
     if not request.user.is_anonymous():
-        hierarchy = Hierarchy.objects.get(name='labs')
+        try:
+            hierarchy = Hierarchy.objects.get(name='labs')
+        except Hierarchy.DoesNotExist:
+            return ctx
+
         usersurvey = hierarchy.get_section_from_path('survey')
         if usersurvey.submitted(request.user):
             ctx['survey_complete'] = True

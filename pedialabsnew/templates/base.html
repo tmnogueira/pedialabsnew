@@ -1,3 +1,4 @@
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,13 @@
   <script src="../assets/js/respond.min.js"></script>
   <![endif]-->
   
+  {% compress css %}
   <!-- Bootstrap CSS: -->
   <link href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{STATIC_URL}}bootstrap/css/bootstrap-glyphicons.css" rel="stylesheet">
   <!-- Pedialabs CSS: -->
   <link href="{{STATIC_URL}}css/main.css" rel="stylesheet">
+  {% endcompress %}
   <link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico" type="image/x-icon" />
   {% block css %}{% endblock %}
   <script src="{{STATIC_URL}}js/jquery-1.7.2.min.js"></script>
@@ -199,7 +202,9 @@
 
 <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 
+{% compress js %}
 <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js"></script>
+{% endcompress %}
 
 {% block js %}{% endblock %}
 
