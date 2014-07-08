@@ -987,6 +987,7 @@ ul.pager {
 .pedialabs-toc {
   border: none;
   margin-left: 10px;
+  width: 290px;
 }
 
 .pedialabs-toc a {
@@ -1021,6 +1022,37 @@ ul.pager {
 
 .pedialabs-toc .btn-warning {
   background-color: #ffd97e;
+}
+
+
+.icon-action {
+  width: 31px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.icon-action span {
+  display: none;
+}
+
+.icon-edit {
+  width: 31px;
+  height: 31px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent url('/media/img/icon-edit.png') no-repeat 0px 0px;
+}
+
+.icon-report {
+  width: 31px;
+  height: 31px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent url('/media/img/icon-report.png') no-repeat 0px 0px;
 }
 
 #getFlash {
@@ -1079,4 +1111,3 @@ ul.pager {
   font-weight: normal;
   color: #999;
 }
-
