@@ -4,6 +4,15 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django import forms
 from django.core.urlresolvers import reverse
+from pagetree.reports import ReportableInterface, ReportColumnInterface
+
+
+TEST_CHOICES = (
+    ('unselected', 'Please select:'),
+    ('low', 'Low'),
+    ('normal', 'Normal'),
+    ('high', 'High'),
+)
 
 
 class Lab(models.Model):
@@ -166,13 +175,28 @@ class Lab(models.Model):
         return ActionPlanResponse.objects.filter(
             lab=self, user=user).count() > 0
 
+    def report_metadata(self):
+        columns = []
+        hierarchy = self.pageblock().section.hierarchy
+        for t in self.test_set.all():
+            for l in TEST_CHOICES:
+                columns.append(TestLevelColumn(hierarchy, t, l[0]))
+            for a in self.all_abnormalities():
+                columns.append(TestAbnormalityColumn(hierarchy, t, a))
+        columns.append(LabActionPlanColumn(hierarchy, self))
+        columns.append(LabAssessmentColumn(hierarchy, self))
+        return columns
 
-TEST_CHOICES = (
-    ('unselected', 'Please select:'),
-    ('low', 'Low'),
-    ('normal', 'Normal'),
-    ('high', 'High'),
-)
+    def report_values(self):
+        columns = []
+        hierarchy = self.pageblock().section.hierarchy
+        for t in self.test_set.all():
+            columns.append(TestLevelColumn(hierarchy, t))
+            columns.append(TestAbnormalityColumn(hierarchy, t))
+        columns.append(LabActionPlanColumn(hierarchy, self))
+        columns.append(LabAssessmentColumn(hierarchy, self))
+
+        return columns
 
 
 class Test(models.Model):
@@ -225,3 +249,102 @@ class ActionPlanResponse(models.Model):
 
     def correct_action_plan(self):
         return self.action_plan == self.lab.correct_actionplan
+
+
+ReportableInterface.register(Lab)
+
+
+class TestLevelColumn(ReportColumnInterface):
+    def __init__(self, hierarchy, test, level=None):
+        self.hierarchy = hierarchy
+        self.test = test
+        self.level = level
+
+    def identifier(self):
+        return "%s_%s_level" % (self.hierarchy.id, self.test.id)
+
+    def metadata(self):
+        return [self.hierarchy.name,
+                self.identifier(),
+                "Lab Result Level",
+                "single choice",
+                self.test.name,
+                self.level]
+
+    def user_value(self, user):
+        r = TestResponse.objects.filter(test=self.test, user=user)
+        if r.count() > 0:
+            return r[0].result_level
+        else:
+            return None
+
+
+class TestAbnormalityColumn(ReportColumnInterface):
+    def __init__(self, hierarchy, test, abnormality=None):
+        self.hierarchy = hierarchy
+        self.test = test
+        self.abnormality = abnormality
+
+    def identifier(self):
+        return "%s_%s_abnormality" % (self.hierarchy.id, self.test.id)
+
+    def metadata(self):
+        return [self.hierarchy.name,
+                self.identifier(),
+                "Lab Result Abnormality",
+                "single choice",
+                self.test.name,
+                self.abnormality]
+
+    def user_value(self, user):
+        r = TestResponse.objects.filter(test=self.test, user=user)
+        if r.count() > 0:
+            return r[0].abnormality
+        else:
+            return None
+
+
+class LabAssessmentColumn(ReportColumnInterface):
+    def __init__(self, hierarchy, lab):
+        self.hierarchy = hierarchy
+        self.lab = lab
+
+    def identifier(self):
+        return "%s_%s_assessment" % (self.hierarchy.id, self.lab.id)
+
+    def metadata(self):
+        return [self.hierarchy.name,
+                self.identifier(),
+                "Lab Assessment",
+                "short text",
+                self.lab.pageblock().section.label]
+
+    def user_value(self, user):
+        r = ActionPlanResponse.objects.filter(lab=self.lab, user=user)
+        if r.count() > 0:
+            return r[0].assessment
+        else:
+            return None
+
+
+class LabActionPlanColumn(ReportColumnInterface):
+    def __init__(self, hierarchy, lab):
+        self.hierarchy = hierarchy
+        self.lab = lab
+
+    def identifier(self):
+        return "%s_%s_actionplan" % (self.hierarchy.id, self.lab.id)
+
+    def metadata(self):
+        return [self.hierarchy.name,
+                self.identifier(),
+                "Lab Action Plan",
+                "short text",
+                self.lab.pageblock().section.label]
+
+    def user_value(self, user):
+        r = ActionPlanResponse.objects.filter(lab=self.lab, user=user)
+        if r.count() > 0:
+            return r[0].action_plan
+        else:
+            return None

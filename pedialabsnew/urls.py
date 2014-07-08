@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
 from pedialabsnew.main.views import EditPageOverview, ViewPageOverview, \
-    EditPage, ViewPage, ClearStateView, InstructorPage, InstructorLabReport
+    EditPage, ViewPage, ClearStateView, InstructorPage, InstructorLabReport, \
+    ReportView
 import pedialabsnew.exercises.urls
 import os.path
 admin.autodiscover()
@@ -30,6 +31,7 @@ urlpatterns = patterns(
     (r'^quizblock/', include('quizblock.urls')),
     (r'^exercises/', include(pedialabsnew.exercises.urls)),
     (r'^instructor/$', InstructorPage.as_view()),
+    (r'^instructor/report/$', ReportView.as_view()),
     (r'^instructor/(?P<uni>\w+)/lab/(?P<module_id>\d+)/$',
      InstructorLabReport.as_view()),
 

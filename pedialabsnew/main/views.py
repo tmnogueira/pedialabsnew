@@ -4,12 +4,16 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View, TemplateView
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse
 from pagetree.generic.views import PageView, EditView
 from pagetree.helpers import get_hierarchy
 from pagetree.models import Section, Hierarchy, UserPageVisit
 from pedialabsnew.exercises.models import ActionPlanResponse, TestResponse
+from pedialabsnew.main.models import PedialabsReport
 from quizblock.models import Submission
+from zipfile import ZipFile
+from StringIO import StringIO
+import csv
 
 
 @render_to('main/index.html')
@@ -137,3 +141,42 @@ class InstructorLabReport(LoggedInMixinStaff, TemplateView):
         context['taken'] = r.count() > 0
 
         return context
+
+
+class ReportView(LoggedInMixinStaff, View):
+
+    def get(self, request):
+        report = PedialabsReport()
+
+        # setup zip file for the key & value file
+        response = HttpResponse(mimetype='application/zip')
+
+        disposition = 'attachment; filename=pedialabs.zip'
+        response['Content-Disposition'] = disposition
+
+        z = ZipFile(response, 'w')
+
+        output = StringIO()  # temp output file
+        writer = csv.writer(output)
+
+        # report on all hierarchies
+        hierarchies = Hierarchy.objects.filter(name='labs')
+
+        # Key file
+        for row in report.metadata(hierarchies):
+            writer.writerow(row)
+
+        z.writestr("pedialabs_key.csv", output.getvalue())
+
+        # Results file
+        output.truncate(0)
+        output.seek(0)
+
+        writer = csv.writer(output)
+
+        for row in report.values(hierarchies):
+            writer.writerow(row)
+
+        z.writestr("pedialabs_values.csv", output.getvalue())
+
+        return response
