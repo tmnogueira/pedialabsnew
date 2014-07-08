@@ -83,9 +83,10 @@
 {% if request.user.is_staff %}
 <h3>Admin:</h3>
 <table class="pedialabs-toc">
+{% if request.user.is_superuser %}
   <tr>
     <td>
-      <a href="/pages/public/edit/overview/" class="icon-action icon-edit" title="Edit"><span>Edit</span></a>
+      <span class="tooltip-left" rel="tooltip" title="Edit"><a href="/pages/public/edit/overview/" class="icon-action icon-edit"></a></span>
     </td>
     <td>
       Overview
@@ -93,7 +94,7 @@
   </tr>
   <tr>
     <td>
-      <a href="/pages/labs/edit/cbc/" class="icon-action icon-edit" title="Edit"><span>Edit</span></a>
+      <span class="tooltip-left" rel="tooltip" title="Edit"><a href="/pages/labs/edit/cbc/" class="icon-action icon-edit"></a></span>
     </td>
     <td>
       Complete Blood Count
@@ -101,15 +102,16 @@
   </tr>
   <tr>
     <td>
-      <a href="/pages/labs/edit/survey/" class="icon-action icon-edit" title="Edit"><span>Edit</span></a>
+      <span class="tooltip-left" rel="tooltip" title="Edit"><a href="/pages/labs/edit/survey/" class="icon-action icon-edit"></a></span>
     </td>
     <td>
       Student User Survey
     </td>
   </tr>
+{% endif %}
   <tr>
     <td>
-      <a href="/instructor/" class="icon-action icon-report" title="Edit"><span>View</span></a>
+      <span class="tooltip-left" rel="tooltip" title="View"><a href="/instructor/" class="icon-action icon-report"></a></span>
     </td>
     <td>
       Instructor Report
