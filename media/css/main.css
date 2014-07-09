@@ -17,26 +17,26 @@ body > .container {
 
 a
 {
-	color: #c60;
-	text-decoration: none;
+  color: #c60;
+  text-decoration: none;
 }
 
 a:hover
 {
-	color: #c00 !important;
-	text-decoration: none;
+  color: #c00 !important;
+  text-decoration: none;
 }
 
 a:active
 {
-	color: #c00;
-	text-decoration: none;
+  color: #c00;
+  text-decoration: none;
 }
 
 a:visited
 {
-	color: #c60;
-	text-decoration: none;
+  color: #c60;
+  text-decoration: none;
 }
 
 p {
@@ -216,11 +216,11 @@ li.logged-in-greeting a span div {
 
 .parent-module
 {
-	font: normal 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
-	text-transform: uppercase;
-	margin: 8px 0 -24px 0;
-	padding: 0;
-	color: #c00;
+  font: normal 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  margin: 8px 0 -24px 0;
+  padding: 0;
+  color: #c00;
 }
 
 footer {
@@ -683,47 +683,47 @@ footer img {
 
 table
 {
-	margin: 0 0 1em 0;
-	padding: 0;
-	border: 1px solid #ccc;
-	border-collapse: collapse;
-	font-size: 100%;
+  margin: 0 0 1em 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  font-size: 100%;
 }
 
 table tbody
 {
-	border: 0;
+  border: 0;
 }
 
 th
 {
-	border: 1px solid #999;
-	border-collapse: collapse;
-	padding: 5px;
-	background-color: #efefef;
+  border: 1px solid #999;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: #efefef;
 }
 
 td
 {
-	border: 1px solid #999;
-	border-collapse: collapse;
-	padding: 5px;
+  border: 1px solid #999;
+  border-collapse: collapse;
+  padding: 5px;
 }
 
 table td.noborder
 {
-	border-bottom: 0;
+  border-bottom: 0;
 }
 
 table th.tabletitle
 {
-	margin: 0;
-	padding: 5px 3px;
-	font-size: 1.1em;
-	color: #000;
-	border-bottom: 1px solid #999;
-	border-right: 1px solid #999;
-	background-color: #caddf0;
+  margin: 0;
+  padding: 5px 3px;
+  font-size: 1.1em;
+  color: #000;
+  border-bottom: 1px solid #999;
+  border-right: 1px solid #999;
+  background-color: #caddf0;
 }
 
 td.figurenotes {
@@ -735,63 +735,63 @@ td.figurenotes {
 
 .labtests
 {
-	border: 1px solid #999;
-	border-top: 3px solid #999;
-	border-bottom: 3px solid #999;
-	border-collapse: collapse;
-	font-size: 12px;
+  border: 1px solid #999;
+  border-top: 3px solid #999;
+  border-bottom: 3px solid #999;
+  border-collapse: collapse;
+  font-size: 12px;
 }
 
 .labtests th
 {
-	margin: 0;
-	padding: 5px 15px;
-	border: 0;
-	border-bottom: 1px solid #999;
+  margin: 0;
+  padding: 5px 15px;
+  border: 0;
+  border-bottom: 1px solid #999;
   border-collapse: collapse;
   background-color: transparent;
 }
 
 .labtests th.submitstate
 {
-	border: 0;
+  border: 0;
 }
 
 .labtests td
 {
-	margin: 0;
-	padding: 5px 15px;
-	border: 0;
-	border-bottom: 1px dotted #ccc;
+  margin: 0;
+  padding: 5px 15px;
+  border: 0;
+  border-bottom: 1px dotted #ccc;
   border-collapse: collapse;
 }
 
 .labtests .centered
 {
-	text-align: center;
+  text-align: center;
 }
 
 .labtests .grey
 {
-	background-color: #efefef;
+  background-color: #efefef;
 }
 
 .yours
 {
-	color: #090;
+  color: #090;
 }
 
 .expert
 {
-	color: #06c;
+  color: #06c;
 }
 
 .actionplan
 {
-	margin: 0;
-	padding: 0 0 1em 0;
-	border: 0;
-	list-style: none;
+  margin: 0;
+  padding: 0 0 1em 0;
+  border: 0;
+  list-style: none;
 }
 
 .actionplan li {
@@ -824,34 +824,34 @@ td.figurenotes {
 
 .cases
 {
-	margin: 1em 0;
-	padding: 0;
-	border: 1px solid #999;
+  margin: 1em 0;
+  padding: 0;
+  border: 1px solid #999;
 }
 
 .casetitle
 {
-	background-color: #f2e6d8;
-	margin: 0;
-	padding: 5px 10px;
-	border: 0;
-	font-weight: bold;
+  background-color: #f2e6d8;
+  margin: 0;
+  padding: 5px 10px;
+  border: 0;
+  font-weight: bold;
 }
 
 .casecontent
 {
-	margin: 10px;
-	padding: 0;
-	border: 0;
-	margin-top: 0;
-	padding-top: 10px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  margin-top: 0;
+  padding-top: 10px;
 }
 
 .casequestion
 {
-	margin: 0;
-	padding: 0;
-	border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .casequestion input[type='radio'] {
@@ -861,40 +861,40 @@ td.figurenotes {
 
 .cases li
 {
-	margin: 2px 0;
+  margin: 2px 0;
 }
 
 .casesanswerdisplay
 {
-	margin: 0;
-	padding: 5px;
-	border: 1px solid #ccc;
-	line-height: 18px;
+  margin: 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  line-height: 18px;
 }
 
 .moretoggle
 {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .answer-toggle-btn
 {
-	font-weight: bold;
-	color: #c60;
-	text-decoration: none;
-	cursor: pointer;
+  font-weight: bold;
+  color: #c60;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .answer-toggle-btn:hover
 {
-	color: #c00 !important;
-	text-decoration: none;
+  color: #c00 !important;
+  text-decoration: none;
 }
 
 .answer-toggle-btn:active
 {
-	color: #c00;
-	text-decoration: none;
+  color: #c00;
+  text-decoration: none;
 }
 
 div.toggleable-box {
@@ -904,23 +904,23 @@ div.toggleable-box {
 
 .overview-quiz .cases
 {
-	border-top: none;
-	margin-top: 0;
+  border-top: none;
+  margin-top: 0;
 }
 
 .overview-quiz .casetitle
 {
-	display: none;
+  display: none;
 }
 
 .overview-quiz h3
 {
-	background-color: #f2e6d8;
-	margin: 0;
-	padding: 5px 10px;
-	font-weight: bold;
-	border: 1px solid #999;
-	border-bottom: none;
+  background-color: #f2e6d8;
+  margin: 0;
+  padding: 5px 10px;
+  font-weight: bold;
+  border: 1px solid #999;
+  border-bottom: none;
   font-size: 14px;
   line-height: 140%;
 }
@@ -990,6 +990,11 @@ ul.pager {
   width: 290px;
 }
 
+.pedialabs-csv {
+  border: none;
+  margin: 0;
+}
+
 .pedialabs-toc a {
   color: #c60;
   width: 75px;
@@ -997,27 +1002,31 @@ ul.pager {
 
 .pedialabs-toc a:hover
 {
-	color: #c00 !important;
-	text-decoration: none;
+  color: #c00 !important;
+  text-decoration: none;
 }
 
 .pedialabs-toc a:active
 {
-	color: #c00;
-	text-decoration: none;
+  color: #c00;
+  text-decoration: none;
 }
 
 .pedialabs-toc a:visited
 {
-	color: #c60;
-	text-decoration: none;
+  color: #c60;
+  text-decoration: none;
 }
 
 .pedialabs-toc td {
   border: none;
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
-	border-collapse: collapse;
+  border-collapse: collapse;
+}
+
+.pedialabs-csv td {
+  border: none;
 }
 
 .pedialabs-toc .btn-warning {
@@ -1030,10 +1039,6 @@ ul.pager {
   margin-left: auto !important;
   margin-right: auto !important;
 }
-
-/*.icon-action span {
-  display: none;
-}*/
 
 .icon-edit {
   width: 31px;
@@ -1053,6 +1058,16 @@ ul.pager {
   padding: 0;
   border: 0;
   background: transparent url('/media/img/icon-report.png') no-repeat 0px 0px;
+}
+
+.icon-download {
+  width: 31px;
+  height: 31px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent url('/media/img/icon-download.png') no-repeat 0px 0px;
 }
 
 #getFlash {
@@ -1110,4 +1125,23 @@ ul.pager {
 .labs-sectionmenu .menu-locked {
   font-weight: normal;
   color: #999;
+}
+
+.lab-report-index {
+  border: 1px solid #999;
+  border-collapse: collapse;
+}
+
+.lab-report-index th {
+  padding-right: 20px;
+}
+
+.lab-report-index td {
+  border: 0;
+  padding-right: 10px;
+}
+
+
+.lab-report-index tr.odd td {
+  background-color: #fff5d5;
 }

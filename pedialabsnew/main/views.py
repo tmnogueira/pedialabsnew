@@ -107,7 +107,7 @@ class InstructorPage(LoggedInMixinStaff, TemplateView):
         h = get_hierarchy('labs')
         root = h.get_root()
         all_modules = root.get_children()
-        context['students'] = User.objects.all()
+        context['students'] = User.objects.all().order_by('last_name')
         context['all_modules'] = all_modules
 
         return context

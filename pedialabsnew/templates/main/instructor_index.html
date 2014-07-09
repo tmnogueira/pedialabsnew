@@ -1,18 +1,37 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1>Administration > Lab Reports</h1>
 
-<p><a href="/instructor/report/">Download CSV</a></p>
-<table>
+{% block title %}
+Instructor Report
+{% endblock %}
+
+{% block first-column %}hide{% endblock %}
+
+{% block second-column %}col-md-12{% endblock %}
+
+{% block content %}
+<h1 class="top-pagetitle">Lab Exercise Reports</h1>
+
+<table class="pedialabs-csv">
+  <tr>
+    <td>
+      <span class="tooltip-left" rel="tooltip" title="Download"><a href="/instructor/report/" class="icon-action icon-download"></a></span>
+    </td>
+    <td>
+      Download CSV
+    </td>
+  </tr>
+</table>
+
+<table class="lab-report-index">
 <tr>
   <th>Last Name</th>
   <th>First Name</th>
-  <th>UNI</th>
-  <th>Lab:</th>
+  <th>UNI/Username</th>
+  <th>Lab</th>
 </tr>
 
 {% for student in students %}
-<tr>
+<tr class="{% cycle 'odd' 'even' %}">
   <td>{{student.last_name}}</td>
   <td>{{student.first_name}}</td>
   <td>{{student.username}}</td>
@@ -20,6 +39,7 @@
 {% for module in all_modules %}
   {% ifequal module.slug 'survey'%}
   {% else %}
+  {% comment %}{% if not forloop.first %}|{% endif %}{% endcomment %}
   <a href="{{student.username}}/lab/{{module.id}}/">{{module.label}}</a>
   {% endifequal %}
 {% endfor %}
@@ -28,5 +48,12 @@
 {% endfor %}
 
 </table>
+
+<ul class="pager">
+  <li class="previous">
+		<a href="/">Return to PediaLabs homepage</a>
+  </li>
+</ul>
+
 
 {% endblock %}
