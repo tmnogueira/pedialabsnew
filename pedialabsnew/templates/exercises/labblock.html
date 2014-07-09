@@ -17,12 +17,12 @@
   </tr>
 
   <tr>
-    <th></th>
-    <th class="grey"></th>
+    <th>&nbsp;</th>
+    <th class="grey">&nbsp;</th>
     <th class="grey yours">Your Response:</th>
     <th class="grey expert">Expert's Response:</th>
-    <th></th>
-    <th class="grey"></th>
+    <th>&nbsp;</th>
+    <th class="grey">&nbsp;</th>
     <th class="yours">Your Response:</th>
     <th class="expert">Expert's Response:</th>
   </tr>
@@ -64,8 +64,8 @@
 
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
-<p class="yours"><b>Your response:</b> {{apr.assessment}}</p>
-<p class="expert"><b>Expert assessment:</b></p>
+<p class="yours"><b>Your assessment:</b> {{apr.assessment}}</p>
+{% comment %}<p class="expert"><b>Expert assessment:</b></p>{% endcomment %}
 {% endif %}
 
 

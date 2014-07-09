@@ -23,7 +23,7 @@ a
 
 a:hover
 {
-  color: #c00 !important;
+  color: #c00;
   text-decoration: none;
 }
 
@@ -42,6 +42,10 @@ a:visited
 p {
   line-height: 140%;
   margin-bottom: 14px;
+}
+
+h4 {
+  line-height: 130%;
 }
 
 /* NAV BAR NEAR TOP PAGE BANNER */
@@ -1146,6 +1150,19 @@ ul.pager {
   background-color: #fff5d5;
 }
 
-.incorrect {
-border-bottom: #f00 solid 2px;
+.labtest-report span {
+  display: block;
 }
+
+.incorrect {
+  color: #090;
+  background-color: pink;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #000;
+  text-decoration: none;
+  background-color: #ffe082;
+}
+
