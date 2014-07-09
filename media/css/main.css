@@ -1145,3 +1145,7 @@ ul.pager {
 .lab-report-index tr.odd td {
   background-color: #fff5d5;
 }
+
+.incorrect {
+border-bottom: #f00 solid 2px;
+}

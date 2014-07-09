@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Instructor Report
+Instructor Report {{module.label}}
 {% endblock %}
+
+{% block parent-module %}{% endblock %}
 
 {% block first-column %}hide{% endblock %}
 
@@ -12,14 +14,14 @@ Instructor Report
 {% load getlabresponse %}
 
 {% block content %}
-<h1>Administration > <a href="/instructor/">Reports</a> > {{module.label}}</h1>
+<h1 class="top-pagetitle">Lab Exercise Reports</h1>
+
+
 <h2>Student: {{student.first_name}} {{student.last_name}}</h2>
 
-<p>instructor_lab.html</p>
 
-
-Here are labs: {% for lab in labs %}
-<a href="?lab={{lab.id}}">{{lab.label}}</a>
+Here are labs:<br /> {% for lab in labs %}
+<a href="?lab={{lab.id}}">{{lab.label}}</a><br />
 {% endfor %}
 
 {% if lab_section %}
@@ -120,5 +122,11 @@ Here are labs: {% for lab in labs %}
 {% else %}
 <p>Please select a lab to view.</p>
 {% endif %}
+
+<ul class="pager">
+  <li class="previous">
+		<a href="/instructor/">Return to Reports</a>
+  </li>
+</ul>
 
 {% endblock %}
