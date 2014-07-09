@@ -8,7 +8,7 @@ Instructor Report {{module.label}}
 
 {% block first-column %}hide{% endblock %}
 
-{% block second-column %}col-md-12{% endblock %}
+{% block second-column %}col-md-8{% endblock %}
 
 {% load markup %}
 {% load getlabresponse %}
@@ -51,6 +51,7 @@ Here are labs:<br /> {% for lab in labs %}
   </tr>
 
 {% for test in lab_block.test_set.all %}
+{% if forloop.last %}{{ lab_block.test_set.all.count }} tests{% endif %}
 {% getstudenttestresponse test student as tr %}
   <tr>
     <td>
