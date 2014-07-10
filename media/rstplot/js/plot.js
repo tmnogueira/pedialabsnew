@@ -83,6 +83,27 @@ var plot = (function() {
     };
 
     /*
+     * Draws the given text over a backdrop.
+     */
+    var drawTextWithBackdrop = function(ctx, txt, x, y) {
+        var width = ctx.measureText(txt).width + 10;
+        var height = 22;
+
+        var oldFont = ctx.font;
+        ctx.font = 'bold 9pt Helvetica';
+
+        var oldFillStyle = ctx.fillStyle;
+        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+
+        ctx.fillRect(x - (width/2), y - (height/2) - 5, width, height);
+
+        ctx.fillStyle = oldFillStyle;
+        ctx.fillText(txt, x, y);
+
+        ctx.font = oldFont;
+    };
+
+    /*
      * Draw the plot's text
      */
     var drawPlotText = function(can, ctx) {
@@ -94,8 +115,8 @@ var plot = (function() {
         var y = 10;
         ctx.fillText(txt, x, y);
 
-        ctx.fillText('True D-', can.width / 2 - 160, 40);
-        ctx.fillText('True D+', can.width / 2 + 110, 60);
+        drawTextWithBackdrop(ctx, 'True D-', can.width / 2 - 90, 60);
+        drawTextWithBackdrop(ctx, 'True D+', can.width / 2 + 110, 60);
     };
 
     /*
