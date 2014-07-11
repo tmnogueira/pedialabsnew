@@ -43,3 +43,10 @@ urlpatterns = patterns(
     (r'^pages/labs/edit/(?P<path>.*)$', EditPage.as_view(), {}, 'edit-page'),
     (r'^pages/labs/(?P<path>.*)$', ViewPage.as_view()),
 )
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns(
+        '',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )

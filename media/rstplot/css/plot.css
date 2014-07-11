@@ -6,6 +6,7 @@
 
 #plot-container p {
     margin-bottom: 0;
+    text-align: center;
 }
 
 #plot-container table,
@@ -14,11 +15,11 @@
 }
 
 #plot-container .plot {
-    padding-top: 40px;
+    padding-top: 60px;
 }
 
 #plot-container #plot-slider {
-    top: 10px;
+    top: -5px;
     position: relative;
     width: 550px;
 }
@@ -26,7 +27,7 @@
     background-color: black;
     cursor: pointer;
     margin: 0;
-    height: 110px;
+    height: 125px;
     width: 2px;
 }
 
@@ -39,6 +40,7 @@
     top: -35px;
     width: 100px;
     text-align: center;
+    font-style: italic;
 }
 #plot-container .ui-slider-handle .plot-cutpoint-tri {
     left: -4px;
