@@ -14,26 +14,26 @@
     <div class="collapse navbar-collapse" id="sectionmenu">
       <div>
       {% ifequal section.id module.id %}
-        <div class="menu-item menu-{{section.depth}}"><b>{{module.id}} {{module.label}}</b></div>
+        <div data-depth="{{module.depth}}" class="menu-item menu-{{module.depth}}"><b>{{module.id}}/{{module.depth}}: {{module.label}}</b></div>
       {% else %}
-        <div class="menu-item menu-{{section.depth}}"><a href="{{module.get_absolute_url}}">{{module.id}} {{module.label}}</a></div>
+        <div data-depth="{{section.depth}}" class="menu-item menu-{{module.depth}}"><a href="{{module.get_absolute_url}}">{{module.id}}/{{module.depth}}: {{module.label}}</a></div>
       {% endifequal %}
 
       {% for s in module.get_descendants %}
         {% ifnotequal s.id section.id %}
           {% ifaccessible s %}
-            <div class="menu-item menu-unlocked menu-{{s.depth}}">
+            <div data-depth="{{s.depth}}" class="menu-item menu-unlocked menu-{{s.depth}}">
               <a href="{{menu_base}}{{s.get_absolute_url}}">
               {{s.depth}}: {{s.label}}
               </a>
             </div>
           {% else %}
-            <div class="menu-item menu-locked menu-{{s.depth}}">
+            <div data-depth="{{s.depth}}" class="menu-item menu-locked menu-{{s.depth}}">
               {{s.depth}}: {{s.label}}
             </div>
           {% endifaccessible %}
         {% else %}
-          <div class="menu-item menu-active menu-{{s.depth}}">
+          <div data-depth="{{s.depth}}" class="menu-item menu-active menu-{{s.depth}}">
             <a href="{{menu_base}}{{s.get_absolute_url}}">
             {{s.depth}}: {{s.label}}
             </a>
