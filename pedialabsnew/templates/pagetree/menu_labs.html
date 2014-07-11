@@ -13,31 +13,21 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="sectionmenu">
       <div>
-      {% ifequal section.id module.id %}
+      {% comment %}{% ifequal section.id module.id %}
         <div data-depth="{{module.depth}}" class="menu-item menu-{{module.depth}}"><b>{{module.id}}/{{module.depth}}: {{module.label}}</b></div>
       {% else %}
         <div data-depth="{{section.depth}}" class="menu-item menu-{{module.depth}}"><a href="{{module.get_absolute_url}}">{{module.id}}/{{module.depth}}: {{module.label}}</a></div>
-      {% endifequal %}
+      {% endifequal %}{% endcomment %}
 
       {% for s in module.get_descendants %}
         {% ifnotequal s.id section.id %}
           {% ifaccessible s %}
-            <div data-depth="{{s.depth}}" class="menu-item menu-unlocked menu-{{s.depth}}">
-              <a href="{{menu_base}}{{s.get_absolute_url}}">
-              {{s.depth}}: {{s.label}}
-              </a>
-            </div>
+            <div data-depth="{{s.depth}}" class="menu-item menu-unlocked menu-{{s.depth}}"><a href="{{menu_base}}{{s.get_absolute_url}}">{{s.depth}}: {{s.label}}</a></div>
           {% else %}
-            <div data-depth="{{s.depth}}" class="menu-item menu-locked menu-{{s.depth}}">
-              {{s.depth}}: {{s.label}}
-            </div>
+            <div data-depth="{{s.depth}}" class="menu-item menu-locked menu-{{s.depth}}"> {{s.depth}}: {{s.label}}</div>
           {% endifaccessible %}
         {% else %}
-          <div data-depth="{{s.depth}}" class="menu-item menu-active menu-{{s.depth}}">
-            <a href="{{menu_base}}{{s.get_absolute_url}}">
-            {{s.depth}}: {{s.label}}
-            </a>
-          </div>
+          <div data-depth="{{s.depth}}" class="menu-item menu-active menu-{{s.depth}}"><a href="{{menu_base}}{{s.get_absolute_url}}">{{s.depth}}: {{s.label}}</a></div>
         {% endifnotequal %}
       {% endfor %}
 
