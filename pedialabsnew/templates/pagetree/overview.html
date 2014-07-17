@@ -4,7 +4,6 @@
 {% block pagetitle %}<h1 class="top-pagetitle">{{section.label}}</h1>{% endblock %}
 
 {% block pagemode %}
-<script src="{{STATIC_URL}}js/sidemenu.js"></script>
 {% if request.user.is_superuser %}
     <div id="edit-page-nav" class="clearfix">
       <ul class="nav nav-pills pull-right">
@@ -24,4 +23,9 @@
         {% if module.get_children %}
         {% include "pagetree/menu_overview.html" %}
         {% endif %}
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+<script src="{{STATIC_URL}}js/sidemenu.js"></script>
 {% endblock %}
