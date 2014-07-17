@@ -1,59 +1,49 @@
-<div class="overview-sectionmenu">
-<div class="navbar navbar-default navbar-sectionmenu" role="navigation">
-  <div class="navbar-header navbar-header-sectionmenu">
-    <button type="button" class="navbar-toggle navbar-toggle-sectionmenu" data-toggle="collapse" data-target="#sectionmenu">
-      <span class="sr-only">Toggle navigation</span>
-      <span> Overview Sections</span> <span class="glyphicon glyphicon-chevron-down"></span>
-    </button>
-  </div>
-  
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="sectionmenu">
+<div class="sectionmenu">
+  <div class="navbar navbar-default navbar-sectionmenu" role="navigation">
 
- 
+    <!-- ## Menu header on Tablets ## -->
+    <div class="navbar-header navbar-header-sectionmenu">
+      <button type="button" class="navbar-toggle navbar-toggle-sectionmenu" data-toggle="collapse" data-target="#sectionmenu">
+        <span class="sr-only">Toggle navigation</span>
+        <span> {{module.label}} Sections</span> <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+    </div><!-- /.navbar-header-sectionmenu -->
+    <!-- ## /Menu header on Tablets ## -->
 
 
-
-    <div class="sectionmenu-ul">
-    {% ifequal section.id module.id %}
-      <div class="menu-item menu-{{module.depth}} menu-active"><span>{{module.label}}</span></div>
-    {% else %}
-      
-        {% ifequal menu_base "/edit" %}
-        <div class="menu-item menu-{{module.depth}}"><a href="{{module.get_edit_url}}">
-        {% else %}
-        <div class="menu-item menu-{{module.depth}}"><a href="{{module.get_absolute_url}}">
-        {% endifequal %}
-        {{module.label}}</a></div>
-    {% endifequal %}
-    
-    {% for s in module.get_descendants %}
-      {% ifequal s.id module.id %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="sectionmenu">
+      <div class="menu-items">
+      {% ifequal section.id module.id %}
+        <div class="menu-item menu-active  menu-{{module.depth}}" data-depth="{{module.depth}}"><span>{{module.label}}</span></div>
       {% else %}
-        {% ifnotequal s.id section.id %}
-          <div class="menu-item menu-{{s.depth}}">
-          {% ifequal menu_base "/edit" %}
-            <a href="{{s.get_edit_url}}">
-          {% else %}
-            {% ifequal menu_base "/instructor" %}
-              <a href="{{s.get_instructor_url}}">
-            {% else %}
-              <a href="{{menu_base}}{{s.get_absolute_url}}">
-            {% endifequal %}
-          {% endifequal %}
+        <div data-depth="{{module.depth}}" class="menu-item menu-{{module.depth}}">
+        {% ifequal menu_base "/edit" %}
+          <a href="{{module.get_edit_url}}">{{module.label}}</a>
         {% else %}
-          <div class="menu-item menu-{{s.depth}} menu-active"><span>
-        {% endifnotequal %}
-        {{s.label}}
-        {% ifnotequal s.id section.id %}
-          </a>
-        {% else %}
-          </span>
-        {% endifnotequal %}
+          <a href="{{module.get_absolute_url}}">{{module.label}}</a>
+        {% endifequal %}
         </div>
       {% endifequal %}
-    {% endfor %}
-    </div>
-  </div><!-- /.navbar-collapse -->
-</div>
-</div>
+      {% for s in module.get_descendants %}
+        {% ifnotequal s.id section.id %}
+          {% ifequal menu_base "/edit" %}
+            <div class="menu-item menu-unlocked menu-{{s.depth}} {% if s.depth == 3 %}{% if s.get_children %}menu-toplevel{% endif %}{% endif %}" data-depth="{{s.depth}}"><a href="{{s.get_edit_url}}">
+            {{s.label}}
+            </a></div>
+          {% else %}
+              <div class="menu-item menu-unlocked menu-{{s.depth}} {% if s.depth == 3 %}{% if s.get_children %}menu-toplevel{% endif %}{% endif %}" data-depth="{{s.depth}}"><a href="{{menu_base}}{{s.get_absolute_url}}">
+              {{s.label}}
+              </a></div>
+          {% endifequal %}
+        {% else %}
+          <div class="menu-item menu-active menu-{{s.depth}} {% if s.depth == 3 %}{% if s.get_children %}menu-toplevel{% endif %}{% endif %}" data-depth="{{s.depth}}"><span>
+          {{s.label}}
+          </span></div>
+        {% endifnotequal %}
+      {% endfor %}
+      </div>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.navbar-sectionmenu -->
+</div><!-- /.sectionmenu -->

@@ -1,9 +1,13 @@
 jQuery(document).ready(function() {
-  if(!$('.labs-sectionmenu').length) return false;
+  if(!$('.sectionmenu').length) return false;
 
   var elt = jQuery('.menu-active');
   var currentIdx = parseInt(jQuery(elt).attr('data-depth'), 10);
-  
+
+  jQuery('.menu-item').last().addClass('menu-last');
+
+  if(currentIdx == 2) return false;
+
   function initMenu() {
     jQuery(elt).show();
   }
@@ -21,6 +25,9 @@ jQuery(document).ready(function() {
       var parentClassIdx = '.menu-'+ idx;
       var parent = jQuery(elt).prevAll(parentClassIdx).first();
       parent.show();
+      if (idx == 3) {
+        jQuery(elt).prevAll(parentClassIdx).first().addClass('toggle-open');
+      }
       showSibling(idx);
     }
   }

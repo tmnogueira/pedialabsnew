@@ -1,15 +1,280 @@
-.labs-sectionmenu div.menu-3 {
-  margin-left: 0px;
-  display: none;
+.sectionmenu {
+  border: 0;
+  padding: 0;
 }
 
-.labs-sectionmenu  div.menu-4 {
+.navbar-sectionmenu {
+  background-color: #fff;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-header-sectionmenu {
+  float: none;
+}
+
+.navbar-toggle-sectionmenu {
+  float: none;
+  width: 100%;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #c00;
+  background-color: #fbe7a2;
+  border: 1px solid #f90 !important;
+  margin-bottom: 0px;
+}
+
+.navbar-toggle-sectionmenu:focus,
+.navbar-toggle-sectionmenu:hover {
+  outline: none;
+  background-color: #fbe7a2 !important;
+}
+
+.navbar-sectionmenu .navbar-collapse {
+  max-height: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.sectionmenu div.menu-item {
+  border: 0;
+  margin: 0;
+}
+
+.sectionmenu .menu-unlocked,
+.sectionmenu .menu-unlocked a {
+  font-weight: normal;
+}
+
+.sectionmenu .menu-locked {
+  font-weight: normal;
+  color: #999;
+}
+
+.sectionmenu .menu-active {
+  font-weight: normal;
+  color: #c60;
+}
+
+.sectionmenu div.menu-2 {
+  margin-left: 15px;
+  display: block;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 5px 0px 5px 15px;
+}
+
+.sectionmenu div.menu-3 {
+  margin-left: 0px;
+  display: block;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 5px 0px 5px 15px;
+}
+
+.sectionmenu  div.menu-4 {
   margin-left: 15px;
   display: none;
+  font-size: 13px;
+  padding: 3px 0px 3px 15px;
 }
 
-.labs-sectionmenu div.menu-5 {
+.sectionmenu div.menu-5 {
   margin-left: 30px;
   display: none;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 3px 0px 3px 15px;
 }
 
+.edit .sectionmenu  div.menu-4 {
+  display: block;
+}
+
+.edit .sectionmenu div.menu-5 {
+  display: block;
+}
+
+
+@media (min-width: 768px) {
+  .sectionmenu {
+    margin: 10px 0 20px 0;
+  }
+  .navbar-toggle-sectionmenu {
+    display: block;
+  }
+  .navbar-sectionmenu .navbar-collapse {
+    width: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: none;
+    margin-top: -1px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .navbar-sectionmenu .navbar-collapse.collapse {
+    display: none !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .sectionmenu div.menu-item {
+    padding: 0px;
+    font-size: 15px;
+    line-height: 17px;
+    border-bottom: 1px solid #ccc;
+  }
+  .sectionmenu div.menu-last {
+    border-bottom: none;
+  }
+  .sectionmenu div.menu-2,
+  .sectionmenu div.menu-3,
+  .sectionmenu div.menu-4,
+  .sectionmenu div.menu-5 {
+    margin-left: 0;
+  }
+  .sectionmenu div.menu-item a,
+  .sectionmenu div.menu-item span {
+    display: block;
+    padding: 10px 0px 10px 15px;
+  }
+  .sectionmenu div.menu-2 a,
+  .sectionmenu div.menu-2 span 
+  {
+    margin-left: 15px;
+  }
+  .sectionmenu div.menu-3 a,
+  .sectionmenu div.menu-3 span 
+  {
+    margin-left: 15px;
+  }
+  .sectionmenu div.menu-4 a,
+  .sectionmenu div.menu-4 span 
+  {
+    margin-left: 30px;
+  }
+  .sectionmenu div.menu-5 a,
+  .sectionmenu div.menu-5 span 
+  {
+    margin-left: 45px;
+  }
+  .sectionmenu .menu-active {
+     background: #fff4d3 url('/media/img/menu-active.png') 10px center no-repeat;
+  }
+  .sectionmenu .menu-active.menu-2 {
+    background: #fff4d3 url('/media/img/menu-active.png') 10px center no-repeat;
+  }
+  .sectionmenu .menu-active.menu-3 {
+    background: #fff4d3 url('/media/img/menu-active.png') 10px center no-repeat;
+  }
+  .sectionmenu .menu-active.menu-4 {
+    background: #fff4d3 url('/media/img/menu-active.png') 25px center no-repeat;
+  }
+  .sectionmenu .menu-active.menu-5 {
+    background: #fff4d3 url('/media/img/menu-active.png') 40px center no-repeat;
+  }
+  .sectionmenu .menu-toplevel {
+    background: transparent url('/media/img/menu-toplevel.png') 10px center no-repeat;
+  }
+  .sectionmenu .menu-active.menu-toplevel {
+    background: #fff4d3 url('/media/img/menu-toggleactive.png') 10px center no-repeat;
+  }
+  .sectionmenu .toggle-open {
+    background: transparent url('/media/img/menu-toggleopen.png') 10px center no-repeat;
+  }
+}
+
+@media (min-width: 992px) {
+  .sectionmenu {
+    margin: 30px 0 0 0;
+  }
+  .navbar-toggle-sectionmenu {
+    display: none;
+  }
+  .navbar-sectionmenu .navbar-collapse {
+    width: auto;
+    border: 0;
+    box-shadow: none;
+  }
+  .navbar-sectionmenu .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-sectionmenu .navbar-collapse.in {
+    overflow-y: visible;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-nav.navbar-left:first-child {
+    margin-left: -15px;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: -15px;
+  }
+  .navbar-sectionmenu .navbar-collapse .navbar-text:last-child {
+    margin-right: 0;
+  }
+  .sectionmenu div.menu-item {
+    padding: 0px 0px 0px 15px;
+    border-bottom: 0;
+  }
+  .sectionmenu div.menu-2 {
+    margin-left: 0px;
+    display: block;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 5px 0px 5px 15px;
+  }
+  .sectionmenu div.menu-3 {
+    margin-left: 0px;
+    display: block;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 5px 0px 5px 15px;
+  }  
+  .sectionmenu div.menu-4 {
+    margin-left: 15px;
+    display: none;
+    font-size: 13px;
+    padding: 3px 0px 3px 15px;
+  }
+  .sectionmenu div.menu-5 {
+    margin-left: 30px;
+    display: none;
+    font-size: 13px;
+    line-height: 15px;
+    padding: 3px 0px 3px 15px;
+  }
+  .sectionmenu div.menu-item a,
+  .sectionmenu div.menu-item span {
+    display: inline;
+    padding: 0;
+    margin: 0 !important;
+  }
+  .sectionmenu .menu-active,
+  .sectionmenu .menu-active.menu-4, 
+  .sectionmenu .menu-active.menu-5 {
+    background: transparent url('/media/img/menu-active.png') 0px 4px no-repeat;
+  }
+  .sectionmenu .menu-active.menu-2 {
+    background: transparent url('/media/img/menu-active.png') 0px 7px no-repeat;
+  }
+  .sectionmenu .menu-active.menu-3 {
+    background: transparent url('/media/img/menu-active.png') 0px 7px no-repeat;
+  }
+  .sectionmenu .menu-toplevel {
+    background: transparent url('/media/img/menu-toplevel.png') 0px 7px no-repeat;
+  }
+  .sectionmenu .menu-active.menu-toplevel {
+    background: transparent url('/media/img/menu-toggleactive.png') 0px 8px no-repeat;
+  }
+  .sectionmenu .toggle-open {
+    background: transparent url('/media/img/menu-toggleopen.png') 0px 8px no-repeat;
+  }
+}
