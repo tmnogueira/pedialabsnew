@@ -172,10 +172,12 @@ var plot = (function() {
             var r;
             if (x < 9) {
                 r = 1;
-            } else if (x < 11) {
+            } else if (x < 10.1) {
                 r = .99;
-            } else if (x < 12) {
+            } else if (x < 11.1) {
                 r = .96;
+            } else if (x < 12) {
+                r = .9;
             } else if (x < 13) {
                 r = .81;
             } else if (x < 14.5) {
@@ -212,8 +214,10 @@ var plot = (function() {
                 r = .66;
             } else if (x < 10) {
                 r = .8;
-            } else if (x < 12) {
+            } else if (x < 11.1) {
                 r = .9;
+            } else if (x < 12) {
+                r = .96;
             } else if (x < 14) {
                 r = .98;
             } else if (x < 15) {
