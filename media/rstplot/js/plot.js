@@ -1,5 +1,5 @@
 var plot = (function() {
-    var palegreenColor = 'rgba(70,254,185,1)';
+    var palegreenColor = 'rgba(70,254,185,0.6)';
     var purpleColor = 'rgba(152,58,178,1)';
     var redColor = 'rgba(171,38,52,1)';
 
@@ -145,8 +145,12 @@ var plot = (function() {
         return drawImage(ctx, '/media/rstplot/img/'+color+'-path.png', 200, 0)
             .then(function() {
                 if (color == 'red') {
+                    ctx.globalAlpha = 0.6;
                     return drawImage(ctx,
-                        '/media/rstplot/img/palegreen-path.png', 0, 0);
+                        '/media/rstplot/img/palegreen-path.png', 0, 0)
+                        .then(function() {
+                            ctx.globalAlpha = 1;
+                        });
                 }
             })
             .then(function () {
