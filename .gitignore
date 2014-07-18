@@ -7,3 +7,4 @@ media/CACHE/
 local_settings.py
 .DS_Store
 .coverage
+node_modules/
