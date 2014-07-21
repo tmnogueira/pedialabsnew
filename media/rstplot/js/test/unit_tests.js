@@ -1,5 +1,5 @@
 test('calcSensitivity', function() {
-    expect(24);
+    expect(26);
 
     function roundCalc(x) {
         var r = plot.calcSensitivity(x);
@@ -19,7 +19,9 @@ test('calcSensitivity', function() {
     equal(roundCalc(8), 1);
     equal(roundCalc(9), .99);
     equal(roundCalc(10), .99);
+    equal(roundCalc(10.2), .96);
     equal(roundCalc(11), .96);
+    equal(roundCalc(11.2), .9);
     equal(roundCalc(12), .81);
     equal(roundCalc(13), .67);
     equal(roundCalc(14), .67);
@@ -34,7 +36,7 @@ test('calcSensitivity', function() {
 });
 
 test('calcSpecificity', function() {
-    expect(24);
+    expect(26);
 
     function roundCalc(x) {
         var r = plot.calcSpecificity(x);
@@ -55,7 +57,9 @@ test('calcSpecificity', function() {
     equal(roundCalc(8), .66);
     equal(roundCalc(9), .8);
     equal(roundCalc(10), .9);
+    equal(roundCalc(10.2), .9);
     equal(roundCalc(11), .9);
+    equal(roundCalc(11.2), .96);
     equal(roundCalc(12), .98);
     equal(roundCalc(13), .98);
     equal(roundCalc(14), .99);
