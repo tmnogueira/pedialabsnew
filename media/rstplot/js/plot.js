@@ -3,6 +3,9 @@ var plot = (function() {
     var purpleColor = 'rgba(152,58,178,1)';
     var redColor = 'rgba(171,38,52,1)';
 
+    // The plot bounds, independent of the canvas dimensions.
+    var plotHeight = 125;
+    var plotWidth = 550;
 
     /*
      * Draw the legend canvases
@@ -46,7 +49,7 @@ var plot = (function() {
         var rowHead = 25;
         var margin = 12;
         var plotLineHeight = 15;
-        var horizLinePos = can.height - margin - (margin/2) - 2;
+        var horizLinePos = plotHeight - margin - (margin/2) - 2;
         var header = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             16, 17, 18, 19, 20];
 
@@ -54,7 +57,7 @@ var plot = (function() {
         ctx.font = '10pt Helvetica';
 
         // set horizontal scalar to available width / number of samples
-        var xScalar = (can.width - rowHead) / numSamples;
+        var xScalar = (plotWidth - rowHead) / numSamples;
 
         ctx.strokeStyle = 'black';
         ctx.strokeWidth = 1;
@@ -66,9 +69,9 @@ var plot = (function() {
         for (i = 1; i <= numSamples; i++) {
             var x = Math.round(i * xScalar);
 
-            ctx.fillText(header[i], x, can.height);
-            ctx.moveTo(x, can.height - margin);
-            ctx.lineTo(x, can.height - plotLineHeight - margin);
+            ctx.fillText(header[i], x, plotHeight);
+            ctx.moveTo(x, plotHeight - margin);
+            ctx.lineTo(x, plotHeight - plotLineHeight - margin);
         }
         ctx.stroke();
         ctx.translate(-translate, 0);
@@ -77,7 +80,7 @@ var plot = (function() {
         ctx.translate(0, translate);
         ctx.beginPath();
         ctx.moveTo(0, horizLinePos);
-        ctx.lineTo(can.width, horizLinePos);
+        ctx.lineTo(plotWidth, horizLinePos);
         ctx.stroke();
         ctx.translate(0, -translate);
     };
@@ -86,10 +89,10 @@ var plot = (function() {
      * Draws the given text over a backdrop.
      */
     var drawTextWithBackdrop = function(ctx, txt, x, y) {
+        ctx.save();
         var width = ctx.measureText(txt).width + 10;
         var height = 22;
 
-        var oldFont = ctx.font;
         ctx.font = 'bold 9pt Helvetica';
 
         var oldFillStyle = ctx.fillStyle;
@@ -100,7 +103,23 @@ var plot = (function() {
         ctx.fillStyle = oldFillStyle;
         ctx.fillText(txt, x, y);
 
-        ctx.font = oldFont;
+        ctx.restore();
+    };
+
+    /*
+     * Draw X and Y axis labels.
+     *
+     * FIXME: Right now Y axis labels are not drawn from here. The width of
+     * plot is difficult to change, because of the tricky way it's been
+     * implemented. 'overflow: hidden;' in the CSS prevents us from easily
+     * adding extra width here, and it was simpler to add the Y axis label in a
+     * seperate HTML element.
+     */
+    var drawAxisLabelText = function(can, ctx) {
+        ctx.font = '9pt Helvetica';
+        ctx.textAlign = 'center';
+        var xAxisLabel = 'Test Result (continuous scale)';
+        ctx.fillText(xAxisLabel, plotWidth / 2, can.height - 10);
     };
 
     /*
@@ -111,12 +130,13 @@ var plot = (function() {
         ctx.textAlign = 'center';
 
         var txt = 'True Distribution of Disease';
-        var x = can.width / 2 + 10;
+        var x = plotWidth / 2 + 10;
         var y = 10;
         ctx.fillText(txt, x, y);
 
-        drawTextWithBackdrop(ctx, 'True D-', can.width / 2 - 90, 60);
-        drawTextWithBackdrop(ctx, 'True D+', can.width / 2 + 110, 60);
+        drawTextWithBackdrop(ctx, 'True D-', plotWidth / 2 - 90, 60);
+        drawTextWithBackdrop(ctx, 'True D+', plotWidth / 2 + 110, 60);
+        drawAxisLabelText(can, ctx);
     };
 
     /*
@@ -147,7 +167,8 @@ var plot = (function() {
             return drawImage(ctx, '/media/rstplot/img/purple-path.png', 200, 0)
                 .then(function() {
                     return drawImage(ctx,
-                                     '/media/rstplot/img/white-path.png', 0, 0);
+                                     '/media/rstplot/img/white-path.png',
+                                     0, 0);
                 })
                 .then(function() {
                     return drawImage(ctx,
@@ -161,7 +182,9 @@ var plot = (function() {
                                      '/media/rstplot/img/rst-green.png', 0, 0);
                 })
                 .then(function() {
-                    return drawImage(ctx, '/media/rstplot/img/red-path.png', 200, 0)
+                    return drawImage(ctx,
+                                     '/media/rstplot/img/red-path.png',
+                                     200, 0);
                 });
         }
 

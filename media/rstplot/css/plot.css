@@ -88,3 +88,15 @@
 #plot-container #plot-right-canvas {
     position: relative;
 }
+
+#plot-container #plot-y-axis-label {
+    width: 125px;
+    position: relative;
+    top: -130px;
+    left: -70px;
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+}
