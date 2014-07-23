@@ -1,5 +1,5 @@
 var plot = (function() {
-    var palegreenColor = 'rgba(70,254,185,0.6)';
+    var palegreenColor = 'rgba(70,254,185,1)';
     var purpleColor = 'rgba(152,58,178,1)';
     var redColor = 'rgba(171,38,52,1)';
 
@@ -138,25 +138,34 @@ var plot = (function() {
      * Draw the plot's background images.
      * Returns a promise.
      */
-    var drawPlotBg = function(can, ctx, color) {
-        if (typeof color == 'undefined') {
-            color = 'purple';
+    var drawPlotBg = function(can, ctx, side) {
+        if (typeof side == 'undefined') {
+            side = 'right';
         }
-        return drawImage(ctx, '/media/rstplot/img/'+color+'-path.png', 200, 0)
-            .then(function() {
-                if (color == 'red') {
-                    ctx.globalAlpha = 0.6;
+
+        if (side == 'right') {
+            return drawImage(ctx, '/media/rstplot/img/purple-path.png', 200, 0)
+                .then(function() {
                     return drawImage(ctx,
-                        '/media/rstplot/img/palegreen-path.png', 0, 0)
-                        .then(function() {
-                            ctx.globalAlpha = 1;
-                        });
-                }
-            })
-            .then(function () {
-                return drawImage(ctx,
-                    '/media/rstplot/img/rst-green.png', 0, 0);
-            });
+                                     '/media/rstplot/img/white-path.png', 0, 0);
+                })
+                .then(function() {
+                    return drawImage(ctx,
+                                     '/media/rstplot/img/rst-green.png', 0, 0);
+                });
+        } else {
+            return drawImage(ctx,
+                             '/media/rstplot/img/palegreen-path.png', 0, 0)
+                .then(function () {
+                    return drawImage(ctx,
+                                     '/media/rstplot/img/rst-green.png', 0, 0);
+                })
+                .then(function() {
+                    return drawImage(ctx, '/media/rstplot/img/red-path.png', 200, 0)
+                });
+        }
+
+
     };
 
     var updateCalcValues = function($container, x) {
@@ -245,32 +254,32 @@ var plot = (function() {
 
             var can1 = $container.find('#plot-left-canvas')[0];
             var ctx1 = can1.getContext('2d');
-            drawPlotBg(can1, ctx1, 'red').then(function() {
+            drawPlotBg(can1, ctx1, 'left').then(function() {
                 drawPlot(can1, ctx1);
                 drawPlotText(can1, ctx1);
             });
 
             var can2 = $container.find('#plot-right-canvas')[0];
             var ctx2 = can2.getContext('2d');
-            drawPlotBg(can2, ctx2, 'purple').then(function() {
+            drawPlotBg(can2, ctx2, 'right').then(function() {
                 drawPlot(can2, ctx2);
                 drawPlotText(can2, ctx2);
             });
 
             var $slider = $container.find('#plot-slider');
-            $slider.slider({
-                value: 51,
-                step: 0.01,
-                change: function(e, ui) {
-                    updateGraphsAndValues($container, ui);
-                },
-                slide: function(e, ui) {
-                    updateGraphsAndValues($container, ui);
-                }
-            });
-
-            // Needed to trigger the 'change' event on init
-            $slider.slider('value', 51);
+            $slider
+                .slider({
+                    value: 51,
+                    step: 0.01,
+                    change: function(e, ui) {
+                        updateGraphsAndValues($container, ui);
+                    },
+                    slide: function(e, ui) {
+                        updateGraphsAndValues($container, ui);
+                    }
+                })
+                // Needed to trigger the 'change' event on init
+                .slider('value', 51);
 
             $slider.find('.ui-slider-handle').append(
                 '<div class="plot-hint">Screening Test</div>' +
