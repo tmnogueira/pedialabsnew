@@ -167,6 +167,16 @@ var plot = (function() {
         $container.find('#plot-specificity').html(specificity);
     };
 
+    var updateGraphsAndValues = function($container, ui) {
+        var val = ui.value * .21;
+        updateCalcValues($container, val);
+
+        $container.find('.plot-left').width(ui.value + '%');
+        $container.find('.plot-right').width((100-ui.value) + '%');
+        $container.find('#plot-right-canvas').css('left',
+                                                  (-ui.value * 5.5) + 'px');
+    };
+
     return {
         calcSensitivity: function(x) {
             var r;
@@ -249,17 +259,19 @@ var plot = (function() {
 
             var $slider = $container.find('#plot-slider');
             $slider.slider({
-                slide: function(e, ui) {
-                    var val = ui.value * .21;
-                    updateCalcValues($container, val);
-
-                    $container.find('.plot-left').width(ui.value + '%');
-                    $container.find('.plot-right').width((100-ui.value) + '%');
-                    $container.find('#plot-right-canvas').css('left',
-                        (-ui.value * 5.5) + 'px');
+                value: 51,
+                step: 0.01,
+                change: function(e, ui) {
+                    updateGraphsAndValues($container, ui);
                 },
-                step: 0.01
+                slide: function(e, ui) {
+                    updateGraphsAndValues($container, ui);
+                }
             });
+
+            // Needed to trigger the 'change' event on init
+            $slider.slider('value', 51);
+
             $slider.find('.ui-slider-handle').append(
                 '<div class="plot-hint">Screening Test</div>' +
                 '<div class="plot-hint">Cutpoint</div>' +
