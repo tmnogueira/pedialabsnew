@@ -63,6 +63,29 @@ class ViewPage(LoggedInMixin, PageView):
     hierarchy_base = "/pages/labs/"
     gated = True
 
+    def get_extra_context(self):
+        menu = []
+        visits = UserPageVisit.objects.filter(user=self.request.user,
+                                              status='complete')
+        visit_ids = visits.values_list('section__id', flat=True)
+
+        previous_unlocked = True
+        for section in self.module.get_descendants():
+            unlocked = section.id in visit_ids
+            item = {
+                'id': section.id,
+                'url': section.get_absolute_url(),
+                'label': section.label,
+                'depth': section.depth,
+                'disabled': not(previous_unlocked or section.id in visit_ids)
+            }
+            if section.depth == 3 and section.get_children():
+                item['toggle'] = True
+            menu.append(item)
+            previous_unlocked = unlocked
+
+        return {'menu': menu}
+
 
 class EditPage(LoggedInMixinSuperuser, EditView):
     template_name = "pagetree/edit_labs.html"

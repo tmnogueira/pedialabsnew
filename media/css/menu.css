@@ -43,8 +43,8 @@
   margin: 0;
 }
 
-.sectionmenu .menu-unlocked,
-.sectionmenu .menu-unlocked a {
+.sectionmenu .menu-item,
+.sectionmenu .menu-item a {
   font-weight: normal;
 }
 
