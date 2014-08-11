@@ -1,4 +1,3 @@
-{% load accessible %}
 <div class="sectionmenu">
   <div class="navbar navbar-default navbar-sectionmenu" role="navigation">
 
@@ -15,30 +14,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="sectionmenu">
       <div class="menu-items">
-      {% ifequal section.id module.id %}
-        <div class="menu-item menu-active  menu-{{module.depth}}" data-depth="{{module.depth}}"><span>{{module.label}}</span></div>
-      {% else %}
-        <div data-depth="{{module.depth}}" class="menu-item menu-{{module.depth}}">
-        {% ifequal menu_base "/edit" %}
-          <a href="{{module.get_edit_url}}">{{module.label}}</a>
-        {% else %}
-          <a href="{{module.get_absolute_url}}">{{module.label}}</a>
-        {% endifequal %}
-        </div>
-      {% endifequal %}
-            {% for s in menu %}
-                <div class="menu-item menu-{{s.depth}}{% if s.disabled %} menu-locked{% endif %}{% if s.toggle %} menu-toplevel{% endif %}{% ifequal s.id section.id %} menu-active{% endifequal %}" data-depth="{{s.depth}}">
-                <a href="{{s.url}}">{{s.label}}</a>
-                </div>
-            {% endfor %}
+      {% for s in menu %}
+        {% ifnotequal s.slug 'survey' %}
+          <div class="menu-item menu-{{s.depth}}{% if s.toggle %} menu-toplevel{% endif %}{% ifequal s.id section.id %} menu-active{% endifequal %}" data-depth="{{s.depth}}">
+          <a href="{{s.get_edit_url}}">{{s.label}}</a>
+          </div>
+        {% endifnotequal %}
+      {% endfor %}
       </div>
     </div><!-- /.navbar-collapse -->
 
   </div><!-- /.navbar-sectionmenu -->
 </div><!-- /.sectionmenu -->
-
-{% comment %}
-<div><a href="{{menu_base}}{{s.get_absolute_url}}">
-              {{s.label}}
-              </a></div>
-{% endcomment %}

@@ -70,13 +70,14 @@ class ViewPage(LoggedInMixin, PageView):
         visit_ids = visits.values_list('section__id', flat=True)
 
         previous_unlocked = True
-        for section in self.module.get_descendants():
+        for section in self.root.get_descendants():
             unlocked = section.id in visit_ids
             item = {
                 'id': section.id,
                 'url': section.get_absolute_url(),
                 'label': section.label,
                 'depth': section.depth,
+                'slug': section.slug,
                 'disabled': not(previous_unlocked or section.id in visit_ids)
             }
             if section.depth == 3 and section.get_children():

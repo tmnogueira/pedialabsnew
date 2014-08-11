@@ -1,6 +1,7 @@
 .sectionmenu {
   border: 0;
   padding: 0;
+  border-right: 1px dotted #ccc;
 }
 
 .navbar-sectionmenu {
@@ -72,6 +73,7 @@
   font-size: 15px;
   line-height: 18px;
   padding: 5px 0px 5px 15px;
+  border-top: #ccc dotted 1px;
 }
 
 .sectionmenu  div.menu-4 {
@@ -101,6 +103,7 @@
 @media (min-width: 768px) {
   .sectionmenu {
     margin: 10px 0 20px 0;
+    border-right: 0;
   }
   .navbar-toggle-sectionmenu {
     display: block;
@@ -137,6 +140,7 @@
   .sectionmenu div.menu-3,
   .sectionmenu div.menu-4,
   .sectionmenu div.menu-5 {
+    border-top: 0;
     margin-left: 0;
   }
   .sectionmenu div.menu-item a,
@@ -237,6 +241,7 @@
     font-size: 15px;
     line-height: 18px;
     padding: 5px 0px 5px 15px;
+    border-top: #ccc dotted 1px;
   }  
   .sectionmenu div.menu-4 {
     margin-left: 15px;
