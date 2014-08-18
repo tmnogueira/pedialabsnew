@@ -16,8 +16,12 @@
       <div class="menu-items">
       {% for s in menu %}
         {% ifnotequal s.slug 'survey' %}
-          <div class="menu-item menu-{{s.depth}}{% if s.toggle %} menu-toplevel{% endif %}{% ifequal s.id section.id %} menu-active{% endifequal %}" data-depth="{{s.depth}}">
-          <a href="{{s.url}}">{{s.label}}</a>
+          <div class="menu-item menu-{{s.depth}}{% if s.toggle %} menu-toplevel{% endif %}{% ifequal s.id section.id %} menu-active{% endifequal %}{% if s.disabled %} menu-locked{% endif %}" data-depth="{{s.depth}}">
+          {% if s.disabled %}
+            {{s.label}}
+          {% else %}
+            <a href="{{s.url}}">{{s.label}}</a>
+          {% endif %}
           </div>
         {% endifnotequal %}
       {% endfor %}

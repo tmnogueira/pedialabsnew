@@ -59,6 +59,12 @@
   color: #999;
 }
 
+.sectionmenu .menu-locked a {
+  font-weight: normal;
+  color: #999;
+  cursor: not-allowed;
+}
+
 .sectionmenu .menu-active {
   font-weight: normal;
   color: #c60;
