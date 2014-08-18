@@ -419,9 +419,6 @@ footer img {
       background: url('/media/img/bg-sdw-970.png');
       padding: 0 6px;
   }
-  .module-overview .sidenav {
-    border-right: 1px dotted #ddd;
-  }
   .module-labs .col-md-labs {
     width: 20%;
   }
