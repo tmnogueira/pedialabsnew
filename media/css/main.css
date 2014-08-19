@@ -854,6 +854,11 @@ ul.pager {
   display: none;
 }
 
+.survey-complete .yours {
+  background: #fff url('/media/img/icon_checked.png') no-repeat 0 3px;
+  padding: 5px 0px 5px 22px;
+}
+
 .survey-complete .survey-acknowledged {
   display: block;
 }
