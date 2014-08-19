@@ -644,6 +644,10 @@ td.figurenotes {
   font-size: 12px;
 }
 
+.labtests .form-control {
+  font-size: 12px;
+}
+
 .labtests th
 {
   margin: 0;
@@ -720,6 +724,10 @@ td.figurenotes {
   margin: 0 0 14px 0;
   padding: 0;
   color: #c00;
+}
+
+.assessment-note {
+  max-width: 690px;
 }
 
 /* Case quizzes */
