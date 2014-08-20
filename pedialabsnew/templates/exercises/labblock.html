@@ -62,6 +62,7 @@
 {% endfor %}
 </table>
 
+{% getactionplanresponse block as apr %}
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
 <p class="yours"><b>Your assessment:</b> {{apr.assessment}}</p>
@@ -70,7 +71,6 @@
 
 
 <h3>Action Plan:</h3>
-{% getactionplanresponse block as apr %}
 {% if block.sickvisit %}
   <p class="yours">
   {% if apr.action_plan %}
