@@ -25,6 +25,27 @@
         {% endif %}
 {% endblock %}
 
+{% block content-nav %}
+{% with previous=section.get_previous next_section=section.get_next %}
+<ul class="pager">
+{% if previous %}
+  <li class="previous">
+		<a href="{{previous.get_absolute_url}}">&larr; {{previous.label}}</a>
+  </li>
+{% endif %}
+
+{% if next_section %}
+  {% if next_section.is_root %}
+    <li class="next"><a href="/"><span class="glyphicon glyphicon-home"></span> {% if request.user.is_anonymous %}Home{% else %}Dashboard{% endif %} &rarr;</a></li>
+  {% else %}
+  <li class="next"><a href="{{next_section.get_absolute_url}}">{{next_section.label}} &rarr;</a></li>
+  {% endif %}
+{% endif %}
+
+</ul>
+{% endwith %}
+{% endblock %}
+
 {% block js %}
 {{ block.super }}
 <script src="{{STATIC_URL}}js/sidemenu.js"></script>
