@@ -51,12 +51,23 @@
     {% if section.get_next %}
       {% with section.get_next as next_section %}
       <li class="next">
-        {% ifaccessible next_section %}
-          <a href="{{section.get_next.get_absolute_url}}">{{section.get_next.label}} &rarr;</a>
+        {% if next_section.is_root %}
+          {% ifaccessible next_section %}
+          <a href="/"><span class="glyphicon glyphicon-home"></span> Dashboard &rarr;</a>
+          {% else %}
+          <a href="/"><span class="glyphicon glyphicon-home"></span> Dashboard &rarr;</a>
+          {% comment %}
+          <span><img src="{{STATIC_URL}}img/lock.png">&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span> Dashboard &rarr;</span>
+          {% endcomment %}
+          {% endifaccessible %}
         {% else %}
-          <span><img src="{{STATIC_URL}}img/lock.png">&nbsp;&nbsp;{{section.get_next.label}} &rarr;</span>
-        {% endifaccessible %}
-      </li>
+          {% ifaccessible next_section %}
+            <a href="{{section.get_next.get_absolute_url}}">{{section.get_next.label}} &rarr;</a>
+          {% else %}
+            <span><img src="{{STATIC_URL}}img/lock.png">&nbsp;&nbsp;{{section.get_next.label}} &rarr;</span>
+          {% endifaccessible %}
+        {% endif %}
+    </li>
       {% endwith %}
     {% endif %}
   </ul>
