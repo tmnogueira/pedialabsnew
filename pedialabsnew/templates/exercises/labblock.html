@@ -62,15 +62,19 @@
 {% endfor %}
 </table>
 
+{% getactionplanresponse block as apr %}
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
+{% if apr.assessment %}
 <p class="yours"><b>Your assessment:</b> {{apr.assessment}}</p>
+{% else %}
+<p class="yours"><b>You’ve not provided any assessment of this child.</b></p>
+{% endif %}
 {% comment %}<p class="expert"><b>Expert assessment:</b></p>{% endcomment %}
 {% endif %}
 
 
 <h3>Action Plan:</h3>
-{% getactionplanresponse block as apr %}
 {% if block.sickvisit %}
   <p class="yours">
   {% if apr.action_plan %}
@@ -117,7 +121,7 @@
       {{test.result}}
     </td>
     <td class="grey">
-      <select name="pageblock-{{block.pageblock.id}}-result-{{test.id}}">
+      <select name="pageblock-{{block.pageblock.id}}-result-{{test.id}}" class="form-control">
 	<option value="unselected" selected="selected">Please select:</option>
 	<option value="low">Low</option>
 	<option value="normal">Normal</option>
@@ -134,7 +138,7 @@
 
       <div class="abnormality-select hs-hide" id="pageblock-{{block.pageblock.id}}-abnormality-select-{{test.id}}">
       <select name="pageblock-{{block.pageblock.id}}-abnormality-{{test.id}}"
-	      id="pageblock-{{block.pageblock.id}}-abnormality-{{test.id}}">
+	      id="pageblock-{{block.pageblock.id}}-abnormality-{{test.id}}" class="form-control">
       {% for abnormality in block.all_abnormalities %}
         {% ifequal abnormality "unselected" %}
           <option value="unselected" selected="selected">Please select:</option>
@@ -150,7 +154,7 @@
 </table>
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
-<textarea name="pageblock-{{block.pageblock.id}}-assessment">
+<textarea class="form-control assessment-note" rows="4" name="pageblock-{{block.pageblock.id}}-assessment">
 </textarea>
 {% endif %}
 

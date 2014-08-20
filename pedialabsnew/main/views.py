@@ -99,6 +99,22 @@ class ViewPageOverview(PageView):
     hierarchy_name = "public"
     hierarchy_base = "/pages/public/"
 
+    def get_extra_context(self):
+        menu = []
+        for section in self.root.get_descendants():
+            item = {
+                'id': section.id,
+                'url': section.get_absolute_url(),
+                'label': section.label,
+                'depth': section.depth,
+                'slug': section.slug,
+            }
+            if section.depth == 3 and section.get_children():
+                item['toggle'] = True
+            menu.append(item)
+
+        return {'menu': menu}
+
 
 class EditPageOverview(LoggedInMixinSuperuser, EditView):
     template_name = "pagetree/edit_overview.html"

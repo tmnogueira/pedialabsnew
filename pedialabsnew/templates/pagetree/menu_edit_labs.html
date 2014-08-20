@@ -14,15 +14,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="sectionmenu">
       <div class="menu-items">
-      {% for s in menu %}
-        {% ifnotequal s.slug 'survey' %}
-          <div class="menu-item menu-{{s.depth}}{% if s.toggle %} menu-toplevel{% endif %}{% ifequal s.id section.id %} menu-active{% endifequal %}{% if s.disabled %} menu-locked{% endif %}" data-depth="{{s.depth}}">
-          {% if s.disabled %}
+      {% for s in root.get_descendants %}
+        {% ifnotequal s.id section.id %}
+            <div class="menu-item menu-{{s.depth}}"><a href="{{s.get_edit_url}}">
             {{s.label}}
-          {% else %}
-            <a href="{{s.url}}">{{s.label}}</a>
-          {% endif %}
-          </div>
+            </a></div>
+        {% else %}
+          <div class="menu-item menu-active menu-{{s.depth}}"><span>
+          {{s.label}}
+          </span></div>
         {% endifnotequal %}
       {% endfor %}
       </div>
@@ -30,4 +30,3 @@
 
   </div><!-- /.navbar-sectionmenu -->
 </div><!-- /.sectionmenu -->
-

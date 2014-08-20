@@ -419,9 +419,6 @@ footer img {
       background: url('/media/img/bg-sdw-970.png');
       padding: 0 6px;
   }
-  .module-overview .sidenav {
-    border-right: 1px dotted #ddd;
-  }
   .module-labs .col-md-labs {
     width: 20%;
   }
@@ -647,6 +644,10 @@ td.figurenotes {
   font-size: 12px;
 }
 
+.labtests .form-control {
+  font-size: 12px;
+}
+
 .labtests th
 {
   margin: 0;
@@ -723,6 +724,10 @@ td.figurenotes {
   margin: 0 0 14px 0;
   padding: 0;
   color: #c00;
+}
+
+.assessment-note {
+  max-width: 690px;
 }
 
 /* Case quizzes */
@@ -855,6 +860,11 @@ ul.pager {
 
 .survey-complete .survey-instructions {
   display: none;
+}
+
+.survey-complete .yours {
+  background: #fff url('/media/img/icon_checked.png') no-repeat 0 3px;
+  padding: 5px 0px 5px 22px;
 }
 
 .survey-complete .survey-acknowledged {

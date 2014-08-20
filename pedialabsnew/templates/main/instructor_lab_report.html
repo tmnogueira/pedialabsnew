@@ -127,7 +127,7 @@ Lab: {{module.label}}</h4>
 <p class="yours">
   {% if apr.action_plan %}
     {% if not apr.correct_action_plan %}
-    <b>Student's response:</b> 
+    <b>{{student.first_name}}'s response:</b> 
     <span class="incorrect">
     {% endif %}
     {{apr.action_plan}}
@@ -135,7 +135,7 @@ Lab: {{module.label}}</h4>
     </span>
     {% endif %}
   {% else %}
-    <span class="incorrect"><b>Student has not selected an action plan.</b></span>
+    <span class="incorrect"><b>{{student.first_name}} has not selected an action plan.</b></span>
   {% endif %}
 </p>
 <p class="expert"><b>Expert's response:</b> {{lab_block.correct_actionplan}}</p>
@@ -143,7 +143,11 @@ Lab: {{module.label}}</h4>
 
 {% if lab_block.assessment %}
 <h3>What is your assessment of this child?</h3>
-<p class="yours"><b>Student's assessment: </b><br />{{apr.assessment}}</p>
+{% if apr.assessment %}
+<p class="yours"><b>{{student.first_name}}'s assessment:</b> {{apr.assessment}}</p>
+{% else %}
+<p class="yours"><b>{{student.first_name}} has not provided any assessment of this child.</b></p>
+{% endif %}
 {% comment %}<p class="expert">Expert's assessment</p>{% endcomment %}
 {% endif %}
 
