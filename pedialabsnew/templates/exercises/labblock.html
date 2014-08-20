@@ -65,7 +65,11 @@
 {% getactionplanresponse block as apr %}
 {% if block.assessment %}
 <h3>What is your assessment of this child?</h3>
+{% if apr.assessment %}
 <p class="yours"><b>Your assessment:</b> {{apr.assessment}}</p>
+{% else %}
+<p class="yours"><b>You’ve not provided any assessment of this child.</b></p>
+{% endif %}
 {% comment %}<p class="expert"><b>Expert assessment:</b></p>{% endcomment %}
 {% endif %}
 
