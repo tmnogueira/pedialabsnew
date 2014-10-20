@@ -16,7 +16,6 @@
       {% if question.answerable %}
         {% if block.rhetorical %}<form id="form-{{question.id}}" method="post">{% endif %}
 
-<div class="caseanswers">
 	{% if question.is_single_choice %}
   	  {% include 'quizblock/single_choice.html' %}
 	{% endif %}
@@ -41,7 +40,6 @@
           {% include 'quizblock/long_text.html' %}
         {% endif %}
       {% endif %}
-    </div>
     </div>
 
     {% if block.rhetorical %}

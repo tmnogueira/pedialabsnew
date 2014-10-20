@@ -35,11 +35,13 @@
 {% endif %}
 
 {% if next_section %}
+  <li class="next">
   {% if next_section.is_root %}
-    <li class="next"><a href="/"><span class="glyphicon glyphicon-home"></span> {% if request.user.is_anonymous %}Home{% else %}Dashboard{% endif %} &rarr;</a></li>
+    <a href="/"><span class="glyphicon glyphicon-home"></span> {% if request.user.is_anonymous %}Home{% else %}Dashboard{% endif %} &rarr;</a>
   {% else %}
-  <li class="next"><a href="{{next_section.get_absolute_url}}">{{next_section.label}} &rarr;</a></li>
+  <a href="{{next_section.get_absolute_url}}">{{next_section.label}} &rarr;</a>
   {% endif %}
+  </li>
 {% endif %}
 
 </ul>
