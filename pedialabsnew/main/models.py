@@ -6,7 +6,7 @@ class PedialabsReport(PagetreeReport):
 
     def users(self):
         users = User.objects.filter(
-            is_superuser=True)
+            is_superuser=False)
         return users.order_by('id')
 
     def standalone_columns(self):
