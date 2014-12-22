@@ -219,14 +219,7 @@ class ReportView(LoggedInMixinStaff, View):
         writer = csv.writer(output)
 
         for row in report.values(hierarchies):
-            new_row = []
-            for item in row:
-                if item is not None:
-                    item_clean = item.encode("utf8")
-                    new_row.append(item_clean)
-                else:
-                    new_row.append(item)
-            writer.writerow(new_row)
+            writer.writerow(row)
 
         z.writestr("pedialabs_values.csv", output.getvalue())
 
