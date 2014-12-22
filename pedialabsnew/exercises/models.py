@@ -322,7 +322,7 @@ class LabAssessmentColumn(ReportColumnInterface):
     def user_value(self, user):
         r = ActionPlanResponse.objects.filter(lab=self.lab, user=user)
         if r.count() > 0:
-            return r[0].assessment.encode('utf8')
+            return r[0].assessment.encode('utf-8')
         else:
             return None
 
@@ -345,6 +345,6 @@ class LabActionPlanColumn(ReportColumnInterface):
     def user_value(self, user):
         r = ActionPlanResponse.objects.filter(lab=self.lab, user=user)
         if r.count() > 0:
-            return r[0].action_plan.encode('utf8')
+            return r[0].action_plan.encode('utf-8')
         else:
             return None
