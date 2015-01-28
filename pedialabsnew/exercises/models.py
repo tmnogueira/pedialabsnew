@@ -161,13 +161,14 @@ class Lab(models.Model):
         return ["unselected", "No abnormality", "Anemia",
                 "Atypical Lymphocytosis", "Bandemia", "Elevated",
                 "Eosinopenia", "Eosinophilia", "Erythrocytosis",
-                "Erythropenia", "High Atypical Lymphocytosis", "Increased INR",
-                "Leukocytosis", "Leukopenia", "Lymphocytosis", "Lymphopenia",
-                "Macrocytosis", "Microcytosis", "Moderate Neutropenia",
-                "Monocytopenia", "Monocytosis", "Monopenia", "Neutrocytosis",
-                "Neutropenia", "Neutropenic", "Neutrophillia", "Polycythemia",
-                "Prolonged PT", "Reticulocytosis", "Severe Neutropenia",
-                "Thrombocytopenia", "Thrombocytosis"]
+                "Erythropenia", "High Atypical Lymphocytosis", "Hypochromia",
+                "Increased INR", "Leukocytosis", "Leukopenia", "Lymphocytosis",
+                "Lymphopenia", "Macrocytosis", "Microcytosis",
+                "Moderate Neutropenia", "Monocytopenia", "Monocytosis",
+                "Monopenia", "Neutrocytosis", "Neutropenia", "Neutropenic",
+                "Neutrophilia", "Polycythemia", "Prolonged PT",
+                "Reticulocytosis", "Severe Neutropenia", "Thrombocytopenia",
+                "Thrombocytosis"]
 
     def unlocked(self, user):
         # meaning that the user can proceed *past* this one,
