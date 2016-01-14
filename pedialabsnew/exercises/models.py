@@ -122,8 +122,8 @@ class Lab(models.Model):
                 widget=forms.widgets.Select,
                 initial=self.correct_actionplan,
                 choices=action_plan_choices)
-            alt_text = ("<a href=\"" + reverse("edit-lab", args=[self.id])
-                        + "\">manage tests</a>")
+            alt_text = ("<a href=\"" + reverse("edit-lab", args=[self.id]) +
+                        "\">manage tests</a>")
         return EditForm()
 
     def edit(self, vals, files):
