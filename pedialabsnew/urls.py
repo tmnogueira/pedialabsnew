@@ -53,11 +53,11 @@ urlpatterns = patterns(
     (r'^instructor/(?P<uni>\w+)/lab/(?P<module_id>\d+)/$',
      InstructorLabReport.as_view()),
 
-    #Overview. The order of these routes are important:
+    # Overview. The order of these routes are important:
     (r'^pages/public/edit/(?P<path>.*)$',
      EditPageOverview.as_view(), {}, 'edit-overview'),
     (r'^pages/public/(?P<path>.*)$', ViewPageOverview.as_view()),
-    #Labs. The order of these routes are important:
+    # Labs. The order of these routes are important:
     (r'^pages/labs/edit/(?P<path>.*)$', EditPage.as_view(), {}, 'edit-page'),
     (r'^pages/labs/(?P<path>.*)$', ViewPage.as_view()),
 )
