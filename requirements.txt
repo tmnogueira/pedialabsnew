@@ -4,7 +4,7 @@ lxml==3.5.0
 httplib2==0.8
 restclient==0.11.0
 feedparser==5.2.1
-Markdown==2.6.4
+Markdown==2.6.5
 simplejson==3.7.3
 smartypants==1.6.0.3
 uuid==1.30
@@ -31,7 +31,7 @@ python-subunit==1.2.0
 lettuce==0.2.19ccnmtl
 rdflib==3.1.0
 coverage==3.7.1
-requests==0.13.3
+requests==2.9.1
 logilab-common==1.1.0
 logilab-astng==0.24.3
 pylint==1.4.4
