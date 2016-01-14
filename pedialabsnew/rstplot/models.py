@@ -46,3 +46,4 @@ class RstPlotBlock(models.Model):
 class RstPlotBlockForm(forms.ModelForm):
     class Meta:
         model = RstPlotBlock
+        exclude = []
