@@ -1,33 +1,16 @@
 # flake8: noqa
 from settings_shared import *
+from ccnmtlsettings.production import common
 
-TEMPLATE_DIRS = (
-    "/var/www/pedialabsnew/pedialabsnew/pedialabsnew/templates",
+locals().update(
+    common(
+        project=project,
+        base=base,
+        STATIC_ROOT=STATIC_ROOT,
+        INSTALLED_APPS=INSTALLED_APPS,
+        s3static=False,
+    )
 )
-
-MEDIA_ROOT = '/var/www/pedialabsnew/uploads/'
-# put any static media here to override app served static media
-STATICMEDIA_MOUNTS = (
-    ('/sitemedia', '/var/www/pedialabsnew/pedialabsnew/sitemedia'),
-)
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pedialabsnew',
-        'HOST': '',
-        'PORT': 6432,
-        'USER': '',
-        'PASSWORD': '',
-    }
-}
-
-COMPRESS_ROOT = "/var/www/pedialabsnew/pedialabsnew/media/"
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
-
-if 'migrate' not in sys.argv:
-    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
 
 try:
     from local_settings import *
