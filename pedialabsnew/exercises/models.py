@@ -69,6 +69,9 @@ class Lab(models.Model):
             assessment=assessment,
         )
         # now save them
+        self.save_test_results(results, abnormalities, user)
+
+    def save_test_results(self, results, abnormalities, user):
         for tid in results.keys():
             test = Test.objects.get(id=tid)
             result = results[tid]
