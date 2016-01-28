@@ -6,10 +6,7 @@ from pedialabsnew.main.views import EditPageOverview, ViewPageOverview, \
     EditPage, ViewPage, ClearStateView, InstructorPage, InstructorLabReport, \
     ReportView
 import pedialabsnew.exercises.urls
-import os.path
 admin.autodiscover()
-
-site_media_root = os.path.join(os.path.dirname(__file__), "../media")
 
 redirect_after_logout = getattr(settings, 'LOGOUT_REDIRECT_URL', None)
 

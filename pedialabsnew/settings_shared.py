@@ -14,6 +14,10 @@ PROJECT_APPS = [
 
 USE_TZ = True
 
+TEMPLATE_CONTEXT_PROCESSORS += [  # noqa
+    'pedialabsnew.main.views.context_processor'
+]
+
 INSTALLED_APPS += [  # noqa
     'sorl.thumbnail',
     'tagging',
