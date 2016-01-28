@@ -1,19 +1,29 @@
+from StringIO import StringIO
+import csv
+from zipfile import ZipFile
+
+from django.conf import settings
+
 from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View, TemplateView
-from django.http.response import HttpResponseRedirect, HttpResponse
 from pagetree.generic.views import PageView, EditView
 from pagetree.helpers import get_hierarchy
 from pagetree.models import Section, Hierarchy, UserPageVisit
+from quizblock.models import Submission
+
 from pedialabsnew.exercises.models import ActionPlanResponse, TestResponse
 from pedialabsnew.main.models import PedialabsReport
-from quizblock.models import Submission
-from zipfile import ZipFile
-from StringIO import StringIO
-import csv
+
+
+def context_processor(request):
+    ctx = {}
+    ctx['MEDIA_URL'] = settings.MEDIA_URL
+    return ctx
 
 
 @render_to('main/index.html')

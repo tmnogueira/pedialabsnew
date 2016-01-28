@@ -10,3 +10,5 @@ local_settings.py
 node_modules/
 .project
 .pydevproject
+.settings
+uploads
