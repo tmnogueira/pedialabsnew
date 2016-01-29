@@ -6,7 +6,8 @@
 {% endcompress %}
 <script>
 // Leave pedialabs jQuery alone
-var $rstplotJquery = $.noConflict(true);
+ var $rstplotJquery = $.noConflict(true);
+ window.STATIC_URL = '{{STATIC_URL}}';
 </script>
 {% compress js %}
 <script src="{{STATIC_URL}}rstplot/js/plot.js"></script>
