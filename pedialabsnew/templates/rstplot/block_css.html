@@ -1,2 +1,5 @@
-<link rel="stylesheet" href="/media/rstplot/css/jquery-ui.min.css">
-<link rel="stylesheet" href="/media/rstplot/css/plot.css">
+{% load compress %}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}rstplot/css/jquery-ui.min.css">
+<link rel="stylesheet" href="{{STATIC_URL}}rstplot/css/plot.css">
+{% endcompress %}

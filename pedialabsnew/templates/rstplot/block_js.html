@@ -1,9 +1,14 @@
-<script src="/media/rstplot/js/lib/rsvp.min.js"></script>
-<script src="/media/rstplot/js/lib/jquery.min.js"></script>
-<script src="/media/rstplot/js/lib/jquery-ui.min.js"></script>
+{% load compress %}
+{% compress js %}
+<script src="{{STATIC_URL}}rstplot/js/lib/rsvp.min.js"></script>
+<script src="{{STATIC_URL}}rstplot/js/lib/jquery.min.js"></script>
+<script src="{{STATIC_URL}}rstplot/js/lib/jquery-ui.min.js"></script>
+{% endcompress %}
 <script>
 // Leave pedialabs jQuery alone
 var $rstplotJquery = $.noConflict(true);
 </script>
-<script src="/media/rstplot/js/plot.js"></script>
-<script src="/media/rstplot/js/main.js"></script>
+{% compress js %}
+<script src="{{STATIC_URL}}rstplot/js/plot.js"></script>
+<script src="{{STATIC_URL}}rstplot/js/main.js"></script>
+{% endcompress %}
