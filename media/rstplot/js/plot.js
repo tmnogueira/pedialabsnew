@@ -27,7 +27,7 @@ var plot = (function() {
                     }
                     ctx.drawImage(imageObj, -140, -40);
                 };
-                imageObj.src = '/media/rstplot/img/rst-green.png';
+                imageObj.src = window.STATIC_URL + 'rstplot/img/rst-green.png';
             } else {
                 ctx.fillStyle = purpleColor;
                 ctx.rect(0, 0, can.width, can.height);
@@ -164,26 +164,26 @@ var plot = (function() {
         }
 
         if (side == 'right') {
-            return drawImage(ctx, '/media/rstplot/img/purple-path.png', 200, 0)
+            return drawImage(ctx, window.STATIC_URL + 'rstplot/img/purple-path.png', 200, 0)
                 .then(function() {
                     return drawImage(ctx,
-                                     '/media/rstplot/img/white-path.png',
+                                     window.STATIC_URL + 'rstplot/img/white-path.png',
                                      0, 0);
                 })
                 .then(function() {
                     return drawImage(ctx,
-                                     '/media/rstplot/img/rst-green.png', 0, 0);
+                                     window.STATIC_URL + '/rstplot/img/rst-green.png', 0, 0);
                 });
         } else {
             return drawImage(ctx,
-                             '/media/rstplot/img/palegreen-path.png', 0, 0)
+                             window.STATIC_URL + 'rstplot/img/palegreen-path.png', 0, 0)
                 .then(function () {
                     return drawImage(ctx,
-                                     '/media/rstplot/img/rst-green.png', 0, 0);
+                                     window.STATIC_URL + 'rstplot/img/rst-green.png', 0, 0);
                 })
                 .then(function() {
                     return drawImage(ctx,
-                                     '/media/rstplot/img/red-path.png',
+                                     window.STATIC_URL + 'rstplot/img/red-path.png',
                                      200, 0);
                 });
         }
