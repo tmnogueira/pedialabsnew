@@ -172,7 +172,7 @@ var plot = (function() {
                 })
                 .then(function() {
                     return drawImage(ctx,
-                                     window.STATIC_URL + '/rstplot/img/rst-green.png', 0, 0);
+                                     window.STATIC_URL + 'rstplot/img/rst-green.png', 0, 0);
                 });
         } else {
             return drawImage(ctx,
