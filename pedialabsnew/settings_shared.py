@@ -19,6 +19,7 @@ TEMPLATE_CONTEXT_PROCESSORS += [  # noqa
 ]
 
 INSTALLED_APPS += [  # noqa
+    'bootstrap3',
     'sorl.thumbnail',
     'tagging',
     'typogrify',
