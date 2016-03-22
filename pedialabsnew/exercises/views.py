@@ -1,20 +1,19 @@
-from annoying.decorators import render_to
 from .models import Lab, Test
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from pagetree.helpers import get_hierarchy
 import csv
 from cStringIO import StringIO
 from django.core.urlresolvers import reverse
 
 
-@render_to('exercises/edit_lab.html')
 def edit_lab(request, id):
     lab = get_object_or_404(Lab, id=id)
     section = lab.pageblock().section
     h = get_hierarchy()
-    return dict(lab=lab, section=section,
-                root=h.get_root())
+    return render(request, 'exercises/edit_lab.html',
+                  dict(lab=lab, section=section,
+                       root=h.get_root()))
 
 
 def delete_test(request, id):
@@ -80,7 +79,6 @@ def add_csv_to_lab(request, id):
     return HttpResponseRedirect(reverse("edit-lab", args=[lab.id]))
 
 
-@render_to('exercises/edit_test.html')
 def edit_test(request, id):
     test = get_object_or_404(Test, id=id)
     if request.method == "POST":
@@ -89,4 +87,4 @@ def edit_test(request, id):
             test = form.save()
             test.save()
         return HttpResponseRedirect(reverse("edit-test", args=[test.id]))
-    return dict(test=test)
+    return render(request, 'exercises/edit_test.html', dict(test=test))

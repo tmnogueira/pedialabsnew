@@ -4,11 +4,11 @@ from zipfile import ZipFile
 
 from django.conf import settings
 
-from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View, TemplateView
 from pagetree.generic.views import PageView, EditView
@@ -26,14 +26,14 @@ def context_processor(request):
     return ctx
 
 
-@render_to('main/index.html')
 def index(request):
+    template_name = 'main/index.html'
     ctx = {'survey_complete': False}
     if not request.user.is_anonymous():
         try:
             hierarchy = Hierarchy.objects.get(name='labs')
         except Hierarchy.DoesNotExist:
-            return ctx
+            return render(request, template_name, ctx)
 
         usersurvey = hierarchy.get_section_from_path('survey')
         if usersurvey.submitted(request.user):
@@ -46,7 +46,7 @@ def index(request):
             ctx['last_location'] = visits[0].section
         else:
             ctx['last_location'] = hierarchy.get_root()
-    return ctx
+    return render(request, template_name, ctx)
 
 
 class LoggedInMixin(object):
