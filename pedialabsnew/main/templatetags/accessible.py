@@ -7,6 +7,11 @@ def block_submitted(block, user):
     if user.is_anonymous():
         # anon can't have submitted a block
         return False
+
+    return _block_submitted(block, user)
+
+
+def _block_submitted(block, user):
     if hasattr(block, 'needs_submit'):
         if block.needs_submit():
             try:

@@ -50,8 +50,8 @@ class Lab(models.Model):
         # have to group them first
         results = dict()
         abnormalities = dict()
-        action_plan = ""
-        assessment = ""
+        action_plan = data.get('action-plan', "")
+        assessment = data.get('assessment', "")
         for k in data.keys():
             if k.startswith('result-'):
                 tid = int(k[len('result-'):])
@@ -59,10 +59,6 @@ class Lab(models.Model):
             if k.startswith('abnormality-'):
                 tid = int(k[len('abnormality-'):])
                 abnormalities[tid] = data[k]
-            if k == 'action-plan':
-                action_plan = data[k]
-            if k == 'assessment':
-                assessment = data[k]
         ActionPlanResponse.objects.create(
             lab=self, user=user,
             action_plan=action_plan,
