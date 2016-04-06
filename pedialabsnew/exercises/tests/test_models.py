@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from ..models import Lab, Test, TestResponse, ActionPlanResponse
+from ..models import (
+    Lab, Test, TestResponse, ActionPlanResponse,
+    TestLevelColumn, TestAbnormalityColumn,
+    LabAssessmentColumn, LabActionPlanColumn,
+)
 
 
 class LabTest(TestCase):
@@ -19,6 +23,27 @@ class LabTest(TestCase):
     def test_edit_form(self):
         lab = Lab.objects.create()
         self.assertTrue("Situation urgent" in lab.edit_form().as_p())
+
+    def test_edit(self):
+        lab = Lab.objects.create()
+        lab.edit({
+            'description': 'new description',
+            'assessment': True,
+            'sickvisit': True,
+        }, None)
+        self.assertEqual(lab.description, 'new description')
+        self.assertTrue(lab.assessment)
+        self.assertTrue(lab.sickvisit)
+
+    def test_update_tests_order(self):
+        lab = Lab.objects.create()
+        t1 = Test.objects.create(lab=lab)
+        t2 = Test.objects.create(lab=lab)
+        lab.update_tests_order([t2.id, t1.id])
+        t1.refresh_from_db()
+        t2.refresh_from_db()
+        self.assertEqual(t2.ordinality, 1)
+        self.assertEqual(t1.ordinality, 2)
 
     def test_add_test_form(self):
         lab = Lab.objects.create()
@@ -117,3 +142,122 @@ class ActionPlanResponseTest(TestCase):
         user = User.objects.create(username='test')
         apr = ActionPlanResponse.objects.create(lab=lab, user=user)
         self.assertTrue(apr.correct_action_plan())
+
+
+class DummyHierarchy(object):
+    id = 42
+    name = 'dummy hierarchy'
+
+
+class DummyTest(object):
+    id = 23
+    name = 'dummy test'
+
+
+class TestTestLevelColumn(TestCase):
+    def test_identifier(self):
+        tlc = TestLevelColumn(DummyHierarchy(), DummyTest())
+        self.assertEqual(tlc.identifier(), "42_23_level")
+
+    def test_metadata(self):
+        tlc = TestLevelColumn(DummyHierarchy(), DummyTest())
+        self.assertEqual(
+            tlc.metadata(),
+            [
+                'dummy hierarchy',
+                "42_23_level",
+                "Lab Result Level",
+                "single choice",
+                "dummy test",
+                None,
+            ])
+
+    def test_user_value(self):
+        tlc = TestLevelColumn(DummyHierarchy(), 4)
+        user = User.objects.create(username='test')
+        self.assertIsNone(tlc.user_value(user))
+
+
+class TestTestAbnormalityColumn(TestCase):
+    def test_identifier(self):
+        tac = TestAbnormalityColumn(DummyHierarchy(), DummyTest())
+        self.assertEqual(tac.identifier(), "42_23_abnormality")
+
+    def test_metadata(self):
+        tac = TestAbnormalityColumn(DummyHierarchy(), DummyTest())
+        self.assertEqual(
+            tac.metadata(),
+            [
+                'dummy hierarchy',
+                "42_23_abnormality",
+                "Lab Result Abnormality",
+                "single choice",
+                "dummy test",
+                None,
+            ])
+
+    def test_user_value(self):
+        tac = TestAbnormalityColumn(DummyHierarchy(), 4)
+        user = User.objects.create(username='test')
+        self.assertIsNone(tac.user_value(user))
+
+
+class DummySection(object):
+    label = "dummy section"
+
+
+class DummyBlock(object):
+    section = DummySection()
+
+
+class DummyLab(object):
+    id = 22
+
+    def pageblock(self):
+        return DummyBlock()
+
+
+class TestLabAssessmentColumn(TestCase):
+    def test_identifier(self):
+        tlac = LabAssessmentColumn(DummyHierarchy(), DummyLab())
+        self.assertEqual(tlac.identifier(), "42_22_assessment")
+
+    def test_metadata(self):
+        tlac = LabAssessmentColumn(DummyHierarchy(), DummyLab())
+        self.assertEqual(
+            tlac.metadata(),
+            [
+                'dummy hierarchy',
+                "42_22_assessment",
+                "Lab Assessment",
+                "short text",
+                "dummy section",
+            ])
+
+    def test_user_value(self):
+        tlac = LabAssessmentColumn(DummyHierarchy(), 4)
+        user = User.objects.create(username='test')
+        self.assertIsNone(tlac.user_value(user))
+
+
+class TestLabActionPlanColumn(TestCase):
+    def test_identifier(self):
+        tlapc = LabActionPlanColumn(DummyHierarchy(), DummyLab())
+        self.assertEqual(tlapc.identifier(), "42_22_actionplan")
+
+    def test_metadata(self):
+        tlapc = LabActionPlanColumn(DummyHierarchy(), DummyLab())
+        self.assertEqual(
+            tlapc.metadata(),
+            [
+                'dummy hierarchy',
+                "42_22_actionplan",
+                "Lab Action Plan",
+                "short text",
+                "dummy section",
+            ])
+
+    def test_user_value(self):
+        tlapc = LabActionPlanColumn(DummyHierarchy(), 4)
+        user = User.objects.create(username='test')
+        self.assertIsNone(tlapc.user_value(user))
