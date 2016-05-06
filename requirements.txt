@@ -40,7 +40,7 @@ python-ldap==2.4.22
 sqlparse==0.1.19
 boto==2.40.0
 python-dateutil==2.5.3
-contextlib2==0.5.1
+contextlib2==0.5.2
 
 django-bootstrap3==7.0.1
 djangowind==0.14.3
