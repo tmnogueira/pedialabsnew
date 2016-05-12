@@ -41,7 +41,7 @@ python-ldap==2.4.25
 sqlparse==0.1.19
 boto==2.40.0
 python-dateutil==2.5.3
-contextlib2==0.5.2
+contextlib2==0.5.3
 rjsmin==1.0.12
 rcssmin==1.0.6
 
