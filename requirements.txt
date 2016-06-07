@@ -47,7 +47,7 @@ rjsmin==1.0.12
 rcssmin==1.0.6
 
 django-bootstrap3==7.0.1
-djangowind==0.14.3
+djangowind==0.15.0
 sorl==3.1
 typogrify==2.0.7
 django-indexer==0.3.0
