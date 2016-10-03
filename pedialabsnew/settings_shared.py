@@ -14,9 +14,9 @@ PROJECT_APPS = [
 
 USE_TZ = True
 
-TEMPLATE_CONTEXT_PROCESSORS += [  # noqa
+TEMPLATES[0]['OPTIONS']['context_processors'].append(  # noqa
     'pedialabsnew.main.views.context_processor'
-]
+)
 
 INSTALLED_APPS += [  # noqa
     'bootstrap3',
