@@ -1,3 +1,5 @@
+/* exported reveal */
+
 function initShowHide() {
     if (document.getElementById && document.getElementsByTagName &&
             document.createTextNode) {
