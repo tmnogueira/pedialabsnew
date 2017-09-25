@@ -14,12 +14,8 @@ def block_submitted(block, user):
 def _block_submitted(block, user):
     if hasattr(block, 'needs_submit'):
         if block.needs_submit():
-            try:
-                s = block.unlocked(user)
-                if not s:
-                    return False
-            except:
-                pass
+            return block.unlocked(user)
+
     return True
 
 
