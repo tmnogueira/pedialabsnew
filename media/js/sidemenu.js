@@ -18,10 +18,10 @@ jQuery(document).ready(function() {
 
     function showSibling(eltIdx) {
         var prev = eltIdx - 1;
-        var prevSibling = jQuery(elt).prevUntil('.menu-' + prev,
-                                                '.menu-' + eltIdx);
-        var nextSibling = jQuery(elt).nextUntil('.menu-' + prev,
-                                                '.menu-' + eltIdx);
+        var prevSibling =
+            jQuery(elt).prevUntil('.menu-' + prev, '.menu-' + eltIdx);
+        var nextSibling =
+            jQuery(elt).nextUntil('.menu-' + prev, '.menu-' + eltIdx);
         prevSibling.show();
         nextSibling.show();
     }
@@ -33,8 +33,7 @@ jQuery(document).ready(function() {
             parent.show();
             if (idx == 3) {
                 jQuery(elt).prevAll(parentClassIdx)
-                           .first()
-                           .addClass('toggle-open');
+                    .first().addClass('toggle-open');
             }
             showSibling(idx);
         }
@@ -42,9 +41,7 @@ jQuery(document).ready(function() {
 
     function showChildren(eltIdx) {
         var next = eltIdx + 1;
-        var children = jQuery(elt).nextUntil('.menu-' + eltIdx,
-                                             '.menu-' + next);
-        children.show();
+        jQuery(elt).nextUntil('.menu-' + eltIdx, '.menu-' + next).show();
     }
 
     initMenu();
