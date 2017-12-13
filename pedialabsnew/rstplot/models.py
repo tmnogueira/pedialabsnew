@@ -1,12 +1,12 @@
 from django import forms
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from pagetree.models import PageBlock
 
 
 class RstPlotBlock(models.Model):
     display_name = "Rapid Strep Test Plot"
-    pageblocks = generic.GenericRelation(PageBlock)
+    pageblocks = GenericRelation(PageBlock)
     template_file = "rstplot/rstplot.html"
     js_template_file = "rstplot/block_js.html"
     css_template_file = "rstplot/block_css.html"
