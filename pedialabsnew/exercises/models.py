@@ -1,9 +1,9 @@
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 from pagetree.models import PageBlock
-from django.contrib.auth.models import User
-from django.contrib.contenttypes import generic
-from django import forms
-from django.core.urlresolvers import reverse
 from pagetree.reports import ReportableInterface, ReportColumnInterface
 
 
@@ -34,7 +34,7 @@ class Lab(models.Model):
                  ("Refer for further tests", "Refer for further tests"),
                  ("Reassure and send home", "Reassure and send home"),
                  ])
-    pageblocks = generic.GenericRelation(PageBlock)
+    pageblocks = GenericRelation(PageBlock)
 
     template_file = "exercises/labblock.html"
     display_name = "Lab Exercise"
