@@ -1,4 +1,4 @@
-Pedialabs
+Pedialabs  [![Build Status](https://travis-ci.org/ccnmtl/pedialabsnew.svg?branch=master)](https://travis-ci.org/ccnmtl/pedialabsnew)
 ==========
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/ccnmtl/pedialabsnew.svg)](https://greenkeeper.io/)
