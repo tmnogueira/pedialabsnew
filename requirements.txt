@@ -4,7 +4,6 @@ feedparser==5.2.1
 Markdown==2.6.8
 simplejson==3.10.0
 smartypants==2.0.0
-uuid==1.30
 psycopg2==2.7.1
 olefile==0.44
 Pillow==4.1.1
@@ -14,7 +13,7 @@ pep8==1.7.0
 pyflakes==1.5.0
 mccabe==0.6.1
 pycodestyle==2.0
-enum34==1.1.6
+enum34==1.1.6; python_version < '3.4'
 configparser==3.5.0
 flake8==3.3.0
 BeautifulSoup==3.2.1
