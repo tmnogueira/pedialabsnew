@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "media/rstplot/package.json",
+        "package.json"
+      ]
+    }
+  }
+}
