@@ -32,7 +32,7 @@ testscenarios==0.5.0
 python-subunit==1.2.0
 requirements/src/lettuce-0.2.19ccnmtl-py2-none-any.whl
 rdflib==4.2.2
-coverage==4.4.1
+coverage==4.5.2
 
 chardet==3.0.3
 idna==2.5
