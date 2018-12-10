@@ -21,7 +21,7 @@ BeautifulSoup==3.2.1
 cssselect==1.0.3
 fuzzywuzzy==0.17.0
 sure==1.4.11
-ipython==7.2.0
+ipython==5.8.0 # pyup: <6.0.0
 ipdb==0.11
 selenium==3.141.0
 extras==1.0.0
