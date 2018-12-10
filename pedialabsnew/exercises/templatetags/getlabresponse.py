@@ -33,9 +33,9 @@ class GetActionPlanResponseNode(template.Node):
         self.var_name = var_name
 
     def render(self, context):
-        l = context[self.lab]
+        lab = context[self.lab]
         u = context['request'].user
-        r = ActionPlanResponse.objects.filter(lab=l, user=u)
+        r = ActionPlanResponse.objects.filter(lab=lab, user=u)
         context[self.var_name] = r[0]
         return ''
 
@@ -76,9 +76,9 @@ class GetStudentActionPlanResponseNode(template.Node):
         self.var_name = var_name
 
     def render(self, context):
-        l = context[self.lab]
+        lab = context[self.lab]
         u = context[self.student]
-        r = ActionPlanResponse.objects.filter(lab=l, user=u)
+        r = ActionPlanResponse.objects.filter(lab=lab, user=u)
         context[self.var_name] = r[0]
         return ''
 

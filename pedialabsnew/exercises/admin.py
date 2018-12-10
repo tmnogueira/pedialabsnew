@@ -12,4 +12,5 @@ class TestAdmin(admin.ModelAdmin):
         model = Test
     list_display = ("name", "lab")
 
+
 admin.site.register(Test, TestAdmin)
