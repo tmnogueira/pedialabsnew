@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible, smart_text
 from pagetree.models import PageBlock
 from pagetree.reports import ReportableInterface, ReportColumnInterface
 
@@ -15,6 +16,7 @@ TEST_CHOICES = (
 )
 
 
+@python_2_unicode_compatible
 class Lab(models.Model):
     description = models.TextField(blank=True)
     assessment = models.BooleanField(default=False)
@@ -52,7 +54,7 @@ class Lab(models.Model):
         abnormalities = dict()
         action_plan = data.get('action-plan', "")
         assessment = data.get('assessment', "")
-        for k in data.keys():
+        for k in list(data.keys()):
             if k.startswith('result-'):
                 tid = int(k[len('result-'):])
                 results[tid] = data[k]
@@ -68,7 +70,7 @@ class Lab(models.Model):
         self.save_test_results(results, abnormalities, user)
 
     def save_test_results(self, results, abnormalities, user):
-        for tid in results.keys():
+        for tid in list(results.keys()):
             test = Test.objects.get(id=tid)
             result = results[tid]
             abnormality = abnormalities.get(tid, "none")
@@ -87,8 +89,8 @@ class Lab(models.Model):
     def pageblock(self):
         return self.pageblocks.all()[0]
 
-    def __unicode__(self):
-        return unicode(self.pageblock())
+    def __str__(self):
+        return smart_text(self.pageblock())
 
     def edit_form(self):
         action_plan_choices = [
@@ -221,15 +223,16 @@ class Test(models.Model):
         return F(request, instance=self)
 
 
+@python_2_unicode_compatible
 class TestResponse(models.Model):
     test = models.ForeignKey(Test)
     user = models.ForeignKey(User)
     result_level = models.CharField(max_length=256, choices=TEST_CHOICES)
     abnormality = models.CharField(max_length=256, default="none")
 
-    def __unicode__(self):
+    def __str__(self):
         return "TestResponse (%s, %s)" % (
-            unicode(self.test), unicode(self.user))
+            smart_text(self.test), smart_text(self.user))
 
     def correct_level(self):
         return self.result_level == self.test.result_level
@@ -238,14 +241,15 @@ class TestResponse(models.Model):
         return self.abnormality == self.test.abnormality
 
 
+@python_2_unicode_compatible
 class ActionPlanResponse(models.Model):
     lab = models.ForeignKey(Lab)
     user = models.ForeignKey(User)
     action_plan = models.CharField(max_length=256, default="")
     assessment = models.TextField(default="", blank=True)
 
-    def __unicode__(self):
-        return "ActionPlanResponse for %s" % unicode(self.user)
+    def __str__(self):
+        return "ActionPlanResponse for %s" % smart_text(self.user)
 
     def correct_action_plan(self):
         return self.action_plan == self.lab.correct_actionplan
