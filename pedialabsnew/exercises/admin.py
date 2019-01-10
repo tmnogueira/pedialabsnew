@@ -1,4 +1,6 @@
-from models import Lab, Test, TestResponse, ActionPlanResponse
+from pedialabsnew.exercises.models import (
+    Lab, Test, TestResponse, ActionPlanResponse
+)
 
 from django.contrib import admin
 

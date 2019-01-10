@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from pagetree.helpers import get_hierarchy
 import csv
-from cStringIO import StringIO
+from io import StringIO
 from django.core.urlresolvers import reverse
 
 
@@ -33,7 +33,7 @@ def reorder_tests(request, id):
     if request.method != "POST":
         return HttpResponse("only use POST for this")
     lab = get_object_or_404(Lab, id=id)
-    keys = request.GET.keys()
+    keys = list(request.GET.keys())
     keys.sort()
     tests = [int(request.GET[k]) for k in keys if k.startswith('test_')]
     lab.update_tests_order(tests)

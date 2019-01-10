@@ -1,9 +1,11 @@
 from django import forms
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.encoding import python_2_unicode_compatible, smart_text
 from django.db import models
 from pagetree.models import PageBlock
 
 
+@python_2_unicode_compatible
 class RstPlotBlock(models.Model):
     display_name = "Rapid Strep Test Plot"
     pageblocks = GenericRelation(PageBlock)
@@ -14,8 +16,8 @@ class RstPlotBlock(models.Model):
     def pageblock(self):
         return self.pageblocks.all()[0]
 
-    def __unicode__(self):
-        return unicode(self.pageblock())
+    def __str__(self):
+        return smart_text(self.pageblock())
 
     def needs_submit(self):
         return False

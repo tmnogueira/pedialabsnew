@@ -12,7 +12,7 @@ class ViewsTest(TestCase):
         t = Test.objects.create(lab=lab)
         r = self.c.get("/exercises/delete_test/%d/" % t.id)
         self.assertEquals(r.status_code, 200)
-        self.assertTrue("<form" in r.content)
+        self.assertContains(r, "<form")
 
     def test_delete_test_post(self):
         lab = Lab.objects.create()
@@ -32,4 +32,4 @@ class ViewsTest(TestCase):
                 "test_2": t1.id,
             })
         self.assertEquals(r.status_code, 200)
-        self.assertEquals(r.content, "ok")
+        self.assertEquals(r.content, b"ok")
