@@ -16,7 +16,7 @@ mccabe==0.6.1
 pycodestyle==2.5.0
 enum34==1.1.6; python_version < '3.4'
 configparser==3.7.1
-flake8==3.7.5
+flake8==3.7.6
 cssselect==1.0.3
 fuzzywuzzy==0.17.0
 sure==1.4.11
