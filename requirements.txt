@@ -1,7 +1,7 @@
 Django==1.11.20  # pyup: <2.0
 lxml==4.3.2
 feedparser==5.2.1
-Markdown==2.6.11  # pyup: <3.0
+Markdown==2.6.11 # pyup: < 3  # pyup: <3.0
 simplejson==3.16.0
 smartypants==2.0.1
 uuid==1.30
