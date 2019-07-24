@@ -52,7 +52,7 @@ sqlparse==0.3.0
 futures==3.3.0; python_version < '3'
 s3transfer==0.2.1
 jmespath==0.9.4
-botocore==1.12.194
+botocore==1.12.195
 boto3==1.9.194
 python-dateutil==2.8.0
 contextlib2==0.5.5
