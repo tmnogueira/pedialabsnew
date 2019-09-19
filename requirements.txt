@@ -14,7 +14,6 @@ pep8==1.7.1
 pyflakes==2.1.1
 mccabe==0.6.1
 pycodestyle==2.5.0
-enum34==1.1.6; python_version < '3.4'
 configparser==4.0.2
 flake8==3.7.7
 cssselect==1.1.0
@@ -41,7 +40,7 @@ requests==2.22.0
 logilab-common==1.4.3
 logilab-astng==0.24.3
 editdistance==0.5.3
-pylint==1.9.4 # pyup: <2.0.0
+pylint==2.3.1
 six==1.12.0
 ipaddress==1.0.22
 factory_boy==2.12.0
@@ -49,7 +48,6 @@ Faker==2.0.2
 
 ldap3==2.6.1
 sqlparse==0.3.0
-futures==3.3.0; python_version < '3'
 s3transfer==0.2.1
 jmespath==0.9.4
 botocore>=1.12.194,<1.13.0
@@ -76,7 +74,6 @@ django-jenkins==0.110.0
 django-smoketest==1.1.0
 django-extensions==2.2.1
 # needed for django-extensions
-typing==3.7.4.1; python_version < '3.5'
 django-stagingcontext==0.1.0
 django-ga-context==0.1.0
 django-impersonate==1.4.1
@@ -99,5 +96,4 @@ stevedore>=1.20.0 # Apache-2.0
 bandit==1.6.2
 pytz==2019.2
 
-functools32==3.2.3-2; python_version < '3'
 entrypoints==0.3
