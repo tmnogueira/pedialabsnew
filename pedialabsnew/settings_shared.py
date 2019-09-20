@@ -43,9 +43,4 @@ PAGEBLOCKS = [
     'rstplot.RstPlotBlock',
 ]
 
-LETTUCE_APPS = (
-    'pedialabsnew.main',
-    'pedialabsnew.exercises',
-)
-
 ACCOUNT_ACTIVATION_DAYS = 7
