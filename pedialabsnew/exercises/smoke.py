@@ -1,5 +1,5 @@
+from pedialabsnew.exercises.models import Lab
 from smoketest import SmokeTest
-from models import Lab
 
 
 class DBConnectivity(SmokeTest):
