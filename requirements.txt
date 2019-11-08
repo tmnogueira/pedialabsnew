@@ -40,7 +40,7 @@ certifi==2019.9.11
 urllib3==1.24.3  # pyup: <1.25
 
 requests==2.21.0  # pyup: <2.22.0
-logilab-common==1.4.3
+logilab-common==1.4.4
 logilab-astng==0.24.3
 editdistance==0.5.3
 pylint==2.4.3
