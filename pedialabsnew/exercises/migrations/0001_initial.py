@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                 ('unit', models.CharField(max_length=256)),
                 ('result_level', models.CharField(default=b'normal', max_length=256, choices=[(b'unselected', b'Please select:'), (b'low', b'Low'), (b'normal', b'Normal'), (b'high', b'High')])),
                 ('abnormality', models.CharField(default=b'none', max_length=256)),
-                ('lab', models.ForeignKey(to='exercises.Lab')),
+                ('lab', models.ForeignKey(to='exercises.Lab', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ('lab', 'ordinality'),
@@ -61,8 +61,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('result_level', models.CharField(max_length=256, choices=[(b'unselected', b'Please select:'), (b'low', b'Low'), (b'normal', b'Normal'), (b'high', b'High')])),
                 ('abnormality', models.CharField(default=b'none', max_length=256)),
-                ('test', models.ForeignKey(to='exercises.Test')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('test', models.ForeignKey(to='exercises.Test', on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -71,13 +71,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='actionplanresponse',
             name='lab',
-            field=models.ForeignKey(to='exercises.Lab'),
+            field=models.ForeignKey(to='exercises.Lab', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='actionplanresponse',
             name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

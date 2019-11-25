@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls.base import reverse
 from django.utils.encoding import python_2_unicode_compatible, smart_text
 from pagetree.models import PageBlock
 from pagetree.reports import ReportableInterface, ReportColumnInterface
@@ -202,7 +202,7 @@ class Lab(models.Model):
 
 
 class Test(models.Model):
-    lab = models.ForeignKey(Lab)
+    lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
     name = models.CharField(max_length=256)
     ordinality = models.PositiveIntegerField(default=1)
     result = models.CharField(max_length=256)
@@ -225,8 +225,8 @@ class Test(models.Model):
 
 @python_2_unicode_compatible
 class TestResponse(models.Model):
-    test = models.ForeignKey(Test)
-    user = models.ForeignKey(User)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     result_level = models.CharField(max_length=256, choices=TEST_CHOICES)
     abnormality = models.CharField(max_length=256, default="none")
 
@@ -243,8 +243,8 @@ class TestResponse(models.Model):
 
 @python_2_unicode_compatible
 class ActionPlanResponse(models.Model):
-    lab = models.ForeignKey(Lab)
-    user = models.ForeignKey(User)
+    lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     action_plan = models.CharField(max_length=256, default="")
     assessment = models.TextField(default="", blank=True)
 

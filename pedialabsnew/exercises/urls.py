@@ -1,9 +1,8 @@
 from django.conf.urls import url
 
-from .views import (
-    edit_lab, add_test_to_lab, add_csv_to_lab, edit_test,
-    delete_test, reorder_tests,
-)
+from pedialabsnew.exercises.views import edit_lab, add_test_to_lab, \
+    add_csv_to_lab, edit_test, delete_test, reorder_tests
+
 
 urlpatterns = [
     url(r'^edit_lab/(?P<id>\d+)/$', edit_lab, {}, 'edit-lab'),

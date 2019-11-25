@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from ..models import (
-    Lab, Test, TestResponse, ActionPlanResponse,
-    TestLevelColumn, TestAbnormalityColumn,
-    LabAssessmentColumn, LabActionPlanColumn,
-)
+
+from pedialabsnew.exercises.models import (
+    Lab, Test, ActionPlanResponse, TestResponse, TestLevelColumn,
+    TestAbnormalityColumn, LabAssessmentColumn, LabActionPlanColumn)
 
 
 class LabTest(TestCase):
@@ -111,7 +110,9 @@ class TestResponseTest(TestCase):
         user = User.objects.create(username='test')
         tr = TestResponse.objects.create(test=t, user=user,
                                          result_level="normal")
-        self.assertEqual(str(tr), 'TestResponse (Test object, test)')
+        self.assertEqual(
+            str(tr),
+            'TestResponse (Test object (' + str(t.id) + '), test)')
 
     def test_correct_level(self):
         lab = Lab.objects.create()

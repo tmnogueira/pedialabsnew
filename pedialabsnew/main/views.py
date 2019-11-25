@@ -29,7 +29,7 @@ def context_processor(request):
 def index(request):
     template_name = 'main/index.html'
     ctx = {'survey_complete': False}
-    if not request.user.is_anonymous():
+    if not request.user.is_anonymous:
         try:
             hierarchy = Hierarchy.objects.get(name='labs')
         except Hierarchy.DoesNotExist:
