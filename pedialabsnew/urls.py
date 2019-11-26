@@ -1,6 +1,4 @@
-import django.contrib.auth.views
 import django.views.static
-import djangowind.views
 import pedialabsnew.exercises.urls
 
 from django.conf.urls import include, url
@@ -13,33 +11,16 @@ from pedialabsnew.main.views import EditPageOverview, ViewPageOverview, \
 
 admin.autodiscover()
 
-redirect_after_logout = getattr(settings, 'LOGOUT_REDIRECT_URL', None)
-
 auth_urls = url(r'^accounts/', include('django.contrib.auth.urls'))
-
-logout_page = url(r'^accounts/logout/$',
-                  django.contrib.auth.views.logout,
-                  {'next_page': redirect_after_logout})
-admin_logout_page = url(r'^accounts/logout/$',
-                        django.contrib.auth.views.logout,
-                        {'next_page': '/admin/'})
-
 if hasattr(settings, 'CAS_BASE'):
     auth_urls = url(r'^accounts/', include('djangowind.urls'))
-    logout_page = url(r'^accounts/logout/$',
-                      djangowind.views.logout,
-                      {'next_page': redirect_after_logout})
-    admin_logout_page = url(r'^admin/logout/$',
-                            djangowind.views.logout,
-                            {'next_page': redirect_after_logout})
+
 
 urlpatterns = [
-    logout_page,
-    admin_logout_page,
     auth_urls,
     url(r'^registration/', include('registration.backends.default.urls')),
     url(r'^$', index),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^_clear/$', ClearStateView.as_view()),
     url(r'^_impersonate/', include('impersonate.urls')),
     url(r'^stats/$', TemplateView.as_view(template_name="stats.html")),

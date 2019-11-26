@@ -1,10 +1,12 @@
-from .models import Lab, Test
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render
-from pagetree.helpers import get_hierarchy
 import csv
 from io import StringIO
-from django.core.urlresolvers import reverse
+
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.urls.base import reverse
+from pagetree.helpers import get_hierarchy
+
+from .models import Lab, Test
 
 
 def edit_lab(request, id):

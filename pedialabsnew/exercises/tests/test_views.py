@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.test.client import Client
-from ..models import Lab, Test
+
+from pedialabsnew.exercises.models import Lab, Test
 
 
 class ViewsTest(TestCase):
