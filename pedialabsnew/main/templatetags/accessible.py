@@ -4,7 +4,7 @@ register = template.Library()
 
 
 def block_submitted(block, user):
-    if user.is_anonymous():
+    if user.is_anonymous:
         # anon can't have submitted a block
         return False
 
