@@ -22,7 +22,7 @@ flake8==3.7.9
 cssselect==1.1.0
 fuzzywuzzy==0.17.0
 sure==1.4.11
-ipython==7.9.0
+ipython==7.10.1
 ipdb==0.12.2
 selenium==3.141.0
 extras==1.0.0
