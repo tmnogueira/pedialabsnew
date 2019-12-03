@@ -23,7 +23,7 @@ cssselect==1.1.0
 fuzzywuzzy==0.17.0
 sure==1.4.11
 ipython==7.9.0
-ipdb==0.12.2
+ipdb==0.12.3
 selenium==3.141.0
 extras==1.0.0
 python-mimeparse==1.6.0
