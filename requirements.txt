@@ -20,7 +20,7 @@ pycodestyle==2.5.0
 configparser==4.0.2
 flake8==3.7.9
 cssselect==1.1.0
-fuzzywuzzy==0.17.0
+fuzzywuzzy==0.18.0
 sure==1.4.11
 selenium==3.141.0
 extras==1.0.0
