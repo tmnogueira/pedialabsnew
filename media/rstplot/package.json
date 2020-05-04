@@ -11,7 +11,7 @@
   "devDependencies": {
     "karma": "~5.0.0",
     "karma-phantomjs-launcher": "^1.0.4",
-    "karma-qunit": "~4.0.0",
+    "karma-qunit": "~4.1.0",
     "qunitjs": "~2.4.1"
   }
 }
