@@ -18,6 +18,8 @@ pyflakes==2.2.0
 mccabe==0.6.1
 pycodestyle==2.5.0
 configparser==5.0.0
+importlib-metadata==1.6.0  # for flake8
+zipp==3.1.0  # for flake8
 flake8==3.7.9
 cssselect==1.1.0
 fuzzywuzzy==0.18.0
