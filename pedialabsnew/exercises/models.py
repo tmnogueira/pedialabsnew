@@ -181,8 +181,8 @@ class Lab(models.Model):
         columns = []
         hierarchy = self.pageblock().section.hierarchy
         for t in self.test_set.all():
-            for l in TEST_CHOICES:
-                columns.append(TestLevelColumn(hierarchy, t, l[0]))
+            for choice in TEST_CHOICES:
+                columns.append(TestLevelColumn(hierarchy, t, choice[0]))
             for a in self.all_abnormalities():
                 columns.append(TestAbnormalityColumn(hierarchy, t, a))
         columns.append(LabActionPlanColumn(hierarchy, self))
