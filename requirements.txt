@@ -1,5 +1,5 @@
 Django==2.2.12 # pyup: < 3
-lxml==4.5.0
+lxml==4.5.1
 feedparser==5.2.1
 Markdown==3.2.2
 simplejson==3.17.0
