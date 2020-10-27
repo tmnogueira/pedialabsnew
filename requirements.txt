@@ -1,6 +1,6 @@
 Django>=2.2.12,<3
 lxml==4.6.1
-feedparser==6.0.1
+feedparser==6.0.2
 Markdown==3.3.3
 simplejson==3.17.2
 smartypants==2.0.1
