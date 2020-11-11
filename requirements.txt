@@ -38,7 +38,7 @@ idna==2.10
 certifi==2020.11.8  # sentry-sdk
 urllib3==1.25.11
 
-requests==2.24.0
+requests==2.25.0
 logilab-common==1.8.0
 astroid==2.4.2
 editdistance==0.5.3
